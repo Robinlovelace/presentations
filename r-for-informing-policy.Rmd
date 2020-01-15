@@ -1,0 +1,95 @@
+---
+title: "R for infoRming policy"
+subtitle: "`r emojifont::emoji('rocket')`<br/>writing code for impact, a case study of transport and road safety data"
+author: "Robin Lovelace"
+institute: "University of Leeds"
+date: "2020-05-28 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, robot, robot-fonts]
+    lib_dir: libs
+    nature: 
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+background-image: url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gh-self-help-books-1551713371.png)
+
+--
+
+```{r, eval=FALSE}
+# to reproduce these slides do:
+pkgs = c("rgdal", "sf", "geojsonsf")
+install.packages(pkgs)
+```
+
+--
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+--
+
+## Source [goodhousekeeping.com](https://www.goodhousekeeping.com/life/entertainment/g26588504/best-self-help-books/)
+
+--
+
+The Best Self-Help Books to Read in 2019, According to Amazon and Goodreads
+
+
+???
+
+Abstract:
+
+Writing good code, that generates new insights that can solve real-world problems in a reproducible and extensible way is a goal that many R users aspire to.
+However, if you have wider aims, data analysis code alone may not be enough to get your work 'out there'.
+In this talk I will outline key steps to maximise the chance that your R code has real world (hopefully positive) impacts.
+Based on case studies of two packages (`stplanr`, `stats19`) and government-funded projects, the talk identifies principles to make a project's journey into 'the wild' a smooth one, with maximum opportunities for community building and public benefit.
+<!-- e.g. don't re-invent the wheel -->
+<!-- collaborate -->
+<!-- communicate outside your confort zone -->
+Although the focus will be the application of geographic methods to transport planning decisions in particular, with technical aspects focussed on geographic analysis methods and making visualisations scale nationally, the concepts covered should be applicable to a range of fields with potential policy implications.
+
+To cite: https://www.nature.com/articles/s41366-018-0243-6.pdf?draft=marketing
+
+---
+
+background-image: url(https://images-na.ssl-images-amazon.com/images/I/41R3etYqvBL._SX326_BO1,204,203,200_.jpg)
+
+???
+
+Originally published in 2001, it has gained huge popularity
+
+---
+
+---
+
+class: center, middle
+
+# Thanks!
+
+Contact me at r. lovelace at leeds ac dot uk (email), `@robinlovelace` (twitter + github)
+
+--
+
+Check-out my repos at https://github.com/robinlovelace/
+
+--
+
+For more information on efficient workflows, see our book [*Efficient R Programming*](https://csgillespie.github.io/efficientR/)
+
+--
+
+Thanks to all the R developers who made this possible, including (for this presentation):
+
+[remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+--
+
+Thanks to everyone for building a open and collaborative communities!
