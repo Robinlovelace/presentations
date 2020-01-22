@@ -1,9 +1,5 @@
 # Ignore everything
 *
-!.Rproj.user
-!.Rhistory
-!.RData
-!.Ruserdata
 
 
 # But not these files...
