@@ -9,3 +9,4 @@
 # But not these files...
 !.gitignore
 !*.Rmd
+.Rproj.user
