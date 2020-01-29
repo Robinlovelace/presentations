@@ -1,0 +1,70 @@
+---
+title: "Transport Data Science: from regional to street levels"
+subtitle: "`r emojifont::emoji('rocket')`<br/>writing code for impact, a case study of transport and road safety data"
+author: "Robin Lovelace"
+institute: "University of Leeds"
+date: "2020-05-28 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, robot, robot-fonts]
+    lib_dir: libs
+    nature: 
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+background-image: url(https://d3l4am9dimtbet.cloudfront.net/wp-content/uploads/2018/07/In-Pics_-These-Mind-Blowing-Aerial-Shots-of-Mumbai-Were-Taken-by-a-Drone.jpg)
+
+## Transport is a global issue
+
+Source: [thebetterindia.com](https://www.thebetterindia.com/148450/mumbai-aerial-shots/)
+
+<!-- Mumbai is by [some](https://www.independent.co.uk/travel/worlds-biggest-cities-mexico-city-new-york-karachi-tokyo-lagos-kolkata-kinshasa-dhaka-delhi-a8158426.html) measures the world's largest city -->
+
+
+--
+
+Abstract: 
+Data Science has emerged as an area of high and consistent growth in many sectors. High tech industries such as search engine optimisation, marketing and retail analytics have been quick to adopt new workflows. Transport has arguably been slow to adapt to the transformations towards open source software (as opposed to proprietary products that still dominate), command line and scriptable interfaces (unlike the graphical user interfaces of tools such as Excel) and code sharing and version development via platforms such as GitHub.
+
+This talk demonstrates these new workflows, building on the [Transport chapter in the open source book Geocomputation with R](https://geocompr.robinlovelace.net/transport.html) and experience developing and deploying data science tools that are having a real world impact on transport policy and practice. It will provide insight into how multiple geographic scales of analysis were used to develop the [Propensity to Cycle Tool](http://www.pct.bike/), which Robin developed in collaboration with colleagues from 4 universities and which is being used by dozens of Local Authorities to develop strategic cycle networks. Furthermore, a live demo of the recently release [stats19](https://docs.ropensci.org/stats19/) package, which provides fast access to crash data for road safety research, will highlight the power of reproducibility and that transport data science is a practical field best discovered by doing it and collaboration using reproducible code.
+
+```{r, eval=FALSE}
+# to reproduce these slides do:
+pkgs = c("rgdal", "sf", "geojsonsf")
+install.packages(pkgs)
+```
+
+--
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+# Thanks!
+
+Contact me at r. lovelace at leeds ac dot uk (email), `@robinlovelace` (twitter + github)
+
+--
+
+Check-out my repos at https://github.com/robinlovelace/
+
+--
+
+For more information on efficient workflows, see our book [*Efficient R Programming*](https://csgillespie.github.io/efficientR/)
+
+--
+
+Thanks to all the R developers who made this possible, including (for this presentation):
+
+[remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+--
+
+Thanks to everyone for building a open and collaborative communities!
