@@ -118,22 +118,6 @@ Example: Propensity to Cycle Tool (PCT) in Manchester: http://pct.bike/m/?r=grea
 
 ---
 
-## Tools for evidence-based policy
-
-```{r, echo=FALSE, out.width="90%"}
-knitr::include_graphics("https://raw.githubusercontent.com/npct/pct-team/master/figures/front-page-leeds-pct-demo.png")
-```
-
---
-
-Source - https://github.com/npct which hosts national web tool PCT [www.pct.bike](http://www.pct.bike/)
-
----
-
-## Tools for reproducible research
-
----
-
 # Classifying transport data
 
 Source: https://www.openstreetmap.org/edit#map=14/50.6711/4.6185
@@ -154,10 +138,13 @@ knitr::include_graphics("https://user-images.githubusercontent.com/1825120/73912
 
 Data science is climbing the DIKW pyramid
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width="70%"}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/DIKW_Pyramid.svg/220px-DIKW_Pyramid.svg.png")
 ```
 
+--
+
+Data science *can* convert data to information and graphics but *cannot*, on its own, create knowledge, let alone wisdom
 
 ---
 
@@ -314,12 +301,13 @@ system.time({
 plot(louvain_highway)
 ```
 
+
 ``` r
 # remotes::install_github("itsleeds/geofabrik")
 library(geofabrik)
 lvn_centroid = tmaptools::geocode_OSM("louvain-la-neuve", as.sf = T)
-system.time({ # around 2 seconds
-  lvn = get_geofabrik(lvn_centroid)
+system.time({
+  lvn = get_geofabrik(lvn_centroid) # warning: downloads giant file
   })
 #> although coordinates are longitude/latitude, st_contains assumes that they are planar
 #> The place is within these geofabrik zones: Europe, Belgium
@@ -336,12 +324,103 @@ plot(louvain_highway)
 
 <sup>Created on 2020-02-06 by the [reprex package](https://reprex.tidyverse.org) (v0.3.0)</sup>
 
+--
+
+- We made our code 100+ times slower!
+
 ---
 
 ## Geofabrik II: pre-downloaded data
 
+```{r}
+lvn_filename = geofabrik::gf_filename("Belgium")
+lvn_filename
+utils:::format.object_size(file.size(lvn_filename), units = "MB")
+# Around 1 GB in RAM...
+```
+
+```{r, eval=FALSE}
+library(geofabrik)
+system.time({
+    belgium_cycleway = get_geofabrik("Belgium", key = "highway", value = "cycleway")
+})
+#>    user  system elapsed 
+#>  23.658   1.933  23.130 
+format(object.size(belgium_cycleway), units = "MB")
+#> [1] "36.9 Mb"
+```
+
+```{r, eval=FALSE, echo=FALSE}
+# save belgium_cycleway object
+saveRDS(belgium_cycleway, "belgium_cycleway.Rds")
+file.size("belgium_cycleway.Rds") # 4 MB
+piggyback::pb_upload("belgium_cycleway.Rds")
+```
 
 
+--
+
+## 'Only' ~10 times slower now 
+
+---
+
+## National transport datasets
+
+```{r}
+# piggyback::pb_download_url("belgium_cycleway.Rds")
+u = "https://github.com/Robinlovelace/presentations/releases/download/2020-02/belgium_cycleway.Rds"
+f = "belgium_cycleway.Rds"
+if(!file.exists(f)) {
+  download.file(url = u, destfile = f)
+}
+system.time({
+  belgium_cycleway = readRDS("belgium_cycleway.Rds")
+})
+format(object.size(belgium_cycleway), units = "MB")
+```
+
+## Now ~10 times faster!
+
+--
+
+### And 10 times more useful?
+
+---
+
+## National route network dataset
+
+```{r, eval=FALSE}
+plot(sf::st_geometry(belgium_cycleway))
+```
+
+![](https://user-images.githubusercontent.com/1825120/73952495-e3400600-48f6-11ea-8e52-33df6f15613f.png)
+
+
+
+---
+
+# TDS for policy
+
+Source: the Propensity to Cycle Tool (PCT) project, demo at www.pct.bike
+
+```{r, echo=FALSE, out.width="90%"}
+knitr::include_graphics("https://raw.githubusercontent.com/npct/pct-team/master/figures/front-page-leeds-pct-demo.png")
+```
+
+--
+
+Source - https://github.com/npct which hosts national web tool PCT [www.pct.bike](http://www.pct.bike/)
+
+---
+
+## Tools for reproducible research
+
+Transport data science is simply the application of 'data science' to transport
+
+- In terms of technique this means command-line tools for scalable analysis
+- Principles: reproducibility, generalisability, (public) accessibility
+
+### Example II: **stats19**
 
 ---
 
