@@ -1,8 +1,8 @@
 ---
 title: "R for infoRming policy"
 subtitle: "`r emojifont::emoji('rocket')`<br/>writing code for impact, a case study of transport and road safety data"
-author: "Robin Lovelace"
-institute: "University of Leeds"
+author: "Robin Lovelace, University of Leeds"
+institute: "eRum 2020, Milan"
 date: "2020-05-28 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
