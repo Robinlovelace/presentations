@@ -610,3 +610,9 @@ Slides created via the R package [**xaringan**](https://github.com/yihui/xaringa
 --
 
 Thanks to everyone for building a open and collaborative communities!
+
+```{r, echo=FALSE, eval=FALSE}
+# export code from slides
+knitr::purl("tds-regional-street.Rmd")
+```
+
