@@ -246,14 +246,19 @@ library(osmdata)
 library(sf)
 system.time({ # around 2 seconds
   louvain = opq("louvain-la-neuve") %>% 
-  add_osm_feature("highway", value = "primary|secondary|cycleway", value_exact = F) %>%
-  osmdata_sf()
+    add_osm_feature("highway", value = "primary|secondary|cycleway", value_exact = F) %>%
+    osmdata_sf()
   })
 louvain_highway = louvain$osm_lines
 plot(louvain_highway)
 saveRDS(louvain_highway, "louvain_highway.Rds")
 piggyback::pb_upload("louvain_highway.Rds")
 ```
+
+```{r, eval=FALSE, echo=FALSE}
+louvain_highway = readRDS("louvain_highway.Rds")
+```
+
 
 .pull-left[
 
@@ -295,9 +300,14 @@ knitr::include_graphics("https://i.imgur.com/09yWU7V.png")
 # remotes::install_github("itsleeds/geofabrik")
 library(geofabrik)
 lvn_centroid = tmaptools::geocode_OSM("louvain-la-neuve", as.sf = T)
-system.time({ 
-  lvn = get_geofabrik(lvn_centroid, key = "highway", value = "cycleway")
+system.time({
+  # belgium = get_geofabrik(lvn_centroid) # warning: downloads giant file
+  belgium = get_geofabrik("Beligium") # equivalent code
   })
+object.size(belgium)
+saveRDS(belgium, "belgium_lines.Rds")
+file.size("belgium_lines.Rds")
+louvain_highway
 plot(louvain_highway)
 ```
 
@@ -307,7 +317,8 @@ plot(louvain_highway)
 library(geofabrik)
 lvn_centroid = tmaptools::geocode_OSM("louvain-la-neuve", as.sf = T)
 system.time({
-  lvn = get_geofabrik(lvn_centroid) # warning: downloads giant file
+  # belgium = get_geofabrik(lvn_centroid) # warning: downloads giant file
+  belgium = get_geofabrik("Beligium") # equivalent code
   })
 #> although coordinates are longitude/latitude, st_contains assumes that they are planar
 #> The place is within these geofabrik zones: Europe, Belgium
@@ -326,16 +337,20 @@ plot(louvain_highway)
 
 --
 
-- We made our code 100+ times slower!
+#### We made our code 100+ times slower!
+
+--
+
+#### ~30 times slower excluding download time
 
 ---
 
-## Geofabrik II: pre-downloaded data
+## Geofabrik II: pre-downloaded data and filtering
 
 ```{r}
-lvn_filename = geofabrik::gf_filename("Belgium")
-lvn_filename
-utils:::format.object_size(file.size(lvn_filename), units = "MB")
+belgium_filename = geofabrik::gf_filename("Belgium")
+belgium_filename
+utils:::format.object_size(file.size(belgium_filename), units = "MB")
 # Around 1 GB in RAM...
 ```
 
@@ -360,11 +375,11 @@ piggyback::pb_upload("belgium_cycleway.Rds")
 
 --
 
-## 'Only' ~10 times slower now 
+#### 'Only' ~10 times slower now 
 
 ---
 
-## National transport datasets
+## Preprocessing bulk OSM extracts
 
 ```{r}
 # piggyback::pb_download_url("belgium_cycleway.Rds")
@@ -379,11 +394,122 @@ system.time({
 format(object.size(belgium_cycleway), units = "MB")
 ```
 
-## Now ~10 times faster!
+#### Now ~10 times faster!
 
 --
 
-### And 10 times more useful?
+#### And 10 times more useful?
+---
+
+## Spatial subsetting
+
+
+```{r, eval=FALSE}
+lvn_box = stplanr::geo_bb(louvain_highway)
+mapview::mapview(lvn_box)
+system.time({
+  lvn_lines = belgium[lvn_box, ]
+})   
+#>   user  system elapsed 
+#>  8.767   0.142   8.911
+```
+
+```{r, eval=FALSE, echo=FALSE}
+saveRDS(lvn_lines, "lvn_lines.Rds")
+piggyback::pb_upload("lvn_lines.Rds")
+```
+
+```{r}
+piggyback::pb_download_url("lvn_lines.Rds")
+u = "https://github.com/Robinlovelace/presentations/releases/download/2020-02/lvn_lines.Rds"
+f = "lvn_lines.Rds"
+if(!file.exists(f)) download.file(url = u, destfile = f)
+system.time({
+  lvn_lines = readRDS("lvn_lines.Rds")
+})
+format(object.size(lvn_lines), units = "MB")
+```
+
+---
+
+## Visualising spatial networks
+
+```{r}
+library(sf)
+plot(lvn_lines["highway"])
+```
+
+---
+
+## Highway types + data cleaning
+
+```{r}
+summary(as.factor(lvn_lines$highway))
+```
+
+```{r, message=FALSE}
+# the tidyverse way:
+library(dplyr)
+lvn_lines = lvn_lines %>% mutate(highway2 = case_when(
+  stringr::str_detect(highway, "const|corri|eleva|_link|plat|unc") ~ as.character(NA),
+  TRUE ~ lvn_lines$highway
+  ))
+```
+
+---
+
+## Cleaning II
+
+```{r}
+# (a) base R way
+lvn_lines_highway_table = table(lvn_lines$highway)
+lvn_lines_highway_table
+lvn_lines_to_remove = names(lvn_lines_highway_table)[lvn_lines_highway_table < 89]
+lvn_lines_to_remove
+lvn_lines$highway3 = lvn_lines$highway
+lvn_lines$highway3[lvn_lines$highway3 %in% lvn_lines_to_remove] = NA
+```
+
+---
+
+## Results...
+
+```{r}
+plot(lvn_lines %>% select(contains("high")))
+```
+
+---
+
+## Mapping packages
+
+```{r}
+library(tmap)
+tm_shape(lvn_lines) + tm_lines("highway3")
+```
+
+---
+
+## Interactive mapping
+
+```{r}
+tmap_mode("view")
+tm_shape(lvn_lines) + tm_lines("highway3")
+```
+
+---
+
+## Spatial networks
+
+```{r, eval=FALSE}
+remotes::install_github("luukvdmeer/sfnetworks")
+```
+
+```{r}
+library(sfnetworks)
+```
+
+
+
 
 ---
 
@@ -421,6 +547,43 @@ Transport data science is simply the application of 'data science' to transport
 - Principles: reproducibility, generalisability, (public) accessibility
 
 ### Example II: **stats19**
+
+- Package providing access to open access road casualty dataset: https://docs.ropensci.org/stats19/
+
+Used by the Parliamentary library to provide evidence for Members of Parliament (MPs): https://commonslibrary.parliament.uk/economy-business/transport/roads/constituency-data-traffic-accidents/
+
+---
+
+# The practical session
+
+It depends on you level of R skills, in ascending order of difficulty
+
+1. Work through the Transport Chapter (12) in Geocompuation with R
+
+2. Work through an introduction to road safety analysis with R: https://docs.ropensci.org/stats19/articles/stats19-training.html
+
+3. Apply the methods in that chapter to a different UK city (advanced)
+
+4. Have a play with the OSM data for Louvain-la-Neuve, hosted in the releases page of https://github.com/Robinlovelace/presentations (easy-to-hard)
+  - Visualise the dataset with tmap and other packages (see Chapter 8)
+  - Undertake spatial network analysis of the data (advanced, see sfnetworks package)
+  - Devise your own research questions using available data (PhD!)
+5. Technical issues: how to convert road network into polygons (see https://github.com/ropensci/stplanr/issues/362 ), how to do 'kriging' on a spatial network (see https://github.com/luukvdmeer/sfnetworks/issues/11 )
+
+<!-- specific stats - kriging on network -->
+
+<!-- geo question -->
+
+
+---
+
+# Invite
+
+### Interested in spatial networks?
+
+Join us for the first official Spatial Networks Hackathon, May 2020: https://www.eventbrite.it/e/erum2020-satellite-event-hackathon-on-spatial-networks-tickets-90976873277
+
+![](https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F90338799%2F337777217491%2F1%2Foriginal.20200131-160934?w=1080&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C7744%2C3872&s=77d35c39dbff7c770180ff3c01c98606)
 
 ---
 
