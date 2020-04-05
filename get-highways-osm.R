@@ -42,3 +42,8 @@ osm_data_city3 = opq(bbox = city) %>%
 
 osm_lines3 = osm_data_city3$osm_lines
 mapview::mapview(osm_lines3)
+
+osm_data_city4 = opq(bbox = "abidjan") %>% 
+  add_osm_feature(key = "highway", "primary") %>% 
+  osmdata_sf()
+mapview::mapview(osm_data_city4$osm_lines)
