@@ -472,9 +472,9 @@ piggyback::pb_download_url("ctown_roads.Rds")
 
 ---
 
-## Visualising spatial networks
 
 ```{r}
+## Visualising spatial networks
 u = "https://github.com/Robinlovelace/presentations/releases/download/2020-02/ctown_roads.Rds"
 ctown_roads = readRDS(url(u))
 library(sf)
