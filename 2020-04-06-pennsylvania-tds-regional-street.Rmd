@@ -532,17 +532,113 @@ tmap_mode("plot")
 
 ```{r}
 library(tmap)
-tm_shape(ctown_roads) + tm_lines("highway3", lwd = 3)
+tm_shape(ctown_roads) + tm_lines("highway3", lwd = 3, )
 ```
 
 ---
 
 ## Interactive mapping
 
-```{r}
+```{r, message=FALSE}
 tmap_mode("view")
-tm_shape(ctown_roads) + tm_lines("highway3")
+tm_shape(ctown_roads) + tm_lines("highway3", lwd = 3)
 ```
+
+---
+
+## OD data
+
+```{r}
+library(stplanr)
+library(od)
+od_data_leeds = flow
+zones_leeds = zones_sf
+class(od_data_leeds)
+desire_lines_leeds = od::od_to_sf(od_data_leeds, z = zones_sf)
+class(desire_lines_leeds)
+```
+
+---
+
+## OD data on the network
+
+```{r, message=FALSE}
+tmap_mode("view")
+tm_shape(ctown_roads) + tm_lines("highway3", lwd = 3) +
+  tm_shape(desire_lines_leeds) + tm_lines()
+```
+
+---
+
+## Routing
+
+.pull-left[
+
+```{r}
+desire_lines_leeds_interzonal = desire_lines_leeds %>% 
+  filter(Area.of.residence != Area.of.workplace)
+routes_cycling_leeds = route(
+  l = desire_lines_leeds_interzonal[2:9],
+  route_fun = cyclestreets::journey
+  )
+```
+
+]
+
+.pull-right[
+
+```{r}
+tm_shape(ctown_roads) + tm_lines("highway3", lwd = 3) +
+  tm_shape(routes_cycling_leeds) + tm_lines()
+```
+
+
+]
+
+---
+
+# Other routing services
+
+.pull-left[
+
+
+
+- See Section ([12.5](https://geocompr.robinlovelace.net/transport.html#routes)) of Geocomputation with R
+
+```{r, message=FALSE, eval=FALSE}
+library(osrm)
+routes_driving_leeds = route(
+  l = desire_lines_leeds_interzonal[2:9],
+  route_fun = osrm::osrmRoute,
+  returnclass = "sf"
+  )
+
+```
+
+]
+
+.pull-right[
+
+```{r, eval=FALSE}
+tm_shape(ctown_roads) + tm_lines("highway3", lwd = 3) +
+  tm_shape(routes_driving_leeds) + tm_lines()
+```
+
+]
+
+---
+
+## Route aggregation
+
+```{r, message=FALSE}
+# names(routes_cycling_leeds)
+rnet_leeds = overline(routes_cycling_leeds, attrib = "All")
+tm_shape(ctown_roads) + tm_lines("highway3", lwd = 3) +
+  tm_shape(rnet_leeds) + tm_lines(lwd = "All", scale = 9)
+```
+
+
+
 
 ---
 
@@ -555,8 +651,6 @@ remotes::install_github("luukvdmeer/sfnetworks")
 ```{r}
 library(sfnetworks)
 ```
-
-
 
 
 ---
@@ -606,16 +700,19 @@ Used by the Parliamentary library to provide evidence for Members of Parliament 
 
 It depends on you level of R skills, in ascending order of difficulty
 
-1. Work through the Transport Chapter (12) in Geocompuation with R
-
-2. Work through an introduction to road safety analysis with R: https://docs.ropensci.org/stats19/articles/stats19-training.html
-
-3. Apply the methods in that chapter to a different UK city (advanced)
-
-4. Have a play with the OSM data for Louvain-la-Neuve, hosted in the releases page of https://github.com/Robinlovelace/presentations (easy-to-hard)
+1. Have a play with the OSM data for Leeds and reproduce the examples in these slides, hosted in the releases page of https://github.com/Robinlovelace/presentations (easy-to-hard)
   - Visualise the dataset with tmap and other packages (see Chapter 8)
+  - Find the OD pairs with the highest levels of walking, cycling and driving
+  - Find the driving routes with osrmRoute()
   - Undertake spatial network analysis of the data (advanced, see sfnetworks package)
   - Devise your own research questions using available data (PhD!)
+
+2. Work through the Transport Chapter (12) in Geocompuation with R (intermediate)
+
+3. Work through an introduction to road safety analysis with R (easier) : https://docs.ropensci.org/stats19/articles/stats19-training.html
+
+4. Apply the methods in that chapter to a different UK city (advanced)
+
 5. Technical issues: how to convert road network into polygons (see https://github.com/ropensci/stplanr/issues/362 ), how to do 'kriging' on a spatial network (see https://github.com/luukvdmeer/sfnetworks/issues/11 )
 
 <!-- specific stats - kriging on network -->
