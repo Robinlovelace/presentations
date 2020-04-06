@@ -3,7 +3,7 @@ title: "Transport Data Science: from regional to street levels"
 subtitle: "`r emojifont::emoji('rocket')`<br/>Emerging discipline and community of practice?"
 author: "Robin Lovelace"
 institute: "University of Leeds"
-date: "University of Pennsylvania, 2020-04-06 (updated: `r Sys.Date()`)"
+date: "University of Pennsylvania, 2020-04-06 (updated: `r Sys.Date()`)\nReproducible source code: [github.com/Robinlovelace/presentations](https://github.com/Robinlovelace/presentations/blob/master/2020-04-06-pennsylvania-tds-regional-street.Rmd)"
 output:
   xaringan::moon_reader:
     css: [default, robot, robot-fonts]
@@ -589,13 +589,13 @@ It depends on you level of R skills, in ascending order of difficulty
 
 ---
 
-# Invite
-
 ### Interested in spatial networks?
 
-Join us for the first official Spatial Networks Hackathon, May 2020: https://www.eventbrite.it/e/erum2020-satellite-event-hackathon-on-spatial-networks-tickets-90976873277
+Check-out the sfnetworks package (and issue tracker): https://github.com/luukvdmeer/sfnetworks
 
-![](https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F90338799%2F337777217491%2F1%2Foriginal.20200131-160934?w=1080&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C7744%2C3872&s=77d35c39dbff7c770180ff3c01c98606)
+Join us for the Spatial Networks Hackathon, date TBC 
+
+![](https://user-images.githubusercontent.com/1825120/78507945-1b3eba80-777b-11ea-87a0-fa84965982e9.png)
 
 ---
 
