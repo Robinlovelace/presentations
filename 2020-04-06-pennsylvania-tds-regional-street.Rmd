@@ -165,7 +165,7 @@ Data science *can* convert data to information and graphics but *cannot*, on its
 
 .pull-right[
 
-![](https://publicdomainvectors.org/photos/pitr_green_arrows_set_1.png)
+![](https://user-images.githubusercontent.com/1825120/78549175-dc037e80-77f9-11ea-999e-e526632a1d53.png)
 
 ]
 
