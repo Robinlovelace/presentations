@@ -2,7 +2,7 @@
 title: "Transport Data Science: from regional to street levels"
 subtitle: "`r emojifont::emoji('rocket')`<br/>Emerging discipline and community of practice?"
 author: "Robin Lovelace"
-institute: "University of Leeds"
+institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
 date: "University of Pennsylvania, 2020-04-06 (updated: `r Sys.Date()`)\nReproducible source code: [github.com/Robinlovelace/presentations](https://github.com/Robinlovelace/presentations/blob/master/2020-04-06-pennsylvania-tds-regional-street.Rmd)"
 output:
   xaringan::moon_reader:
@@ -126,12 +126,6 @@ Source (check it): https://www.openstreetmap.org/edit#map=11/53.8137/-1.5240
 knitr::include_graphics("https://user-images.githubusercontent.com/1825120/78499529-195c0380-7749-11ea-8f7a-43dfd479039e.png")
 ```
 
---
-
-
----
-
-
 ---
 
 ## Information and data pyramids
@@ -208,7 +202,7 @@ Data science *can* convert data to information and graphics but *cannot*, on its
 
 - Official sources are often smaller in sizes but higher in Quality
 
-- Unofficial sources provide higher volumes but tend to be noisy, e.g.: https://onlinelibrary.wiley.com/doi/full/10.1111/gean.12081
+- Unofficial sources provide higher volumes but tend to be noisy, e.g. study on Twitter vs Mobile vs in-person survey (Lovelace et al. [2016](https://onlinelibrary.wiley.com/doi/full/10.1111/gean.12081)) 
 
 - Another way to classify data is by quality: signal/noise ratios
 
@@ -243,7 +237,7 @@ For other datasets, search online! Good starting points in your research may be:
 ## Data packages
 
 - The **openrouteservice** github package provides routing data
-- The stats19 package can get road crash data for anywhere in Great Britain [@lovelace_stats19_2019] see here for info: https://itsleeds.github.io/stats19/
+- The stats19 package can get road crash data for anywhere in Great Britain (Lovelace et al. 2019) see here for info: https://itsleeds.github.io/stats19/
 - The pct package provides access to data in the PCT: https://github.com/ITSLeeds/pct
 - There are many other R packages to help access data
 
@@ -444,11 +438,47 @@ format(object.size(lvn_lines), units = "MB")
 
 ---
 
+# Getting data for the transport network in Leeds
+
+```{r, eval=FALSE}
+library(geofabrik)
+westyorkshire = geofabrik::get_geofabrik("west yorkshire")
+# subset them centering in chapeltown
+place_name = "chapeltown leeds"
+place_point = tmaptools::geocode_OSM(place_name)
+place_df = data.frame(
+  name = place_name,
+  lon = place_point$coords[1],
+  lat = place_point$coords[2]
+  )
+place_sf = sf::st_as_sf(place_df, coords = c("lon", "lat"),
+                        crs = 4326)
+place_buffer = stplanr::geo_projected(place_sf, sf::st_buffer,
+                                      dist = 2000)
+ctown = westyorkshire[place_buffer, ]
+key = "primary|secondary|tertiary|cycleway|trunk|motorway"
+sel_key = grepl(key, x = ctown$highway)
+ctown_roads = ctown[sel_key, ]
+saveRDS(ctown, "ctown.Rds")
+saveRDS(ctown_roads, "ctown_roads.Rds")
+plot(sf::st_geometry(ctown_roads))
+```
+
+```{r, eval=FALSE, echo=FALSE}
+piggyback::pb_upload("ctown_roads.Rds")
+piggyback::pb_download_url("ctown_roads.Rds")
+```
+
+
+---
+
 ## Visualising spatial networks
 
 ```{r}
+u = "https://github.com/Robinlovelace/presentations/releases/download/2020-02/ctown_roads.Rds"
+ctown_roads = readRDS(url(u))
 library(sf)
-plot(lvn_lines["highway"])
+plot(ctown_roads["highway"])
 ```
 
 ---
@@ -456,15 +486,15 @@ plot(lvn_lines["highway"])
 ## Highway types + data cleaning
 
 ```{r}
-summary(as.factor(lvn_lines$highway))
+summary(as.factor(ctown_roads$highway))
 ```
 
 ```{r, message=FALSE}
-# the tidyverse way:
+# remove messy variables manually (if needed)
 library(dplyr)
-lvn_lines = lvn_lines %>% mutate(highway2 = case_when(
+ctown_roads = ctown_roads %>% mutate(highway2 = case_when(
   stringr::str_detect(highway, "const|corri|eleva|_link|plat|unc") ~ as.character(NA),
-  TRUE ~ lvn_lines$highway
+  TRUE ~ ctown_roads$highway
   ))
 ```
 
@@ -474,12 +504,12 @@ lvn_lines = lvn_lines %>% mutate(highway2 = case_when(
 
 ```{r}
 # (a) base R way
-lvn_lines_highway_table = table(lvn_lines$highway)
-lvn_lines_highway_table
-lvn_lines_to_remove = names(lvn_lines_highway_table)[lvn_lines_highway_table < 89]
-lvn_lines_to_remove
-lvn_lines$highway3 = lvn_lines$highway
-lvn_lines$highway3[lvn_lines$highway3 %in% lvn_lines_to_remove] = NA
+highway_table = table(ctown_roads$highway)
+highway_table
+n10 = round(nrow(ctown_roads)) / 10
+ctown_roads_other = names(highway_table)[highway_table < n10]
+ctown_roads$highway3 = ctown_roads$highway
+ctown_roads$highway3[ctown_roads$highway3 %in% ctown_roads_other] = "other"
 ```
 
 ---
@@ -487,16 +517,22 @@ lvn_lines$highway3[lvn_lines$highway3 %in% lvn_lines_to_remove] = NA
 ## Results...
 
 ```{r}
-plot(lvn_lines %>% select(contains("high")))
+plot(ctown_roads %>% select(contains("high")))
 ```
 
 ---
 
 ## Mapping packages
 
+```{r, echo=FALSE}
+library(tmap)
+tmap_mode("plot")
+```
+
+
 ```{r}
 library(tmap)
-tm_shape(lvn_lines %>% sample_frac(0.1)) + tm_lines("highway3")
+tm_shape(ctown_roads) + tm_lines("highway3", lwd = 3)
 ```
 
 ---
@@ -505,7 +541,7 @@ tm_shape(lvn_lines %>% sample_frac(0.1)) + tm_lines("highway3")
 
 ```{r}
 tmap_mode("view")
-tm_shape(lvn_lines %>% sample_frac(0.1)) + tm_lines("highway3")
+tm_shape(ctown_roads) + tm_lines("highway3")
 ```
 
 ---
@@ -601,27 +637,19 @@ Join us for the Spatial Networks Hackathon, date TBC
 
 # Thanks!
 
-Contact me at r. lovelace at leeds ac dot uk (email), `@robinlovelace` (twitter + github)
+Contact me at r. lovelace at leeds ac dot uk (email), [`@robinlovelace`](https://twitter.com/robinlovelace)
 
 --
 
-Check-out my repos at https://github.com/robinlovelace/
+Check-out links to my work at [robinlovelace.net](https://www.robinlovelace.net/)
 
 --
 
-For more information on efficient workflows, see our book [*Efficient R Programming*](https://csgillespie.github.io/efficientR/)
+Thanks to everyone for building a open and collaborative communities
 
---
+Thanks to the University of Leeds and the Institute for Transport Studies
 
-Thanks to all the R developers who made this possible, including (for this presentation):
-
-[remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
-
-Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
-
---
-
-Thanks to everyone for building a open and collaborative communities!
+[![](https://avatars3.githubusercontent.com/u/22447619?s=400&u=2d566bedf62374d5066a50d2dd7c87c84470f69b&v=4)](https://environment.leeds.ac.uk/transport)
 
 ```{r, echo=FALSE, eval=FALSE}
 # export code from slides
