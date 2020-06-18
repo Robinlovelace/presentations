@@ -1,9 +1,8 @@
 ---
 title: "From writing code to infoRming policy"
 subtitle: "`r emojifont::emoji('rocket')`<br/>a case study of reproducible research in transport planning"
-author: "Robin Lovelace"
-institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
-date: "eRum, 2020-06-18 (updated: `r Sys.Date()`)\nReproducible source code: [github.com/Robinlovelace/codeForPolicy](https://github.com/Robinlovelace/codeForPolicy)"
+institute: "Robin Lovelace, University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
+date: "eRum, 2020-06-18 (updated: `r Sys.Date()`) [Slides](https://www.robinlovelace.net/presentations/c4p-slides.html#1). Code: [github.com/Robinlovelace/codeForPolicy](https://github.com/Robinlovelace/codeForPolicy)"
 output:
   xaringan::moon_reader:
     css: [default, robot, robot-fonts]
@@ -16,6 +15,8 @@ output:
 ---
 
 # How to inform policy?
+
+The role of [data analysis](https://sites.google.com/site/doingbayesiandataanalysis/) is to make people change their mind, based on the data
 
 ![](https://user-images.githubusercontent.com/1825120/85003614-5af82a00-b14e-11ea-8258-71b692f2291f.gif)
 
@@ -189,7 +190,20 @@ install.packages("osmdata")
 
 ---
 
-# Thanks!
+# Key references
+
+Kruschke, J., 2010. Doing Bayesian Data Analysis: A Tutorial Introduction with R. Academic Press.
+
+Lovelace, R., Nowosad, J., Muenchow, J., 2019. Geocomputation with R. CRC Press.
+
+Lovelace, R., Morgan, M., Talbot, J., Lucas-Smith, M., 2020. Methods to prioritise pop-up active transport infrastructure (preprint). Open Science Framework. https://doi.org/10.31219/osf.io/7wjb6
+
+Vicente-Saez, R., Martinez-Fuentes, C., 2018. Open Science now: A systematic literature review for an integrated definition. Journal of Business Research 88, 428–436. https://doi.org/10.1016/j.jbusres.2017.12.043
+
+
+---
+
+# Thanks 
 
 Contact me at r. lovelace at leeds ac dot uk (email), [`@robinlovelace`](https://twitter.com/robinlovelace)
 
@@ -204,9 +218,4 @@ Thanks to everyone for building a open and collaborative communities
 Thanks to the University of Leeds and the Institute for Transport Studies
 
 [![](https://avatars3.githubusercontent.com/u/22447619?s=400&u=2d566bedf62374d5066a50d2dd7c87c84470f69b&v=4)](https://environment.leeds.ac.uk/transport)
-
-```{r, echo=FALSE, eval=FALSE}
-# export code from slides
-knitr::purl("tds-regional-street.Rmd")
-```
 
