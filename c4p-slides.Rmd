@@ -1,0 +1,212 @@
+---
+title: "From writing code to infoRming policy"
+subtitle: "`r emojifont::emoji('rocket')`<br/>a case study of reproducible research in transport planning"
+author: "Robin Lovelace"
+institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
+date: "eRum, 2020-06-18 (updated: `r Sys.Date()`)\nReproducible source code: [github.com/Robinlovelace/codeForPolicy](https://github.com/Robinlovelace/codeForPolicy)"
+output:
+  xaringan::moon_reader:
+    css: [default, robot, robot-fonts]
+    lib_dir: libs
+    nature: 
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+# How to inform policy?
+
+![](https://user-images.githubusercontent.com/1825120/85003614-5af82a00-b14e-11ea-8258-71b692f2291f.gif)
+
+
+---
+####  [Abstract](https://2020.erum.io/program/keynotes-invited-speakers/)
+
+<!-- Mumbai is by [some](https://www.independent.co.uk/travel/worlds-biggest-cities-mexico-city-new-york-karachi-tokyo-lagos-kolkata-kinshasa-dhaka-delhi-a8158426.html) measures the world's largest city -->
+
+
+R provides unparalleled support for reproducible research. Its command-line interface and scriptable nature is revolutionary for people who previously relied on explaining a long series of steps in a graphical user interface to enable others to reproduce their work. Furthermore, R has many tools to enable the efficient replication of results in everything ranging from minimal examples (e.g. via the function dput() and the package reprex) to large projects (e.g. via Makefiles and workflow management packages such as drake).
+
+It has been well-known that reproducibility (and its corollary falsifiability) are cornerstones of science since the time of Karl Popper, but few have considered the implications for policy. This presentation will outline ways in which research design decisions can maximise the chances of informing evidence-based policies. This includes choice of software and the way in which code underlying research is written, maintained and disseminated. Case studies from my work on the Propensity to Cycle Tool (the results of which are freely available at www.pct.bike), which has informed government transport policies, and the package for accessing road traffic casualty data stats19 will illustrate these points. The talk will conclude with concrete steps that everyone can take to maximise the reproducibility of not only their code but also the key results of research to encourage scientific debate and evidence-based decisions.
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+---
+
+## whoami
+
+```{r}
+system("whoami")
+```
+
+--
+
+.pull-left[
+- Environmental geographer
+- Learned R for PhD on energy and transport
+- Now work at the University of Leeds (ITS and LIDA)
+- Focus: Applied geocomputation
+- Strong interest in technology + reproducibility, e.g.:
+
+```{r, eval=FALSE}
+devtools::install_github("r-rust/gifski")
+system("youtube-dl https://youtu.be/CzxeJlgePV4 -o v.mp4")
+system("ffmpeg -i v.mp4 -t 00:00:03 -c copy out.mp4")
+system("ffmpeg -i out.mp4 frame%04d.png ")
+f = list.files(pattern = "frame")
+gifski::gifski(f, gif_file = "g.gif", width = 200, height = 200)
+```
+
+]
+
+--
+
+.pull-right[
+Image credit: Jeroen Ooms + others
+
+```{r, out.width="100%"}
+knitr::include_graphics("https://user-images.githubusercontent.com/1825120/39661313-534efd66-5047-11e8-8d99-a5597fe160ff.gif")
+```
+
+]
+
+---
+
+background-image: url("https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/facet-output.png")
+background-position: right
+background-size: contain
+
+--
+
+# Informing policy: the Rapid Cycleway Prioritisation Tool
+
+---
+
+### Importance of communication: PCT
+
+Source: the Propensity to Cycle Tool (PCT) project, demo at www.pct.bike
+
+```{r, echo=FALSE, out.width="90%"}
+knitr::include_graphics("https://raw.githubusercontent.com/npct/pct-team/master/figures/front-page-leeds-pct-demo.png")
+```
+
+--
+
+Source - https://github.com/npct which hosts national web tool PCT [www.pct.bike](http://www.pct.bike/)
+
+---
+
+### Importance of code: **stats19**
+
+- Package providing access to open access road casualty dataset: https://docs.ropensci.org/stats19/
+
+Used by the Parliamentary library to provide evidence for Members of Parliament (MPs): https://commonslibrary.parliament.uk/economy-business/transport/roads/constituency-data-traffic-accidents/
+
+---
+
+### Communication is vital
+
+- Open source code and collaboration platform: [github.com/cyipt](https://github.com/cyipt/popupCycleways)
+- Public facing, user friendly web tool: [cyipt.bike/rapid](https://www.cyipt.bike/rapid/)
+- Provision of open data in GeoJSON format
+- News [article: theconversation.com](https://theconversation.com/cities-must-act-to-secure-the-future-of-urban-cycling-our-research-shows-how-138156)
+- Seminar on YouTube to communicate work to **target audience**
+- Involvement of non-programmers
+  - Interview with journalist Laura Laker: [article on website road.cc](https://road.cc/content/news/new-mapping-tool-identifies-top-priority-cycle-routes-274551)
+  - Policy context from policy maker: [**Head of Active and Accessible Travel at Department for Transport**](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/866143/dft-organisation-chart.pdf)
+  - Demonstration of how the results can be used by **practitioner** [Brian Deegan, Principal Design Engineer, Urban Movement](http://www.urbanmovement.co.uk/brian-deegan.html)
+- Social media engagement. 100+ results on [Twitter](https://twitter.com/search?q=cyipt.bike%2Frapid&src=typed_query) ([source](https://www.google.com/search?client=ubuntu&channel=fs&q=%22cyipt.bike%2Frapid%22+site%3Atwitter.com&ie=utf-8&oe=utf-8))
+
+
+---
+
+# Maximising code impact
+
+.left-column[
+
+
+Reproducibility
+
+Generalisability
+
+Teamwork
+
+Stability
+
+Visualisation
+
+Packaging
+
+Promotion
+
+Feedback
+
+Adaptability
+
+]
+
+.right-colum[
+
+```{r, message=FALSE}
+library(pct)
+rnet = get_pct_rnet("west-yorkshire")
+mapview::mapview(rnet[rnet$dutch_slc > 500, "dutch_slc"])
+```
+
+
+]
+
+
+---
+
+### Example of high (potential) impact: sfnetworks
+
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">We welcomed sfnetworks v0.3.0 &quot;Gievenbeck&quot; (<a href="https://t.co/8g5uaxEqbo">https://t.co/8g5uaxEqbo</a>) with a webinar on Tidy Geospatial Networks in R today. Thank you panelist and participants!<br><br>If you missed it, slides are here: <a href="https://t.co/hiqbD9Jrik">https://t.co/hiqbD9Jrik</a><br><br>See you this afternoon for the hackathon! <a href="https://t.co/Rf8UhdtEW8">pic.twitter.com/Rf8UhdtEW8</a></p>&mdash; Lorena Abad (@loreabad6) <a href="https://twitter.com/loreabad6/status/1272848942091448334?ref_src=twsrc%5Etfw">June 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+
+---
+
+# R for transport planning
+
+Sustainable transport advocates need your help!
+
+Get started:
+
+```{r, eval=FALSE}
+install.packages("sf")
+install.packages("stplanr")
+install.packages("osmdata")
+```
+
+---
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Want more interventions like this in your city? The Rapid Cycleway Prioritisation Tool could help identify promising roads for investment in such road space reallocation schemes: <a href="https://t.co/ITIFGaD454">https://t.co/ITIFGaD454</a> <a href="https://t.co/FrWaRZZWEs">https://t.co/FrWaRZZWEs</a></p>&mdash; Robin Lovelace (@robinlovelace) <a href="https://twitter.com/robinlovelace/status/1272838120325746693?ref_src=twsrc%5Etfw">June 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+---
+
+# Thanks!
+
+Contact me at r. lovelace at leeds ac dot uk (email), [`@robinlovelace`](https://twitter.com/robinlovelace)
+
+--
+
+Check-out links to my work at [robinlovelace.net](https://www.robinlovelace.net/)
+
+--
+
+Thanks to everyone for building a open and collaborative communities
+
+Thanks to the University of Leeds and the Institute for Transport Studies
+
+[![](https://avatars3.githubusercontent.com/u/22447619?s=400&u=2d566bedf62374d5066a50d2dd7c87c84470f69b&v=4)](https://environment.leeds.ac.uk/transport)
+
+```{r, echo=FALSE, eval=FALSE}
+# export code from slides
+knitr::purl("tds-regional-street.Rmd")
+```
+
