@@ -14,6 +14,12 @@ output:
       countIncrementalSlides: false
 ---
 
+```{r, echo=FALSE, eval=FALSE}
+devtools::install_github('emitanaka/anicon')
+```
+
+
+
 # How to inform policy?
 
 The role of [data analysis](https://sites.google.com/site/doingbayesiandataanalysis/) is to make people change their mind, based on the data
@@ -87,6 +93,22 @@ background-size: contain
 
 ---
 
+### Communication is vital
+
+- Open source code and collaboration platform: [github.com/cyipt](https://github.com/cyipt/popupCycleways)
+- Public facing, user friendly web tool: [cyipt.bike/rapid](https://www.cyipt.bike/rapid/)
+- Provision of open data in GeoJSON format
+- News [article: theconversation.com](https://theconversation.com/cities-must-act-to-secure-the-future-of-urban-cycling-our-research-shows-how-138156)
+- Seminar on YouTube to communicate work to **target audience**
+- Involvement of non-programmers
+  - Interview with journalist Laura Laker: [article on website road.cc](https://road.cc/content/news/new-mapping-tool-identifies-top-priority-cycle-routes-274551)
+  - Policy context from policy maker: [**Head of Active and Accessible Travel at Department for Transport**](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/866143/dft-organisation-chart.pdf)
+  - Demonstration of how the results can be used by **practitioner** [Brian Deegan, Principal Design Engineer, Urban Movement](http://www.urbanmovement.co.uk/brian-deegan.html)
+- Social media engagement. 100+ results on [Twitter](https://twitter.com/search?q=cyipt.bike%2Frapid&src=typed_query) ([source](https://www.google.com/search?client=ubuntu&channel=fs&q=%22cyipt.bike%2Frapid%22+site%3Atwitter.com&ie=utf-8&oe=utf-8))
+
+
+---
+
 ### Importance of communication: PCT
 
 Source: the Propensity to Cycle Tool (PCT) project, demo at www.pct.bike
@@ -106,22 +128,6 @@ Source - https://github.com/npct which hosts national web tool PCT [www.pct.bike
 - Package providing access to open access road casualty dataset: https://docs.ropensci.org/stats19/
 
 Used by the Parliamentary library to provide evidence for Members of Parliament (MPs): https://commonslibrary.parliament.uk/economy-business/transport/roads/constituency-data-traffic-accidents/
-
----
-
-### Communication is vital
-
-- Open source code and collaboration platform: [github.com/cyipt](https://github.com/cyipt/popupCycleways)
-- Public facing, user friendly web tool: [cyipt.bike/rapid](https://www.cyipt.bike/rapid/)
-- Provision of open data in GeoJSON format
-- News [article: theconversation.com](https://theconversation.com/cities-must-act-to-secure-the-future-of-urban-cycling-our-research-shows-how-138156)
-- Seminar on YouTube to communicate work to **target audience**
-- Involvement of non-programmers
-  - Interview with journalist Laura Laker: [article on website road.cc](https://road.cc/content/news/new-mapping-tool-identifies-top-priority-cycle-routes-274551)
-  - Policy context from policy maker: [**Head of Active and Accessible Travel at Department for Transport**](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/866143/dft-organisation-chart.pdf)
-  - Demonstration of how the results can be used by **practitioner** [Brian Deegan, Principal Design Engineer, Urban Movement](http://www.urbanmovement.co.uk/brian-deegan.html)
-- Social media engagement. 100+ results on [Twitter](https://twitter.com/search?q=cyipt.bike%2Frapid&src=typed_query) ([source](https://www.google.com/search?client=ubuntu&channel=fs&q=%22cyipt.bike%2Frapid%22+site%3Atwitter.com&ie=utf-8&oe=utf-8))
-
 
 ---
 
@@ -158,14 +164,11 @@ rnet = get_pct_rnet("west-yorkshire")
 mapview::mapview(rnet[rnet$dutch_slc > 500, "dutch_slc"])
 ```
 
-
 ]
-
 
 ---
 
 ### Example of high (potential) impact: sfnetworks
-
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">We welcomed sfnetworks v0.3.0 &quot;Gievenbeck&quot; (<a href="https://t.co/8g5uaxEqbo">https://t.co/8g5uaxEqbo</a>) with a webinar on Tidy Geospatial Networks in R today. Thank you panelist and participants!<br><br>If you missed it, slides are here: <a href="https://t.co/hiqbD9Jrik">https://t.co/hiqbD9Jrik</a><br><br>See you this afternoon for the hackathon! <a href="https://t.co/Rf8UhdtEW8">pic.twitter.com/Rf8UhdtEW8</a></p>&mdash; Lorena Abad (@loreabad6) <a href="https://twitter.com/loreabad6/status/1272848942091448334?ref_src=twsrc%5Etfw">June 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
@@ -190,7 +193,7 @@ install.packages("osmdata")
 
 ---
 
-# Key references
+# Key references/links
 
 Kruschke, J., 2010. Doing Bayesian Data Analysis: A Tutorial Introduction with R. Academic Press.
 
@@ -200,6 +203,11 @@ Lovelace, R., Morgan, M., Talbot, J., Lucas-Smith, M., 2020. Methods to prioriti
 
 Vicente-Saez, R., Martinez-Fuentes, C., 2018. Open Science now: A systematic literature review for an integrated definition. Journal of Business Research 88, 428–436. https://doi.org/10.1016/j.jbusres.2017.12.043
 
+--
+
+Even better than reading academic papers...
+
+`r anicon::nia("Contact local civil society / advocacy / campaigning groups offering your skills", animate = "flash", color = "blue")`
 
 ---
 
