@@ -1,0 +1,60 @@
+---
+title: "Open access transport models"
+subtitle: "📉🚂🚅🚎🛴🚲🚶📈<br/>A leverage point in sustainable transport planning"
+author: "Robin Lovelace"
+institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
+date: "TRB, 2021-01-21 (updated: `r Sys.Date()`)\nReproducible source code: [github.com/Robinlovelace/presentations](https://github.com/Robinlovelace/presentations/blob/master/2021-01-21-open-source-transport-tools.Rmd)"
+output:
+  xaringan::moon_reader:
+    css: [default, robot, robot-fonts]
+    lib_dir: libs
+    nature: 
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+<!-- WORKSHOP TITLE: Open Science in Transport: Challenges and Opportunities in a COVID-19 Era -->
+<!-- DATE and TIME: January 21st, 2020 / 2:00PM-5:00PM (EST) / 20:00-23:00 (CET)  -->
+<!-- ORGANISED BY: TRB International Coordinating Council - ICC (A0020C) -->
+<!-- SPONSORED BY: TRB Committees AED10, AED20, AED70, AJE35, AJE45, AJE70 -->
+<!-- DESCRIPTION: Open Science (OS) is a modern movement that represents a new approach to practicing science in a way that increases openness, integrity and reproducibility of research. We will discuss challenges and opportunities brought by Open Science in transport research, in particular in the COVID-19 context, and how to achieve a common understanding on the practical impact of Open Science in the transport sector. -->
+
+<!-- Timing: -->
+
+<!-- Part I – Setting the scene (65 min) 19:00 - 20:05 -->
+<!-- Break - 20:05 - 20:30 -->
+
+<!-- Part II – Some examples of OS in Transport (45mn) 20:30 - 21:45 -->
+<!-- Data, open access & open innovation -->
+<!-- 3 to 4 pre-recorded presentations (7 to 10mn) + audience participation with Q/A (10 mn) -->
+
+<!-- 1- Transport data  -->
+<!--     ◦ Open data: key challenges for transport data collection and management, Speaker from OECD-ITF (TBC)  -->
+<!-- 2- Transport results in open access  -->
+<!--     ◦ Open access results on the impacts of COVID-19 pandemic on transport: a collection of articles, prof. Karst Geurs, University of Twente, The Netherlands, ETRR Editor-in-Chief  -->
+<!--     ◦ Open access transport models: a leverage point in sustainable transport planning, Robin Lovelace, ITS Leeds and WCTRs  -->
+<!-- 3- Open innovation in road and transport research -->
+<!--     ◦ The case study in Sub-Saharan Africa, Mark Henry Rubarenzya, Head - Research and Development, Directorate of Network Planning and Engineering │Uganda National Roads Authority  -->
+<!-- I'll be 'on' around 21:00 -->
+
+---
+
+# Thanks!
+
+Contact me at r. lovelace at leeds ac dot uk (email), [`@robinlovelace`](https://twitter.com/robinlovelace)
+
+--
+
+Check-out links to my work at [robinlovelace.net](https://www.robinlovelace.net/)
+
+--
+
+Thanks to everyone for building a open and collaborative communities
+
+Thanks to the University of Leeds and the Institute for Transport Studies
+
+[![](https://avatars3.githubusercontent.com/u/22447619?s=400&u=2d566bedf62374d5066a50d2dd7c87c84470f69b&v=4)](https://environment.leeds.ac.uk/transport)
+
