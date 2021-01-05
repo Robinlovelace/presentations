@@ -1,6 +1,6 @@
 ---
-title: "Open access transport models"
-subtitle: "📉🚂🚅🚎🛴🚲🚶📈<br/>A leverage point in sustainable transport planning"
+title: "Open Access Transport Models"
+subtitle: "📉🚂🚅🚎🛴🚲🚶📈<br/>From collaborative code to citizen science"
 author: "Robin Lovelace"
 institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
 date: "TRB, 2021-01-21 (updated: `r Sys.Date()`)\nReproducible source code: [github.com/Robinlovelace/presentations](https://github.com/Robinlovelace/presentations/blob/master/2021-01-21-open-source-transport-tools.Rmd)"
