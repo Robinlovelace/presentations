@@ -1,0 +1,363 @@
+---
+title: "Open Access Source Tools"
+subtitle: "<br/>Enabling reproducibility and participation in Geographic Research"
+author: "Robin Lovelace"
+institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
+date: "[Reproducibilitea](https://reproducibilitea.org/) Leeds, 2021-02-25 (updated: `r Sys.Date()`)\nReproducible source code: [github.com/Robinlovelace/presentations](https://github.com/Robinlovelace/presentations/)"
+output:
+  xaringan::moon_reader:
+    css: [default, robot, robot-fonts]
+    lib_dir: libs
+    nature: 
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, echo=FALSE, include=FALSE}
+library(RefManageR)
+library(tmap)
+library(tidyverse)
+my_bib = c(
+  ReadBib("~/itsleeds/TDS/tds.bib")
+)
+my_bib_df = as.data.frame(my_bib)
+# View(my_bib_df)
+```
+
+---
+
+## The problem: Proprietary GIS software
+
+![](https://user-images.githubusercontent.com/1825120/109154486-3dac3e80-7766-11eb-809f-ac9f1c9c24b9.png)
+
+---
+
+
+.pull-left[
+### Solution: Open Source Software for Geocomputation
+
+![](https://pbs.twimg.com/profile_images/858603658564513794/KgoQRQa6_400x400.jpg)
+]
+
+.pull-right[
+
+[![](https://www.osgeo.org/wp-content/themes/roots/assets/img/logo-osgeo.svg)](https://www.osgeo.org/)
+[![](https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif)](https://r-spatial.github.io/sf/)
+![](https://camo.githubusercontent.com/71a95600db0bffe2f28b234ebd2b845c312e51e6a0ad6dd79f25e15fd01aa692/68747470733a2f2f616e6974616772617365722e6769746875622e696f2f6d6f76696e6770616e6461732f706963732f6d6f76696e6770616e6461732e706e67)
+]
+
+---
+
+## Geocomputation with R
+
+.pull-left[
+
+- Open source + open access book:  https://geocompr.robinlovelace.net/
+
+- Chapter 1: History 
+
+Foundations
+
+- Starting from nothing
+- Class definitions
+- Spatial/attribute operations
+- Projections 
+- Data IO
+
+Extensions
+
+- Advanced methods
+- How to build your own functions
+
+Applications
+
+- A taster of what you can do
+
+]
+
+.pull-right[
+```{r, echo=FALSE, message=FALSE, out.height="500"}
+knitr::include_graphics("https://geocompr.robinlovelace.net/images/cover.png")
+```
+]
+
+---
+
+### Future directions of travel in FOSS4G
+
+![](https://pbs.twimg.com/media/Eul65WQWQAAHaTt?format=jpg&name=medium)
+
+--
+
+- Integration (e.g. R package qgisprocess, R/Python crossover)
+- New approaches, e.g. GeoRust
+
+---
+
+## The problem - Transport
+
+![](https://user-images.githubusercontent.com/1825120/103755051-1b6b2f80-5005-11eb-988b-f7c8d3108e53.png)
+
+Source: ['Inside the black box' report](https://www.co.pierce.wa.us/DocumentCenter/View/755/A-GuideToModeling?bidId=)
+
+--
+
+- Transport models were designed to support growth in car ownership and reduce journey times (Boyce and Williams, 2015)
+
+--
+
+- 21^st^ Century priorities are very different
+
+--
+
+  - Climate science, air pollution and health force a shift in focus
+  - The concepts of 'participatory democracy' and 'citizen science' mean there is a need for collaborative solutions
+
+--
+
+---
+
+## The solution - Transport
+
+**New technologies mean that open access transport models are possible**
+
+![](https://raw.githubusercontent.com/a-b-street/abstreet/master/videos/exploring_traffic.gif)
+Source: A/B Street, free, open source, gamified transport planning software [github.com/dabreegster/abstreet](https://github.com/dabreegster/abstreet/#ab-street)
+
+---
+
+## Open Source Transport Tools
+
+Source: Lovelace (2021), see [github.com/Robinlovelace/open-gat](https://github.com/Robinlovelace/open-gat#open-source-tools-for-geographic-analysis-in-transport-planning)
+
+![](https://www.robinlovelace.net/talk/open-access-transport-models/featured_hubc4301c81545b69b038b632d4e46b4cc_72911_720x0_resize_lanczos_2.png)
+
+---
+
+## From open source to open access
+
+![](https://www.robinlovelace.net/publication/lovelace-open-2020/featured.png)
+- Transport models represent a leverage point in transport systems
+- New paper, Lovelace et al (2020) describes the emergence and possibilities for 'open access models'
+
+---
+
+## What is science?
+
+.pull-left[
+- Scientific knowledge is hypotheses that can be falsified
+- Science is the process of *generating falsifiable hypotheses* and *testing them*
+- In a reproducible way
+- Systematically
+
+![](https://media3.giphy.com/media/3ohhworAhxSEHT3zDa/200w.webp?cid=3640f6095c57e8d15767723367d0c596)
+]
+
+--
+
+.pull-right[
+
+- Falsifiability is central to the scientific process `r Citep(my_bib, "popper_logic_1959", .opts = list(cite.style = "authoryear"))`
+- All of which requires software conducive to reproducibility
+
+![](https://duckduckgo.com/i/f2692e7b.jpg)
+]
+
+---
+
+# Existing products
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE}
+tms = readr::read_csv("https://github.com/ITSLeeds/TDS/raw/master/transport-software.csv")[1:5]
+tms = dplyr::arrange(tms, dplyr::desc(Citations))
+knitr::kable(tms, booktabs = TRUE, caption = "Sample of transport modelling software in use by practitioners. Note: citation counts based on searches for company/developer name, the product name and 'transport'. Data source: Google Scholar searches, October 2018.", format = "html")
+```
+
+---
+
+# User support
+
+Getting help is vital for leaning/improving software
+
+--
+
+![](https://media.giphy.com/media/6HtgBlXu1TIac/giphy.gif)
+
+--
+
+"10-Hour Service Pack $2,000" (source: [caliper.com/tcprice.htm](https://www.caliper.com/tcprice.htm))
+
+---
+
+# Online communities
+
+- [gis.stackexchange.com](https://gis.stackexchange.com/questions) has 21,314 questions 
+
+- [r-sig-geo](http://r-sig-geo.2731867.n2.nabble.com/) has 1000s of posts
+
+- RStudio's Discourse community has 65,000+ posts already!
+
+--
+
+- No transport equivalent (e.g. earthscience.stackexchange.com is in beta)
+
+- Potential for a Discourse forum or similar: transport is not (just) GIS
+
+---
+
+# Building open source software
+
+--
+
+background-image: url(https://media2.giphy.com/media/3o6Mb5IwAsi9p8yk0w/giphy.gif?cid=ecf05e47nn850udm14umb3d3zitb88g0nt1spheu290zjlmv&rid=giphy.gif)
+background-size: cover
+
+
+---
+
+# From prototype to deployment
+
+- Example: the Propensity to Cycle Tool ([PCT.bike](http://www.pct.bike/)) (Lovelace et al. 2017)
+
+```{r, echo=FALSE, eval=TRUE}
+knitr::include_graphics("https://raw.githubusercontent.com/npct/pct-team/master/figures/early.png")
+```
+
+---
+
+## Geocomputation in the PCT
+
+- It's all reproducible, e.g.:
+- Find commuting desire lines in West Yorkshire between 1 and 3 km long in which more people drive than cycle:
+
+```{r, eval=FALSE, echo=FALSE}
+# Aim: get top 1000 lines in repo
+u = "https://github.com/npct/pct-outputs-regional-notR/raw/master/commute/msoa/west-yorkshire/l.geojson"
+library(dplyr)
+library(sf)
+desire_lines_all = read_sf(u)
+desire_lines = desire_lines_all %>% 
+  top_n(10, all)
+write_sf(desire_lines, "desire_lines.geojson")
+piggyback::pb_upload("desire_lines.geojson")
+```
+
+
+```{r, message=FALSE, eval=TRUE}
+# Set-up, after installing R and checking out www.pct.bike:
+u = "https://github.com/ITSLeeds/TDS/releases/download/0.1/desire_lines.geojson"
+library(dplyr)
+library(sf)
+desire_lines = read_sf(u)
+```
+
+---
+
+## Visualising data
+
+A fundamental part of data science is being able to understand your data.
+
+That requires visualisation, R is great for that:
+
+.pull-left[
+```{r, warning=FALSE, eval=TRUE}
+plot(desire_lines)
+```
+
+]
+
+.pull-right[
+- Interactively:
+
+```{r, message=FALSE, eval=FALSE}
+library(tmap)
+tm_shape(desire_lines) + tm_lines("all")
+```
+
+]
+
+---
+
+## Processing data with code
+
+- Now we have data in our computer, and verified it works, we can use it
+
+- Which places are most car dependent? 
+
+```{r}
+car_dependent_routes = desire_lines %>% 
+  mutate(percent_drive = car_driver / all * 100) %>% 
+  filter(rf_dist_km < 3 & rf_dist_km > 1) 
+```
+
+---
+
+## Checking the results:
+
+```{r}
+b = c(0, 25, 50, 75)
+tm_shape(car_dependent_routes) +
+  tm_lines(col = "percent_drive", lwd = "all", scale = 5, breaks = b, palette = "-inferno")
+```
+
+
+---
+
+# Example II
+
+The ActDev project: 
+
+![](https://user-images.githubusercontent.com/361423/107999638-cb0dc700-6fdf-11eb-9105-cf851e5cc02b.png)
+
+- A/B Street - R integration, see https://github.com/a-b-street/abstr
+
+---
+
+# Get involved
+
+- Support open source solutions indirectly
+  - Sign-up to platforms for sharing and collaborating on open source projects, such as https://github.com/
+  - Preferentially use, cite and endorse open access and open source solutions
+  - Find the open source tool best suited to your needs and communicate constructively with the developers
+  - Communicate ways to improve open source solutions, e.g. by commenting on 'issue trackers' on forums such as [GitHub](https://github.com/)
+
+- Download, install and play with open source software
+  - R/RStudio, great for data analysis but also interactive visualisation and, increasingly, [transport planning workflows](https://docs.ropensci.org/stplanr/)
+  - Have a play with open access transport tools such as [A/B Street](https://github.com/dabreegster/abstreet/#ab-street) and the [PCT](https://www.pct.bike/), which can run on your computer or in the browser
+
+
+---
+
+# References
+
+Boyce, D.E., Williams, H.C.W.L., 2015. Forecasting Urban Travel: Past, Present and Future. Edward Elgar Publishing.
+
+Beimborn, E., Kennedy, R., 1996. Inside the Blackbox: Making Transportation Models Work for Livable Communities. Citizens for a Better Environment.
+
+Lovelace, R., Parkin, J., Cohen, T., 2020. Open access transport models: A leverage point in sustainable transport planning. Transport Policy 97, 47–54. https://doi.org/10.1016/j.tranpol.2020.06.015
+
+---
+
+# Thanks
+
+Contact me at r. lovelace at leeds ac dot uk (email), [`@robinlovelace`](https://twitter.com/robinlovelace)
+
+--
+
+Check-out links to my work at [robinlovelace.net](https://www.robinlovelace.net/)
+
+--
+
+Especially: [Geocomputation with R](https://geocompr.robinlovelace.net/)
+
+--
+
+Thanks to everyone building a open and collaborative communities
+
+Thanks to the University of Leeds and the Institute for Transport Studies
+
+[![](https://avatars3.githubusercontent.com/u/22447619?s=400&u=2d566bedf62374d5066a50d2dd7c87c84470f69b&v=4)](https://environment.leeds.ac.uk/transport)
+
+
