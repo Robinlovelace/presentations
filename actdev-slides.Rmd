@@ -7,7 +7,6 @@ date: "ActDev Workshop, 2021-03-12 (updated: `r Sys.Date()`)\nReproducible sourc
 output:
   xaringan::moon_reader:
     css: [default, robot, robot-fonts]
-    lib_dir: libs
     nature: 
       beforeInit: "https://platform.twitter.com/widgets.js"
       highlightStyle: github
