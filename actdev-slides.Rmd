@@ -1,0 +1,249 @@
+---
+title: "The ActDev tool"
+subtitle: "Actionable evidence enabling the planning system to account for and support active travel"
+author: "Robin Lovelace and Joey Talbot"
+institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
+date: "ActDev Workshop, 2021-03-12 (updated: `r Sys.Date()`)\nReproducible source code: [github.com/cyipt/actdev](https://github.com/cyipt/actdev)"
+output:
+  xaringan::moon_reader:
+    css: [default, robot, robot-fonts]
+    lib_dir: libs
+    nature: 
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+<!-- Talk in context: -->
+
+<!-- Chair: Roger Geffen, Cycling UK -->
+
+<!-- 15:00 – 16.00 About the ActDev project -->
+
+<!-- The ActDev Tool:  Robin Lovelace, Associate Professor of Transport Data Science, Institute for Transport Studies, University of Leeds & Joey Talbot, Research Fellow, Institute for Transport Studies, University of Leeds (15 min) -->
+
+<!-- Martin Lucas Smith, CycleStreets (10 min) -->
+
+<!-- Simulating active travel: Dustin Carlino, Project Lead, A/B Street  (10 mins) -->
+
+<!-- 20 minutes Q & A on the ActDev tool -->
+
+
+## The problem(s)
+
+![](https://user-images.githubusercontent.com/1825120/103755051-1b6b2f80-5005-11eb-988b-f7c8d3108e53.png)
+
+Source: ['Inside the black box' report](https://www.co.pierce.wa.us/DocumentCenter/View/755/A-GuideToModeling?bidId=)
+
+--
+
+- Transport models were designed to support growth in car ownership and reduce journey times (Boyce and Williams, 2015)
+
+--
+
+- Few tools for assessing active travel potential or provision in/around new developments
+
+--
+
+- Yet tools for transport planning and development are based on old priorities
+
+
+???
+
+As we've seen the problem is largely political but it has has a substantial technical component
+
+The 'tools of the trade' 
+
+  - Climate science, air pollution and health force a shift in focus
+  - The concepts of 'participatory democracy' and 'citizen science' mean there is a need for collaborative solutions
+
+Despite substantial academic work on integrated land-use transport models and an entire academic journal dedicated to it
+
+---
+
+## The ActDev tool
+
+Publicly available tool with maps and data on active travel levels, potential and provision
+
+![](https://user-images.githubusercontent.com/1825120/110671502-79afbc80-81c6-11eb-9dc5-52046b1d04c8.gif)
+---
+
+## Levels of analysis
+
+![](https://user-images.githubusercontent.com/1825120/110673378-9ea52f00-81c8-11eb-9822-58d44e1ecae2.png)
+
+---
+
+#### The ActDev Team
+
+![](https://user-images.githubusercontent.com/1825120/110677777-75d36880-81cd-11eb-8c59-eb406066bc4a.png)
+
+--
+
+![](https://user-images.githubusercontent.com/1825120/110678305-0e69e880-81ce-11eb-98aa-7d91fd71e81c.png)
+
+![](https://user-images.githubusercontent.com/1825120/110678068-ca76e380-81cd-11eb-8dec-f191dfe708b6.png)
+
+---
+
+## About this workshop
+
+![](https://user-images.githubusercontent.com/1825120/110672803-f0998500-81c7-11eb-9f9a-d2019028dca4.png)
+--
+
+- Opportunity to present the tool, get feedback, help decide next steps
+
+---
+
+## Perspectives
+
+14:15 - 14:30
+
+- Lynda Addison, Lead on planning and transport integration, Transport Planning Society
+
+- Julian Sanchez, Active Travel, Programme Manager, Essex County Council
+
+- Megan Streb, Partnership Manager, Sustrans
+
+---
+
+## Panel session
+
+14.30  - 15.00
+
+- Graham Smith, Urban Design Group
+- Robin Lovelace, Associate Professor of Transport Data Science, Institute for Transport Studies, University of Leeds
+- Lucy Taussig, Consultant, Active Travel
+
+---
+
+## About the ActDev project
+
+15:00 - 15:55
+
+- The ActDev Tool, Robin Lovelace and Joey Talbot (15 min)
+- Planning and routing data in the ActDev project, Martin Lucas-Smith (10 min)
+- Traffic simulation in and around new development sites (10 min)
+- Q&A (20 min)
+
+- Breakout rooms 16:00 - 16:45
+
+1. Locating development sites: moderator Lynda Addison
+2. Policy: moderator Roger Geffen
+3. Good design of development sites: moderator Joey Talbot
+4. Planning/routing data: moderator Martin Lucas Smith
+5. Technology: moderator Dustin Carlino
+
+---
+
+## The ActDev tool
+
+See https://actdev.cyipt.bike/
+
+![](https://user-images.githubusercontent.com/1825120/110680124-20e52180-81d0-11eb-8bcd-333e6e0403ed.png)
+
+---
+
+## Site level data
+
+![](https://user-images.githubusercontent.com/1825120/110680440-85a07c00-81d0-11eb-9658-7f303e72372f.png)
+
+---
+
+## Core ActDev Layers
+
+See https://actdev.cyipt.bike/manual/
+
+![](https://user-images.githubusercontent.com/1825120/110682147-876b3f00-81d2-11eb-96e9-b86203ec250e.png)
+
+---
+
+## Contextual layers
+
+
+
+![](https://user-images.githubusercontent.com/1825120/110693965-f4390600-81df-11eb-8d7a-c37ea0e23f1f.png)
+
+---
+
+## The A/B Street tool
+
+![](https://user-images.githubusercontent.com/1825120/110777940-9d701280-8259-11eb-9c17-c56f5b709c83.gif)
+
+---
+
+## Using the tool to assess site location
+
+![](https://user-images.githubusercontent.com/1825120/110680440-85a07c00-81d0-11eb-9658-7f303e72372f.png)
+
+???
+
+Trip patterns
+
+- Add images showning trip/distance/mode splits
+
+- Great Kneighton
+
+- Wynward
+
+---
+
+## Using the tool to assess (and improve) walking and cycling routes
+
+![](https://user-images.githubusercontent.com/1825120/110777119-ad3b2700-8258-11eb-87f9-553449faa757.png)
+
+???
+
+Joey
+
+- Busyness levels
+
+- Circuity
+
+- Great Kneighton vs Upton
+
+
+---
+
+# Modelling change: scenarios
+
+![](https://raw.githubusercontent.com/cyipt/actdev/main/data-small/scenario-overview.png)
+
+---
+
+## The importance of open data and open tools
+
+![](https://www.robinlovelace.net/publication/lovelace-open-2020/featured.png)
+- Transport models have a huge impact on transport planning
+- More people with access to good data -> better outcomes
+
+???
+
+- New paper, Lovelace et al (2020) describes the emergence and possibilities for 'open access models'
+
+---
+
+## Live demo of the tool
+
+![](https://user-images.githubusercontent.com/1825120/110671502-79afbc80-81c6-11eb-9dc5-52046b1d04c8.gif)
+
+---
+
+# References
+
+Boyce, D.E., Williams, H.C.W.L., 2015. Forecasting Urban Travel: Past, Present and Future. Edward Elgar Publishing.
+
+Beimborn, E., Kennedy, R., 1996. Inside the Blackbox: Making Transportation Models Work for Livable Communities. Citizens for a Better Environment.
+
+Lovelace, R., Parkin, J., Cohen, T., 2020. Open access transport models: A leverage point in sustainable transport planning. Transport Policy 97, 47–54. https://doi.org/10.1016/j.tranpol.2020.06.015
+
+---
+
+# Thanks
+
+
+Thanks to the University of Leeds and the Institute for Transport Studies
+
+[![](https://avatars3.githubusercontent.com/u/22447619?s=400&u=2d566bedf62374d5066a50d2dd7c87c84470f69b&v=4)](https://environment.leeds.ac.uk/transport)
+
