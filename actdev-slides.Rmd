@@ -1,7 +1,7 @@
 ---
 title: "The ActDev Project"
 subtitle: "Actionable evidence enabling the planning system to account for and support active travel"
-author: "Robin Lovelace, Joey Talbot, Nikée Groot, Martin Lucas-Smith, Patrick Johansson, Simon Nutall & Andrew Speakman"
+author: "Robin Lovelace, Joey Talbot, Nikée Groot, Martin Lucas-Smith, Patrick Johansson, Simon Nutall, Andrew Speakman & Dustin Carlino"
 institute: "Leeds' [Institute for Transport Studies](https://environment.leeds.ac.uk/transport) and partners"
 date: "ActDev Workshop, 2021-03-12 (updated: `r Sys.Date()`)\nReproducible source code: [github.com/cyipt/actdev](https://github.com/cyipt/actdev)"
 output:
