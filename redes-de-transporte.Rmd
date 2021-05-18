@@ -1,0 +1,108 @@
+---
+title: "Análisis de datos de transporte con R"
+subtitle: ' 🚲🚃🚀<br/>Workshop'
+author: "Robin Lovelace"
+date: 'University of Leeds, `r Sys.Date()`<br/><img class="img-footer" alt="" src="http://www.stephanehess.me.uk/images/picture3.png">'
+output:
+  xaringan::moon_reader:
+    # css: ["default", "its.css"]
+    # chakra: libs/remark-latest.min.js
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+bibliography: ../references.bib
+---
+
+background-image: url(https://c1.staticflickr.com/2/1216/1096671706_571a263b63_b.jpg)
+background-position: 50% 50%
+class: center, bottom, inverse
+
+# Credit: Mandeep Lota via [flickr](https://www.flickr.com/photos/deepster2k/1096671706)
+
+```{r setup, include=FALSE}
+file.copy("../references.bib", ".")
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(check.entries = FALSE, 
+           bib.style = "authoryear", 
+           cite.style = 'alphabetic', 
+           style = "markdown",
+           first.inits = FALSE,
+           hyperlink = FALSE, 
+           dashed = FALSE)
+my_bib = ReadBib("references.bib", check = FALSE)
+```
+
+# Notes
+
+- Jerarquización del viario o viaria o mejor la jerarchia de las vias
+- Jerarquia de los datos
+- Diapos o diapositivas
+- Priorizar via cyclistas
+- Fue financiado por el departamento de transporte
+- Es un poco anticuado
+
+```{r, eval=FALSE}
+osm_data = osmextract::oe_get("santiago chile")
+remotes::install_github("itsleeds/geofabrik")
+library(geofabrik)
+library(tidyverse)
+library(tmap)
+tmap_mode("view")
+city_centre = tmaptools::geocode_OSM("santiago, chile", as.sf = TRUE)
+mapview::mapview(city_centre)
+
+osm_data = geofabrik::get_geofabrik(city_centre)
+nrow(osm_data) # 700,000+ filas
+summary(osm_data$lanes)
+table(osm_data$lanes)
+osm_spare_lanes = osm_data %>%
+  mutate(n_lanes = as.numeric(lanes)) %>%
+  filter(n_lanes > 2)
+osm_cycleways = osm_data %>%
+  filter(highway == "cycleway")
+nrow(osm_spare_lanes)
+
+mapview::mapview(osm_spare_lanes)
+buffer_distance = 20 # km
+sf::st_crs(city_centre)
+# city_centre_geographic = sf::st_buffer(city_centre, 1) # incorrect
+# mapview::mapview(city_centre_geographic)
+# city_buffer = stplanr::geo_buffer(city_centre, buffer_distance * 1000) # fails
+city_buffer = city_centre %>%
+  sf::st_transform(crs = 5361) %>%
+  sf::st_buffer(dist = buffer_distance * 1000) %>%
+  sf::st_transform(4326)
+osm_spare_city = sf::st_intersection(osm_spare_lanes, city_buffer)
+osm_cycleways_city = sf::st_intersection(osm_cycleways, city_buffer) %>%
+  mutate(n_lanes = 5) %>%
+  select(name, highway, n_lanes, maxspeed)
+osm_spare_clean = osm_spare_city %>%
+  select(name, highway, n_lanes, maxspeed) %>%
+  filter(n_lanes >= 3)
+
+names(osm_cycleways_city)
+names(osm_spare_clean)
+osm_popup = rbind(osm_cycleways_city, osm_spare_clean)
+s = c(
+  "Esri.WorldGrayCanvas",
+  "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
+)
+tm_shape(osm_popup) +
+  tm_lines(col = "highway", lwd = "n_lanes", scale = 5) +
+  tm_scale_bar() +
+  tm_basemap(server = s)
+
+
+```
+
+
+
+# References
+
+```{r, 'refs', results="asis", echo=FALSE}
+PrintBibliography(my_bib)
+# RefManageR::WriteBib(my_bib, "refs-geostat.bib")
+```

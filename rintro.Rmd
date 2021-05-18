@@ -1,0 +1,89 @@
+---
+title: "An introduction to R"
+author: "Robin Lovelace"
+date: 'University of Leeds `r # Sys.Date()()`<br/><img class="img-footer" alt="" src="https://comms.leeds.ac.uk/wp-content/themes/toolkit-wordpress-theme/img/logo.png">'
+output:
+  xaringan::moon_reader:
+    # css: ["default", "its.css"]
+    # chakra: libs/remark-latest.min.js
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+---
+
+background-image: url(https://c1.staticflickr.com/2/1216/1096671706_571a263b63_b.jpg)
+background-position: 50% 50%
+class: center, bottom, inverse
+
+# Credit: Mandeep Lota via [flickr](https://www.flickr.com/photos/deepster2k/1096671706)
+
+---
+
+# The team
+
+### Robin Lovelace
+
+- Especially cycling potential ([e.g. to school](http://eprints.whiterose.ac.uk/141852/))
+- R developer and teacher, with three books on the subject 
+- Lead Developer of the Propensity to Cycle Tool ([PCT](http://www.pct.bike/)) and PI on the Cycling Infrastructure Prioritisation Toolkit ([CyIPT](https://www.cyipt.bike))
+
+--
+
+### Martyna
+--
+
+### Caroline
+
+--
+
+### Joey
+
+--
+
+
+### How about you?
+
+---
+
+## Set-up
+
+See https://itsleeds.github.io/rrsrr/introduction.html#prerequisites
+
+---
+
+## Why R
+
+Growth + future proof: https://stackoverflow.blog/2017/10/10/impressive-growth-r/
+
+Scalable: https://www.pct.bike/
+
+--
+
+## Why not R?
+
+- Time to learn
+
+- Other options are available
+
+---
+
+## Breakout rooms
+
+- See https://github.com/ITSLeeds/rintro
+
+---
+
+## Further resources
+
+- Use R's internal help, e.g. `?plot`
+
+Beginner: https://rstudio.cloud/learn/primers/
+
+Intermediate: Geocomputation with R https://geocompr.robinlovelace.net/transport.html
+
+Advanced: R for Data Science https://r4ds.had.co.nz/introduction.html
+
+---
+
+# Thanks + questions
