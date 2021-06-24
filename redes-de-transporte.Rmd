@@ -1,6 +1,6 @@
 ---
-title: "Análisis de datos de transporte con R"
-subtitle: ' 🚲🚃🚀<br/>Workshop'
+title: "Análisis de redes de transporte con R"
+subtitle: 'y la búsqueda para espacio libre'
 author: "Robin Lovelace"
 date: 'University of Leeds, `r Sys.Date()`<br/><img class="img-footer" alt="" src="http://www.stephanehess.me.uk/images/picture3.png">'
 output:
@@ -11,7 +11,7 @@ output:
     nature:
       highlightStyle: github
       highlightLines: true
-bibliography: ../references.bib
+bibliography: /home/robin/uaf/allrefs.bib
 ---
 
 background-image: url(https://c1.staticflickr.com/2/1216/1096671706_571a263b63_b.jpg)
@@ -31,30 +31,43 @@ BibOptions(check.entries = FALSE,
            first.inits = FALSE,
            hyperlink = FALSE, 
            dashed = FALSE)
-my_bib = ReadBib("references.bib", check = FALSE)
+# my_bib = ReadBib("/home/robin/allrefs.bib", check = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+library(tmap)
+tmap_mode("view")
 ```
 
-# Notes
+---
 
-- Jerarquización del viario o viaria o mejor la jerarchia de las vias
-- Jerarquia de los datos
-- Diapos o diapositivas
-- Priorizar via cyclistas
-- Fue financiado por el departamento de transporte
-- Es un poco anticuado
+<!-- # Notes -->
 
-```{r, eval=FALSE}
+<!-- - Jerarquización del viario o viaria o mejor la jerarchia de las vias -->
+<!-- - Jerarquia de los datos -->
+<!-- - Diapos o diapositivas -->
+<!-- - Priorizar via cyclistas -->
+<!-- - Fue financiado por el departamento de transporte -->
+<!-- - Es un poco anticuado -->
+<!-- - Cuantos carriles -->
+<!-- - La distribucion del espacio -->
+
+```{r, eval=FALSE, echo=FALSE}
+et = c(
+  "lanes",
+  "cycleway",
+  "maxspeed",
+  "oneway",
+  "trafficcalming"
+)
 osm_data = osmextract::oe_get("santiago chile")
-remotes::install_github("itsleeds/geofabrik")
-library(geofabrik)
+dim(osm_data) # 10 cols
+osm_data = osmextract::oe_get("santiago chile", extra_tags = et)
 library(tidyverse)
 library(tmap)
 tmap_mode("view")
 city_centre = tmaptools::geocode_OSM("santiago, chile", as.sf = TRUE)
 mapview::mapview(city_centre)
 
-osm_data = geofabrik::get_geofabrik(city_centre)
-nrow(osm_data) # 700,000+ filas
+nrow(osm_data) # 700,000+ filas 2020, 900k in 2021!
 summary(osm_data$lanes)
 table(osm_data$lanes)
 osm_spare_lanes = osm_data %>%
@@ -65,6 +78,7 @@ osm_cycleways = osm_data %>%
 nrow(osm_spare_lanes)
 
 mapview::mapview(osm_spare_lanes)
+qtm(osm_spare_lanes, "highway")
 buffer_distance = 20 # km
 sf::st_crs(city_centre)
 # city_centre_geographic = sf::st_buffer(city_centre, 1) # incorrect
@@ -95,14 +109,105 @@ tm_shape(osm_popup) +
   tm_scale_bar() +
   tm_basemap(server = s)
 
-
+saveRDS(osm_popup, "osm_popup.Rds")
 ```
 
+---
 
+## Mi historia
+
+```{r}
+hereford = tmaptools::geocode_OSM("hereford", as.sf = TRUE)
+salamanca = tmaptools::geocode_OSM("salamanca", as.sf = TRUE)
+leeds = tmaptools::geocode_OSM("leeds", as.sf = TRUE)
+places = rbind(hereford, salamanca, leeds)
+qtm(places$point)
+```
+
+---
+
+## Proyectos
+
+- Geographer (BSc 2008) and Environmental Scientist (MSc 2009) by training
+- Interest in energy led to PhD in transport (PhD in energy costs of commuting [2014](http://etheses.whiterose.ac.uk/5027/))
+- Limitations of [GUIs](https://twitter.com/robinlovelace/status/1129404652150243329) for modelling -> Spatial Microsimulation with R ([2016](https://spatial-microsim-book.robinlovelace.net/))
+- Co-authored Efficient R Programming ([2016](https://csgillespie.github.io/efficientR/))
+- Lead Developer of Propensity to Cycle Tool (PCT) ([2017](https://www.jtlu.org/index.php/jtlu/article/view/862))
+- Application of methods, e.g. to school accessibility ([2018](http://eprints.whiterose.ac.uk/121439/))
+- Co-author of Geocomputation with R ([2019](http://geocompr.robinlovelace.net/transport.html))
+
+---
+
+### La necesidad de evidencia durante y despues de la pandemia
+
+https://findingspress.org/article/13421-methods-to-prioritise-pop-up-active-transport-infrastructure
+
+![](https://s3.amazonaws.com/production.scholastica/attachment/36921/large/image_1_.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQP35HG4CYCAIE5XO%2F20210518%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210518T182447Z&X-Amz-Expires=10000&X-Amz-SignedHeaders=host&X-Amz-Signature=233d04ee028191dcb61f9a350c00e7124fa69f45c06e5b544b48a810717e3f99)
+
+---
+
+### La historia de la heramienta 'Rapid'
+
+![](https://www.cyclinguk.org/sites/default/files/styles/hero_desktop/public/media/2020/04/a.jpg?itok=kYSpU54q&timestamp=1588161258)
+
+https://www.cyclinguk.org/article/10-cities-where-pop-bike-lanes-could-benefit-millions-explore-maps#1
+
+---
+
+## Infraestructura
+
+- Sheffield [infrastructure](https://www.cyclesheffield.org.uk/2018/01/01/cyclesheffield-response-to-portobello-trippet-lane-cycle-route-designs/)
+
+- Article on Yorkshire Voice on the Leeds-Bradford [Cycle Superhighway](http://www.yorkshire-voice.com/mixed-views-as-29m-cycle-superhighway-linking-leeds-and-bradford-nears-completion/)
+
+- A detailed article on the same cycleway by [Mark Strong](https://aseasyasridingabike.wordpress.com/2016/08/11/a-visit-to-the-leeds-bradford-cycle-superhighway/)
+
+- Academic article on thinking at level of cycleway networks (Buehler and Dill [2015](https://www.tandfonline.com/doi/full/10.1080/01441647.2015.1069908?journalCode=ttrv20))
+
+- The Propensity to Cycle Tool ([pct.bike](https://www.pct.bike/))
+
+- The Cycling Infrastructure Prioritisation Toolkit ([CyIPT.bike](https://www.cyipt.bike/existing/#13/53.4690/-2.2506/mapnik))
+
+- Consultation on the Torrington Place / Tavistock Place 'pop-up' cycleway from [Cambden.gov.uk](https://www.camden.gov.uk/documents/20142/3452947/Consultation+leaflet+FINAL.pdf/f628d6e8-c47b-82f1-cb40-8e24db78bea6)
+
+---
+
+# La Heramienta
+
+- Map of pop-up interventions in response to COVID-19 from [CyclingUK](https://www.cyclinguk.org/covid-19-safe-space-social-distancing)
+
+- Maps of roads with 'spare lanes' in 10 cities from our our 'cyipt' [website](https://www.cyclinguk.org/article/10-cities-where-pop-bike-lanes-could-benefit-millions-explore-maps)
+
+- New statutory [guidance from DfT on road space reallocation](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities)
+
+- Analysis to support [road space reallocation in Manchester](https://github.com/cyipt/popupCycleways/blob/master/code/mcr-safe-streets-analysis.md#analysis-of-cycling-potential-around-key-corridors-in-greater-manchester)
+
+- Image of new [pop-up going in in Greater Manchester](https://github.com/cyipt/popupCycleways/issues/27)
+
+---
+
+## La hermienta
+
+https://www.cyipt.bike/rapid/
+
+---
+
+## Infrastructura en Chile
+
+https://rpubs.com/RobinLovelace/771169
+
+---
+
+## Infrastructurea en Santiago
+
+https://rpubs.com/RobinLovelace/771185
+
+---
 
 # References
 
+
 ```{r, 'refs', results="asis", echo=FALSE}
-PrintBibliography(my_bib)
+# PrintBibliography(my_bib)
 # RefManageR::WriteBib(my_bib, "refs-geostat.bib")
 ```
