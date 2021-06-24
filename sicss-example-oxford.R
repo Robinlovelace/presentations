@@ -56,3 +56,8 @@ plot(desire_lines_car_dependent)
 sum(desire_lines_car_dependent$car_driver)
 sum(desire_lines_car_dependent$car_driver) / sum(desire_lines$all)
 
+
+# Questions ---------------------------------------------------------------
+
+# What is the spatial distribution of the most are the most car dependent desire lines in Oxford
+
