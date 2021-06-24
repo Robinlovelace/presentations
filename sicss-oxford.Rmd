@@ -3,7 +3,7 @@ title: "Geocomputation for evidence-based policies"
 subtitle: "📉🚂🚅🚎🛴🚲🚶📈<br/>Methods and applications in transport planning"
 author: "Robin Lovelace"
 institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
-date: "UBDC, 2021-02-16 (updated: `r Sys.Date()`)\nReproducible source code: [github.com/Robinlovelace/presentations](https://github.com/Robinlovelace/presentations/)"
+date: "SICSS, University of Oxford, 2021-06-24\nReproducible source code: [github.com/Robinlovelace/presentations](https://github.com/Robinlovelace/presentations/)"
 output:
   xaringan::moon_reader:
     css: [default, robot, robot-fonts, custom.css]
