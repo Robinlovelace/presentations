@@ -5,4 +5,5 @@
 # But not these files...
 !.gitignore
 !*.Rmd
+!*.bib
 .Rproj.user
