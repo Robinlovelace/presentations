@@ -549,6 +549,45 @@ The ActDev project:
 ## Live demo
 
 ![](https://user-images.githubusercontent.com/1825120/72727608-443fae00-3b83-11ea-9dc1-90c50efac927.png)
+---
+
+# Worked example
+
+See https://github.com/Robinlovelace/presentations/blob/master/sicss-example-oxford.R
+
+```{r, eval=FALSE}
+# Aim get and analyse geographic transport data in Oxford
+
+pkgs = c(
+  "tidyverse",
+  "sf",
+  "pct",
+  "stplanr",
+  "od",
+  "cyclestreets"
+)
+
+install.packages("remotes")
+
+remotes::install_cran(pkgs)
+library(tidyverse)
+library(sf)
+
+# Get zone/centroid data for study region Oxford
+
+region_name = "oxfordshire"
+zones = pct::get_pct_zones(region_name, geography = "msoa")
+```
+
+---
+
+## From writing 'run once' analysis scripts to packages
+
+Got an idea/script that others could benefit from?
+
+- [`stats19`](https://docs.ropensci.org/stats19/articles/stats19-training-setup.html)
+
+![](https://raw.githubusercontent.com/ropensci/stats19/master/man/figures/logo.png)
 
 ---
 
