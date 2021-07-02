@@ -68,14 +68,14 @@ Source: ['Inside the black box' report](https://www.co.pierce.wa.us/DocumentCent
 
 **New technologies mean that open access transport models are possible**
 
-![](https://raw.githubusercontent.com/dabreegster/abstreet/master/book/editing_map.gif)
+![](https://user-images.githubusercontent.com/1825120/110673378-9ea52f00-81c8-11eb-9822-58d44e1ecae2.png)
 Source: A/B Street, free, open source, gamified transport planning software [github.com/dabreegster/abstreet](https://github.com/dabreegster/abstreet/#ab-street)
 
 ---
 
 ## The paper
 
-![](https://www.robinlovelace.net/publication/lovelace-open-2020/featured_hu0c285bfa775f060af938f28c962ce470_79909_808x455_fill_lanczos_smart1_2.png)
+![](https://www.robinlovelace.net/publication/lovelace-open-2020/featured.png)
 - Transport models represent a leverage point in transport systems
 - New paper, Lovelace et al (2020) describes the emergence and possibilities for 'open access models'
 
