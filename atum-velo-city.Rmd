@@ -1,9 +1,9 @@
 ---
-title: "Active travel uptake models"
-subtitle: "📉🚂🚅🚎🛴🚲🚶📈<br/>For Data Driven and Sustainable Transport Planning"
-author: "Robin Lovelace"
-institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
-date: "Transport for the North `r Sys.Date()`\nReproducible source code: [github.com/Robinlovelace/presentations](https://github.com/Robinlovelace/presentations/)"
+title: "Open source and participatory planning tools"
+subtitle: "📉🚲🚲🚲📈<br/>For prioritising cycling interventions"
+author: "Robin Lovelace, Rosa Félix, Lake Sagaris"
+# institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
+date: "Velo-City `r Sys.Date()`\nReproducible source code: [github.com/atumworld](https://github.com/atumworld/)"
 output:
   xaringan::moon_reader:
     css: [default, robot, robot-fonts, extra.css]
@@ -92,7 +92,9 @@ projects in that direction.
 
 ]
 
-# 100 word summary
+---
+
+## 100 word summary
 
 Free, open and participatory planning tools are now feasible and in use
 (albeit with limited geographic scope and/or functionality). This talk
@@ -105,14 +107,25 @@ become a reality. The aim is not to present solutions but start
 conversations that could lead to movement towards such a community of
 practice.
 
-# Quote
+.pull-left[
+
+
+## Quote
 
 For also knowledge itself is power.
 
 — Sir Francis Bacon
 
-‘Meditationes Sacrae’ (1597), in James Spedding, Robert Ellis and
-Douglas Heath (eds.),
+‘Meditationes Sacrae’ (1597)
+
+]
+
+.pull-right[
+
+
+]
+
+---
 
 ### The problem
 
@@ -123,6 +136,23 @@ Source: [leeds-live.co.uk](https://www.leeds-live.co.uk/news/leeds-news/leeds-wo
 --
 
 Or is that a symptom of a deeper problem?
+
+---
+
+### The problem II
+
+Source: [wantedinafrica.com](https://www.wantedinafrica.com/news/cape-town-has-worst-traffic-in-south-africa.html)
+
+![](https://www.wantedinafrica.com/i/featured/storage/uploads/2015/04/nb2kip0r1.jpg.webp)
+
+---
+
+### The problem III
+
+Source: [lisbon-portugal-traffic (pixabay)](https://pixabay.com/photos/lisbon-portugal-traffic-highway-3929050/)
+
+![](https://user-images.githubusercontent.com/1825120/132410118-18022d17-be98-4eea-a07e-c277e5e14413.png)
+
 
 ---
 
@@ -175,7 +205,7 @@ Source: Lovelace (2021), see [github.com/Robinlovelace/open-gat](https://github.
 
 ---
 
-# The Propensity to Cycle Tools
+# Propensity to Cycle Tool
 
 - Early prototype of the tool developed at Open Data Institute Leeds hackathon, 2015
 - National deployment of the Propensity to Cycle Tool 2 years later ([PCT.bike](http://www.pct.bike/)) (Lovelace et al. 2017)
@@ -192,7 +222,9 @@ Source: https://www.pct.bike/
 
 
 ![](https://user-images.githubusercontent.com/1825120/123867504-5a2fd180-d926-11eb-9b7a-1988d4b6c830.png)
+--
 
+Can do in questions...
 
 ---
 
@@ -207,87 +239,38 @@ Open data and accessible results lead to participation. See https://twitter.com/
 
 ![](https://user-images.githubusercontent.com/1825120/124230675-3d062900-db07-11eb-831e-f7f42e19aefc.png)
 
----
+--
 
-# Reproducibility and extending the tool
-
-- Find commuting desire lines in West Yorkshire between 1 and 3 km long in which more people drive than cycle:
-
-```{r, eval=FALSE, echo=FALSE}
-# Aim: get top 1000 lines in repo
-u = "https://github.com/npct/pct-outputs-regional-notR/raw/master/commute/msoa/west-yorkshire/l.geojson"
-library(dplyr)
-library(sf)
-desire_lines_all = read_sf(u)
-desire_lines = desire_lines_all %>% 
-  top_n(10, all)
-write_sf(desire_lines, "desire_lines.geojson")
-piggyback::pb_upload("desire_lines.geojson")
-```
-
-
-```{r, message=FALSE, eval=TRUE}
-# Set-up, after installing R and checking out www.pct.bike:
-u = "https://github.com/ITSLeeds/TDS/releases/download/0.1/desire_lines.geojson"
-library(dplyr)
-library(sf)
-desire_lines = read_sf(u)
-```
-
-```{r}
-plot(desire_lines["bicycle"])
-```
+We can internationalise the tools, but what about extending the tools?
 
 ---
 
-# Enabling reproducibility
+# Beyond the commute
 
-.pull-left[
-
-#### Key R packaged developed by ITS Leeds
-
-```{r, eval=FALSE}
-pkgs = c(
-# for routing, geo analysis
-  "stplanr", # 2.2k dls/month
-# to get and reproduce pct data
-  "pct", 
-# get road casualty data
-  "stats19",
-# multi modal routing
-  "opentripplanner",
-# get big osm datasets
-  "osmextract"
-)
-install.packages("remotes")
-remotes::install_cran(pkgs)
-```
-
-
-]
-
-.pull-right[
-
-
-![](https://docs.ropensci.org/stplanr/reference/figures/stplanr.png)
-
-]
+![](https://user-images.githubusercontent.com/1825120/130692688-65a958a9-8586-4196-982d-872d236becdb.png)
 
 ---
 
-## How it works
-
-![](https://user-images.githubusercontent.com/1825120/123762809-0e940e00-d8bb-11eb-8dab-0e881299bbef.png)
-
----
-
-# Active travel uptake modes
+# Beyond cycling
 
 The ActDev project: https://actdev.cyipt.bike/
 
-![](https://user-images.githubusercontent.com/361423/107999638-cb0dc700-6fdf-11eb-9105-cf851e5cc02b.png)
+![](https://user-images.githubusercontent.com/1825120/132411587-c912a924-8c88-48ef-be7c-d42d9f3a3593.png)
 
-- A/B Street - R integration, see https://github.com/a-b-street/abstr
+- Source: Prototype multi-modal mode shift scenarios from the [getting data](https://itsleeds.github.io/pct/articles/getting.html) in the `pct` R package
+
+---
+
+# Scenarios of infrastructure change
+
+![](https://a-b-street.github.io/docs/project/retrospective/edit_roads.gif)
+Source: [A/B Street documentation at a-b-street.org](https://a-b-street.github.io/docs/project/retrospective/index.html#road-editor)
+
+---
+
+# Destination shifting
+
+![](https://a-b-street.github.io/abstr/articles/od-sketch.png)
 
 ---
 
@@ -301,16 +284,6 @@ The ActDev project: https://actdev.cyipt.bike/
 --
 
 Collaboration opportunities
-
----
-
-# References
-
-Boyce, D.E., Williams, H.C.W.L., 2015. Forecasting Urban Travel: Past, Present and Future. Edward Elgar Publishing.
-
-Beimborn, E., Kennedy, R., 1996. Inside the Blackbox: Making Transportation Models Work for Livable Communities. Citizens for a Better Environment.
-
-Lovelace, R., Parkin, J., Cohen, T., 2020. Open access transport models: A leverage point in sustainable transport planning. Transport Policy 97, 47–54. https://doi.org/10.1016/j.tranpol.2020.06.015
 
 ---
 
