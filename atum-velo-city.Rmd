@@ -1,0 +1,371 @@
+---
+title: "Active travel uptake models"
+subtitle: "📉🚂🚅🚎🛴🚲🚶📈<br/>For Data Driven and Sustainable Transport Planning"
+author: "Robin Lovelace"
+institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
+date: "Transport for the North `r Sys.Date()`\nReproducible source code: [github.com/Robinlovelace/presentations](https://github.com/Robinlovelace/presentations/)"
+output:
+  xaringan::moon_reader:
+    css: [default, robot, robot-fonts, extra.css]
+    lib_dir: libs
+    nature: 
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, echo=FALSE, include=FALSE}
+library(RefManageR)
+library(tmap)
+library(tidyverse)
+my_bib = c(
+  ReadBib("~/itsleeds/TDS/tds.bib")
+)
+my_bib_df = as.data.frame(my_bib)
+# View(my_bib_df)
+```
+
+
+.small[
+
+Abstract: **Free, open source and participatory planning tools for prioritising
+cycling interventions: a call for conversation and an international
+community of practice:  Robin Lovelace, Rosa Félix, Lake Sagaris**
+
+Transport planning tools of the 20<sup>th</sup> Century were designed
+primarily to support motorized transport (Boyce and Williams 2015). This
+observation suggests that new approaches to transport planning maybe
+needed support sustainable transport planning in general, and designing
+for cycling, a mode with very different (and diverse) characteristics
+compared with driving (Parkin 2018). Increasingly, issues of social
+justice and gender have come to the fore, leading to tools that are
+better able to cater for the needs of both cycle network planners and
+society at large (e.g. Larsen, Patterson, and El-Geneidy 2013; Lovelace
+et al. 2017; Raffler, Brezina, and Emberger 2019). Recent advances in
+hardware, software and data sources have helped, but many new tools
+still contain features that are proprietary, opaque and impenetrable to
+the public. ‘Black box’ models curtail community involvement in
+decision-making and evidence gathering; increase costs of transferring
+lessons learned, leading many newcomers to ‘reinvent the wheel’; and
+limit adaptation to new data sources and ideas, reducing opportunities
+for innovation and participation of a wide range of stakeholders,
+reducing the diversity of voices involved (Lovelace, Parkin, and Cohen
+2020).
+
+
+Based on these observations, and lack of strong quantitative data being
+reported as a barrier preventing effective investment in cycling (Aldred
+et al. 2017), this paper makes the case for free and explores the
+concept of, open and participatory tools for cycle planning. Instead of
+providing ready made solutions or advocating a particular methodology or
+tool, we aim to generate conversations about how considerations such as
+gender equality and social justice, which are often invisible to
+professional transport planners, can be ‘mainstreamed’ through open
+source and publicly available models. We find that although no globally
+scalable free, open source and participatory planning tools for
+prioritising cycling interventions down to the street level currently
+exist (at the time of writing to the best of our knowledge), several
+promising conceptual and software platforms on which such tools could
+build already exist.
+
+This paper discusses the desirable and technologically feasible features of such
+‘open access tools’: multimodal, scenario-based, interactive, accessible
+and participatory. 
+The discussion shifts to practicalities and the
+identification of barriers that need to be overcome before a thriving
+open community of practice develops around modeling for cycling. There
+are many considerations when designing transport models to evidence
+effective cycling investments, including: support for user participation
+in the planning process; user friendly/accessible interface designs;
+levels of interactivity (including the possibility to edit maps
+representing hypothetical transport futures); levels of
+commercial/government involvement; and control over code and data.
+Beyond technical skill, the analysis suggests that actively navigating
+these flash-points and building a community may be vital for developing
+successful tools for cycle planning. We conclude that there is a need
+for a global, open source transport modelling community, with associated
+open datasets, deeply connected to those working on participatory
+governance and planning models. This paper aims to start a conversation
+around this need and provides pointers based on insights from previous
+projects in that direction.
+
+]
+
+# 100 word summary
+
+Free, open and participatory planning tools are now feasible and in use
+(albeit with limited geographic scope and/or functionality). This talk
+will explore how such tools could help support effective vision-building
+and interventions to enable cycling uptake. Building on insights from
+prior projects, it will outline key features of effective open tools for
+cycle planning and attempt to identify the barriers than need to be
+overcome for an international community of practice in this area to
+become a reality. The aim is not to present solutions but start
+conversations that could lead to movement towards such a community of
+practice.
+
+# Quote
+
+For also knowledge itself is power.
+
+— Sir Francis Bacon
+
+‘Meditationes Sacrae’ (1597), in James Spedding, Robert Ellis and
+Douglas Heath (eds.),
+
+### The problem
+
+Source: [leeds-live.co.uk](https://www.leeds-live.co.uk/news/leeds-news/leeds-worst-rush-hour-traffic-19898858)
+
+![](https://i2-prod.leeds-live.co.uk/news/leeds-news/article14638260.ece/ALTERNATES/s810/WhatsApp-Image-2018-05-10-at-080651jpeg.jpg)
+
+--
+
+Or is that a symptom of a deeper problem?
+
+---
+
+## The problem: root causes
+
+![](https://user-images.githubusercontent.com/1825120/103755051-1b6b2f80-5005-11eb-988b-f7c8d3108e53.png)
+
+Source: ['Inside the black box' report](https://www.co.pierce.wa.us/DocumentCenter/View/755/A-GuideToModeling?bidId=)
+
+--
+
+- Transport models were designed to support growth in car ownership and reduce journey times (Boyce and Williams, 2015)
+
+--
+
+- 21^st^ Century priorities are very different
+
+--
+
+  - Climate science, air pollution and health force a shift in focus
+  - The concepts of 'participatory democracy' and 'citizen science' mean there is a need for collaborative solutions
+
+--
+
+
+---
+
+## The solution
+
+**New technologies mean that open access transport models are possible**
+
+![](https://raw.githubusercontent.com/a-b-street/abstreet/master/videos/exploring_traffic.gif)
+Source: A/B Street, free, open source, gamified transport planning software [github.com/dabreegster/abstreet](https://github.com/dabreegster/abstreet/#ab-street)
+
+---
+
+## Open Source Transport Tools
+
+Source: Lovelace (2021), see [github.com/Robinlovelace/open-gat](https://github.com/Robinlovelace/open-gat#open-source-tools-for-geographic-analysis-in-transport-planning)
+
+![](https://www.robinlovelace.net/talk/open-access-transport-models/featured_hubc4301c81545b69b038b632d4e46b4cc_72911_720x0_resize_lanczos_2.png)
+
+---
+
+## From open source to open access
+
+![](https://www.robinlovelace.net/publication/lovelace-open-2020/featured.png)
+- Transport models represent a leverage point in transport systems
+- New paper, Lovelace et al (2020) describes the emergence and possibilities for 'open access models'
+
+---
+
+# The Propensity to Cycle Tools
+
+- Early prototype of the tool developed at Open Data Institute Leeds hackathon, 2015
+- National deployment of the Propensity to Cycle Tool 2 years later ([PCT.bike](http://www.pct.bike/)) (Lovelace et al. 2017)
+
+```{r, echo=FALSE, eval=TRUE}
+knitr::include_graphics("https://raw.githubusercontent.com/npct/pct-team/master/figures/early.png")
+```
+
+---
+
+## Demo of the PCT
+
+Source: https://www.pct.bike/
+
+
+![](https://user-images.githubusercontent.com/1825120/123867504-5a2fd180-d926-11eb-9b7a-1988d4b6c830.png)
+
+
+---
+
+## Key aspects of the PCT
+
+- Based on open source code
+- Based on open data
+- Results published as open data
+- Publicly available web application encourages participation and evidence-based debate
+
+Open data and accessible results lead to participation. See https://twitter.com/search?q=cyipt.bike%2Frapid 
+
+![](https://user-images.githubusercontent.com/1825120/124230675-3d062900-db07-11eb-831e-f7f42e19aefc.png)
+
+---
+
+# Reproducibility and extending the tool
+
+- Find commuting desire lines in West Yorkshire between 1 and 3 km long in which more people drive than cycle:
+
+```{r, eval=FALSE, echo=FALSE}
+# Aim: get top 1000 lines in repo
+u = "https://github.com/npct/pct-outputs-regional-notR/raw/master/commute/msoa/west-yorkshire/l.geojson"
+library(dplyr)
+library(sf)
+desire_lines_all = read_sf(u)
+desire_lines = desire_lines_all %>% 
+  top_n(10, all)
+write_sf(desire_lines, "desire_lines.geojson")
+piggyback::pb_upload("desire_lines.geojson")
+```
+
+
+```{r, message=FALSE, eval=TRUE}
+# Set-up, after installing R and checking out www.pct.bike:
+u = "https://github.com/ITSLeeds/TDS/releases/download/0.1/desire_lines.geojson"
+library(dplyr)
+library(sf)
+desire_lines = read_sf(u)
+```
+
+```{r}
+plot(desire_lines["bicycle"])
+```
+
+---
+
+# Enabling reproducibility
+
+.pull-left[
+
+#### Key R packaged developed by ITS Leeds
+
+```{r, eval=FALSE}
+pkgs = c(
+# for routing, geo analysis
+  "stplanr", # 2.2k dls/month
+# to get and reproduce pct data
+  "pct", 
+# get road casualty data
+  "stats19",
+# multi modal routing
+  "opentripplanner",
+# get big osm datasets
+  "osmextract"
+)
+install.packages("remotes")
+remotes::install_cran(pkgs)
+```
+
+
+]
+
+.pull-right[
+
+
+![](https://docs.ropensci.org/stplanr/reference/figures/stplanr.png)
+
+]
+
+---
+
+## How it works
+
+![](https://user-images.githubusercontent.com/1825120/123762809-0e940e00-d8bb-11eb-8dab-0e881299bbef.png)
+
+---
+
+# Active travel uptake modes
+
+The ActDev project: https://actdev.cyipt.bike/
+
+![](https://user-images.githubusercontent.com/361423/107999638-cb0dc700-6fdf-11eb-9105-cf851e5cc02b.png)
+
+- A/B Street - R integration, see https://github.com/a-b-street/abstr
+
+---
+
+# Get involved
+
+  - Have a play with open access transport tools such as [A/B Street](https://github.com/dabreegster/abstreet/#ab-street) and the [PCT](https://www.pct.bike/), which can run on your computer or in the browser
+  - Check out ActDev for Leeds: https://actdev.cyipt.bike/lcid
+  - Sign-up to https://github.com/ and get involved, e.g. publish code, offer to help
+  - Try out R/RStudio, great for data analysis but also interactive visualisation and, increasingly geographic data analysis
+
+--
+
+Collaboration opportunities
+
+---
+
+# References
+
+Boyce, D.E., Williams, H.C.W.L., 2015. Forecasting Urban Travel: Past, Present and Future. Edward Elgar Publishing.
+
+Beimborn, E., Kennedy, R., 1996. Inside the Blackbox: Making Transportation Models Work for Livable Communities. Citizens for a Better Environment.
+
+Lovelace, R., Parkin, J., Cohen, T., 2020. Open access transport models: A leverage point in sustainable transport planning. Transport Policy 97, 47–54. https://doi.org/10.1016/j.tranpol.2020.06.015
+
+---
+
+# Thanks
+
+Contact me at r. lovelace at leeds ac dot uk (email), [`@robinlovelace`](https://twitter.com/robinlovelace)
+
+--
+
+Check-out links to my work at [robinlovelace.net](https://www.robinlovelace.net/)
+
+--
+
+Thanks to everyone building a open and collaborative communities
+
+Thanks to the University of Leeds and the Institute for Transport Studies
+
+[![](https://avatars3.githubusercontent.com/u/22447619?s=400&u=2d566bedf62374d5066a50d2dd7c87c84470f69b&v=4)](https://environment.leeds.ac.uk/transport)
+
+---
+
+### References
+
+.small[
+
+- Aldred, Rachel, Tom Watson, Robin Lovelace, and James Woodcock. 2017.
+“Barriers to Investing in Cycling: Stakeholder Views from England.”
+*Transportation Research Part A: Policy and Practice*, November.
+<https://doi.org/10.1016/j.tra.2017.11.003>.
+
+- Boyce, David E., and Huw C. W. L. Williams. 2015. *Forecasting Urban
+Travel: Past, Present and Future*. Edward Elgar Publishing.
+
+- Larsen, Jacob, Zachary Patterson, and Ahmed El-Geneidy. 2013. “Build It.
+But Where? The Use of Geographic Information Systems in Identifying
+Locations for New Cycling Infrastructure.” *International Journal of
+Sustainable Transportation* 7 (4): 299–317.
+
+- Lovelace, Robin, Anna Goodman, Rachel Aldred, Nikolai Berkoff, Ali
+Abbas, and James Woodcock. 2017. “The Propensity to Cycle Tool: An Open
+Source Online System for Sustainable Transport Planning.” *Journal of
+Transport and Land Use* 10 (1). <https://doi.org/10.5198/jtlu.2016.862>.
+
+- Lovelace, Robin, John Parkin, and Tom Cohen. 2020. “Open Access
+Transport Models: A Leverage Point in Sustainable Transport Planning.”
+*Transport Policy* 97 (October): 47–54.
+<https://doi.org/10.1016/j.tranpol.2020.06.015>.
+
+- Parkin, John. 2018. *Designing for Cycle Traffic: International
+Principles and Practice*. ICE Publishing.
+
+- Raffler, Clemens, Tadej Brezina, and Günter Emberger. 2019. “Cycling
+Investment Expedience: Energy Expenditure Based Cost-Path Analysis of
+National Census Bicycle Commuting Data.” *Transportation Research Part
+A: Policy and Practice* 121 (March): 360–73.
+<https://doi.org/10.1016/j.tra.2019.01.019>.
+
+]

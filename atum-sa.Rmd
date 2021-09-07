@@ -38,6 +38,7 @@ Or is that a symptom of a deeper problem?
 
 ---
 
+
 ## The problem: root causes
 
 ![](https://user-images.githubusercontent.com/1825120/103755051-1b6b2f80-5005-11eb-988b-f7c8d3108e53.png)
