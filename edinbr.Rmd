@@ -1,7 +1,7 @@
 ---
 title: "Open source software for decaRbonisation"
 subtitle: "A case study of tools to support sustainable transport plans"
-author: "Robin Lovelace, for UseR Edinburgh"
+author: "Robin Lovelace, for UseR Edinburgh (EdinbR)"
 date: "2021-11-17. Source code: [github.com/robinlovelace/presentations](https://github.com/robinlovelace/presentations)"
 output:
   xaringan::moon_reader:
@@ -18,7 +18,7 @@ library(tidyverse)
 
 ## Bio
 
-I'm an Associate Professor of Transport Data Science at the Leeds Institute for Transport Studies (ITS) with research interests ranging from optimal zoning systems for urban analysis to analysis of road safety data. I have experience not only researching but deploying transport models in inform sustainable policies, and have used R heavily in my role as Lead Developer of the Propensity to Cycle Tool (see www.pct.bike), an open source and open access tool being used to support evidence-based strategic cycle network plans. I'm also a keen R user, developer and teacher, author of Geocomputation with R and several R packages.
+I'm an Associate Professor of Transport Data Science at the Leeds Institute for Transport Studies (ITS) with research interests ranging from optimal zoning systems for urban analysis to analysis of road safety data. I have experience not only researching but deploying transport models in inform sustainable policies, and have used R heavily in my role as Lead Developer of the Propensity to Cycle Tool (see www.pct.bike), an open source and open access tool used by dozens of transport authorities to support evidence-based design of strategic cycle networks. I'm also a keen R user, developer and teacher, author of [Geocomputation with R](https://geocompr.robinlovelace.net/) and several R packages.
 
 --
 
@@ -142,7 +142,7 @@ In a society where people have a sense of abundance, there will be fewer people 
 
 --
 
-- Open source software discourages wasteful
+- Open source software discourages waste
 
 --
 
@@ -156,17 +156,31 @@ Open source software enables transparent + participatory evidence -> buy-in
 
 ## Case studies
 
-```{r}
-
+```{r, eval=FALSE}
+pkgs = c(
+  "pct",
+  "abstr"
+  )
+# install...
+install.packages(pkgs)
+vignette(
+  "getting"
+  )
 ```
 
+Check the docs and play with the example datasets. Ask questions and build the community!
 
 ]
 
 .right-column[
 
+![](https://user-images.githubusercontent.com/1825120/141021386-3ee6af6d-8ca8-4f4c-9856-c636f4a8fc0e.png)
+
+Source: [ATUMEdinburgh](https://rpubs.com/RobinLovelace/757669) project + [a-b-street.org](https://a-b-street.github.io/docs/project/retrospective/index.html#road-editor)
+
 ![](https://a-b-street.github.io/docs/project/retrospective/edit_roads.gif)
 ]
+
 
 ---
 class: center, middle
