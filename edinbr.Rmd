@@ -1,0 +1,44 @@
+---
+title: "Open source software for decaRbonisation"
+subtitle: "A case study of tools to support sustainable transport plans"
+author: "Robin Lovelace, for UseR Edinburgh"
+date: "2021-11-17. Source code: [github.com/robinlovelace/presentations](https://github.com/robinlovelace/presentations)"
+output:
+  xaringan::moon_reader:
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+## Bio
+
+I'm an Associate Professor of Transport Data Science at the Leeds Institute for Transport Studies (ITS) with research interests ranging from optimal zoning systems for urban analysis to analysis of road safety data. I have experience not only researching but deploying transport models in inform sustainable policies, and have used R heavily in my role as Lead Developer of the Propensity to Cycle Tool (see www.pct.bike), an open source and open access tool being used to support evidence-based strategic cycle network plans. I'm also a keen R user, developer and teacher, author of Geocomputation with R and several R packages.
+
+--
+
+```{r, out.width="30%", fig.show='hold', echo=FALSE}
+knitr::include_graphics(c(
+  "https://docs.ropensci.org/stplanr/reference/figures/stplanr.png",
+  "https://raw.githubusercontent.com/ropensci/stats19/master/man/figures/logo.png",
+  "https://github.com/Robinlovelace/geocompr/blob/main/images/geocompr_hex.png?raw=true"
+))
+```
+
+---
+
+### Climate change: The elephant in the room
+
+<iframe src="https://giphy.com/embed/4bMoVkgc8QVCQo97kw" width="480" height="208" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p>
+
+---
+class: center, middle
+
+# Thanks, links, happy R day travels 🚶, 🚲 +  🚀!
+
+- Reproducible slides: [github.com/robinlovelace/presentations](https://github.com/robinlovelace/presentations)
+
+- Transport chapter in Geocomputation with R (feedback welcome):
+[geocompr.robinlovelace.net](http://geocompr.robinlovelace.net/transport.html)
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
