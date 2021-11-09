@@ -11,6 +11,11 @@ output:
       countIncrementalSlides: false
 ---
 
+```{r, include=FALSE}
+library(tidyverse)
+```
+
+
 ## Bio
 
 I'm an Associate Professor of Transport Data Science at the Leeds Institute for Transport Studies (ITS) with research interests ranging from optimal zoning systems for urban analysis to analysis of road safety data. I have experience not only researching but deploying transport models in inform sustainable policies, and have used R heavily in my role as Lead Developer of the Propensity to Cycle Tool (see www.pct.bike), an open source and open access tool being used to support evidence-based strategic cycle network plans. I'm also a keen R user, developer and teacher, author of Geocomputation with R and several R packages.
@@ -30,6 +35,138 @@ knitr::include_graphics(c(
 ### Climate change: The elephant in the room
 
 <iframe src="https://giphy.com/embed/4bMoVkgc8QVCQo97kw" width="480" height="208" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p>
+
+???
+
+What is climate change? And how does it related to open source software?
+
+
+It's great to be able to talk about climate change upfront. Usually it's behind the scenes.
+
+To solve problems you need to talk about them.
+
+Everyone including the elephant knows that climate change means the world is getting warmer.
+
+But fewer people talk about 'global drying' and likely impacts such as sudden sea level rise that can only be described as catastrophic
+
+As with health, the most solutions tackle the root causes of the problem. So what is the root cause of the problem? We can go back a few steps...
+
+Climate change is caused by emissions.
+
+Emissions are (primarily) caused by combustion of fossil fuels
+
+But what causes that? Energy consumption.
+
+What causes energy use? Demand for energy intensive things, transport, manufacturing
+
+---
+
+
+![](https://user-images.githubusercontent.com/1825120/141004976-f6dd6243-2bff-42bb-8045-4654df084906.png)
+
+---
+
+<!-- <iframe src="https://ourworldindata.org/grapher/annual-co-emissions-by-region" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe> -->
+
+```{r, eval=FALSE, echo=FALSE}
+piggyback::pb_upload("annual-co-emissions-by-region.csv")
+piggyback::pb_download_url("annual-co-emissions-by-region.csv")
+```
+
+```{r, include=FALSE}
+emissions = readr::read_csv("https://github.com/Robinlovelace/presentations/releases/download/2020-02/annual-co-emissions-by-region.csv")
+emissions = emissions %>% rename(Emissions = `Annual CO2 emissions (zero filled)`)
+emissions_regions = emissions %>%
+  filter(is.na(Code)) %>%
+  filter(Entity != "World") %>% 
+  filter(!str_detect(string = Entity, pattern = "EU|Fr|Ku|Leew|exc|Pan|Ry|St"))
+```
+
+```{r}
+g = ggplot(emissions_regions) +
+  geom_line(aes(Year, Emissions, colour = Entity), show.legend = FALSE)
+plotly::ggplotly(g)
+```
+
+???
+
+The Downward trend during coronavirus saw emissions drop by ~10%
+
+The scale of the challenge is to reduce emissions by 10% every year, every year, and the challenge gets hard with each year
+
+That means: we need transformational change, we need to be on a war footing
+
+---
+
+### Decarbonisation
+
+<iframe src="https://ourworldindata.org/grapher/co2-mitigation-2c" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+---
+
+# Root causes: scarcity and fear
+
+<iframe src="https://giphy.com/embed/H3I974qpIYExy" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/boybandabc-boy-band-eyebrow-raise-H3I974qpIYExy">via GIPHY</a></p>
+
+???
+
+That may sound counter-intuitive given that we have an over-supply of fossil fuels
+
+But it's a sense of scarcity that makes people move from being economic satisficers to maximers
+
+And a sense of scarcity is driven by fear - so an important response to climate change is to not respond fearfully but optimistically
+
+Consumption is often portrayed as a bottom-up process but in fact it's largely top-down: people who have too much wanting more, dedicating their lives to increasing their share of the pie
+
+In a society where people have a sense of abundance, there will be fewer people who feel the need to accumulate and compete
+
+---
+
+## Only demand side solutions can work
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">We&#39;re barrelling head first into a cataclysmic climate disaster of planetary scale, and our governments and economies are COMPLETELY disregarding the emergency exit that would spare us. We&#39;re not going to make it, and it&#39;s not because &quot;solutions&quot; don&#39;t exist. <br>A 🧵, I guess. <br>1/</p>&mdash; Prof Julia 🌍🌹🌱 ClimateAction FightFascism 🇵🇸 (@JKSteinberger) <a href="https://twitter.com/JKSteinberger/status/1415189267542904833?ref_src=twsrc%5Etfw">July 14, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+---
+
+# How open source software can help?
+
+<iframe src="https://giphy.com/embed/3og0ICG4WxdKSRzE3K" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/annoyed-linux-open-source-3og0ICG4WxdKSRzE3K">via GIPHY</a></p>
+
+--
+
+- Open source software creates a sense of abundance
+
+--
+
+- Open source software is energy efficient
+
+--
+
+- Open source software discourages wasteful
+
+--
+
+Open source software enables transparent + participatory evidence -> buy-in
+
+
+---
+
+
+.left-column[
+
+## Case studies
+
+```{r}
+
+```
+
+
+]
+
+.right-column[
+
+![](https://a-b-street.github.io/docs/project/retrospective/edit_roads.gif)
+]
 
 ---
 class: center, middle
