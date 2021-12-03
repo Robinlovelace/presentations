@@ -1,0 +1,322 @@
+---
+title: "Data Science for public policy"
+subtitle: "Skills, domain experience, and interests"
+author: "Robin Lovelace, University of Leeds <br>[Data Science Fellow at N. 10](https://www.ukri.org/opportunity/esrc-adr-uk-no-10-data-science-fellowships-2021/)"
+date: "2021-11-17"
+output:
+  xaringan::moon_reader:
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tmap)
+tmap_mode("view")
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Bio
+
+I'm an Associate Professor of **Transport Data Science** at the Leeds Institute for Transport Studies (ITS). I have experience not only of data science research but of developing new **methods**, **tools** and **software** to inform policy. 
+--
+
+## Application
+
+Becoming an ESRC-ADR UK No.10 Data Science Fellow will allow me to make the best use of my **expertise to support the needs of central government**, especially in relation to ... decarbonisation, active travel and the government's leveling-up agenda.
+The government has set-out these priorities ...
+<!-- the *Decarbonising transport: setting the challenge* -->
+<!-- ^[https://www.gov.uk/government/publications/creating-the-transport-decarbonisation-plan] -->
+<!-- report (a precursor to the forthcoming Transport Decarbonisation Plan), the *Gear Change* vision for walking and cycling, -->
+<!-- ^[https://www.gov.uk/government/publications/cycling-and-walking-plan-for-england] -->
+<!-- and the *Levelling Up Fund* prospectus. -->
+<!-- ^[https://www.gov.uk/government/publications/levelling-up-fund-prospectus] -->
+
+--
+
+Translating the laudable objectives of these documents into deliverable plans requires an evidence-based approach, to achieve maximum impact and value for money **at the local level**, an area in which I have substantial experience.
+
+---
+
+# Background, collaborations, interests
+
+- BSc in Geography (Bristol) and MSc in Environmental Science (York), PhD in energy costs of commuting [2014](http://etheses.whiterose.ac.uk/5027/)
+- Limitations of available tools for modelling led to the development of new methodologies and the book Spatial Microsimulation with R ([2016](https://spatial-microsim-book.robinlovelace.net/))
+- Co-authored Efficient R Programming ([2016](https://csgillespie.github.io/efficientR/))
+- Lead Developer of Propensity to Cycle Tool (PCT) ([2017](https://www.jtlu.org/index.php/jtlu/article/view/862))
+- Author of Geocomputation with R ([2019](http://geocompr.robinlovelace.net/transport.html))
+- Substantial [research](https://www.robinlovelace.net/publication/) output ([h-index](https://scholar.google.com/citations?user=xDJHVCAAAAAJ&hl=en): 20)
+
+--
+
+```{r, out.width="30%", fig.show='hold', echo=FALSE}
+knitr::include_graphics(c(
+  "https://docs.ropensci.org/stplanr/reference/figures/stplanr.png",
+  "https://raw.githubusercontent.com/ropensci/stats19/master/man/figures/logo.png",
+  "https://github.com/Robinlovelace/geocompr/blob/main/images/geocompr_hex.png?raw=true"
+))
+```
+
+--
+
+- Evidence-based policies in government: [Data Science Fellowship at N. 10](https://www.ukri.org/opportunity/esrc-adr-uk-no-10-data-science-fellowships-2021/)
+
+???
+
+- Turing Fellowship 
+- LIDA internship on open transport infrastructure data
+- Links with DfT, MHCLG, TfNH, international partners
+
+--
+
+- Future areas of development: Reproducible Bayesian modelling of proportions (Dirichlet regression), Machine Learning, Decarbonisation Agenda
+
+---
+
+# An international perspective
+
+```{r, echo=FALSE}
+# cities = c("Hereford", "Bristol", "Salamanca", "York", "Sheffield", "Leeds", "Melbourne", "Hamilton, NZ", "Lisbon", "Pennsylvania", "Maastricht", "Edinburgh", "Cardiff")
+# locations = tmaptools::geocode_OSM(cities, as.sf = TRUE)
+# locations$years = c("1985-04", "2004-08", "2006-07", "2008-09", "2009-13", "2014", "Research links", "Research links", "Research links", "Research links", "Research links", "Research links", "Research links")
+# saveRDS(locations, "locations.Rds")
+locations = readRDS("locations.Rds")
+tm_shape(locations, bbox = tmaptools::bb(locations[c(1, 2, 4, 12), ], ext = 1.2)) +
+  tm_dots("years", size = 0.3, palette = "Spectral")
+```
+
+???
+
+The UK is a global leader in not only open access data and data science
+
+We have a huge amount to offer and I know of people coming here from the USA, usually the brain drain goes in the opposite direction!
+
+---
+
+# Teaching materials and data science training
+
+```{r, out.width="33%", fig.show='hold'}
+knitr::include_graphics(c(
+  "https://images.tandf.co.uk/common/jackets/amazon/978149871/9781498711548.jpg",
+  "https://csgillespie.github.io/efficientR/figures/f0_web.png",
+  "https://geocompr.robinlovelace.net/images/cover.png"
+))
+```
+
+--
+
+- Data science training for the Department for Transport, Highways England, RAC Foundation
+- Hackathons sponsored by the R foundation and the Department for Transport
+
+<!-- --- -->
+
+<!-- ### The power of visualisation -->
+
+<!-- ![](https://user-images.githubusercontent.com/1825120/141866730-084be690-7b19-48cb-9747-81fb89319b8e.png) -->
+<!-- - Source: Geocomputation with R (Second Edition) -->
+
+---
+
+.left-column[
+
+### Expertise: Geocomputation
+
+Computationally efficient data science tools
+
+Intuitive, future proof, scalable code
+
+Geographic vector data analysis
+
+![](https://user-images.githubusercontent.com/1825120/141863981-31a11068-a5f3-4e19-9471-b03dbb36f9a8.png)
+Geographic raster data
+
+![](https://geocompr.robinlovelace.net/02-spatial-data_files/figure-html/raster-intro-plot-1.png)
+
+]
+
+--
+
+.right-column[
+
+```{r}
+knitr::include_graphics("https://user-images.githubusercontent.com/1825120/142071229-81358e26-5e8d-437e-9ef8-91704a4e690f.png")
+```
+
+Source: Morgan and Lovelace (2020) https://doi.org/10.1177/2399808320942779
+
+]
+
+???
+
+I am an all-round data scientist with experience with Python, Julia, and command line tools such as Docker and shell scripting for scalable data science applications.
+
+I have particular expertise in R and geocomputation with R in particular.
+
+---
+
+## Expertise: developing tools for policy making
+
+.left-column[
+
+Lead Developer of the DfT's PCT (Lovelace et al. 2017) : transformational impact on planning in the UK (source: REF Impact Case Study)
+
+COVID response: RAPID tool (Lovelace et al. 2020)
+
+ActDev tool for informing planning process
+
+]
+
+.right-column[
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nNYroA16JEQ?start=120" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+]
+
+---
+
+# Expertise: open source software, community building
+
+![](https://user-images.githubusercontent.com/1825120/142075245-3dee4b6e-e4d6-424d-b4aa-a72458e88fd6.png)
+
+---
+
+
+.left-column[
+## Domain experience
+
+Close working relationship with DfT over past 6 years
+
+Collaborations with Ordnance Survey (LIDA), National Highways (training), links with DLUHC and Open Innovation Team
+
+Transport behaviour, infrastructure, safety, energy
+
+]
+.right-column[
+
+![](https://raw.githubusercontent.com/cyipt/actdev/main/data-small/scenario-overview.png)
+
+![](https://user-images.githubusercontent.com/1825120/142076842-bc87bf5b-f8b2-4fbc-bcb4-a4da575b171f.png)
+
+]
+
+---
+
+.left-column[
+
+# Ideas
+
+Hackathons
+
+Active travel
+
+Road safety policy
+
+Post COVID recovery
+
+Levelling up metrics
+
+Nature recovery networks
+
+Citizen science and data literacy
+
+]
+
+.right-column[
+
+![](https://saferactive.github.io/trafficalmr/articles/covid.png)
+
+![](https://a-b-street.github.io/docs/project/history/retrospective/edit_roads.gif)
+
+]
+
+---
+
+## Example: Climate change, what data science can bring
+
+.left-column[
+
+Emotive and potentially polarising issue
+
+Data can provide a shared starting point
+
+Nationally scenarios are vital
+
+Locally, visions, trust, buy-in and participation are key
+
+]
+
+.right-column[
+
+
+<!-- <iframe src="https://ourworldindata.org/grapher/annual-co-emissions-by-region" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe> -->
+
+```{r, eval=FALSE, echo=FALSE}
+piggyback::pb_upload("annual-co-emissions-by-region.csv")
+piggyback::pb_download_url("annual-co-emissions-by-region.csv")
+```
+
+```{r, include=FALSE}
+emissions = readr::read_csv("https://github.com/Robinlovelace/presentations/releases/download/2020-02/annual-co-emissions-by-region.csv")
+emissions = emissions %>% rename(Emissions = `Annual CO2 emissions (zero filled)`)
+emissions_regions = emissions %>%
+  filter(is.na(Code)) %>%
+  filter(Entity != "World") %>% 
+  filter(!str_detect(string = Entity, pattern = "EU|Fr|Ku|Leew|exc|Pan|Ry|St"))
+```
+
+```{r}
+g = ggplot(emissions_regions) +
+  geom_line(aes(Year, Emissions, colour = Entity), show.legend = FALSE)
+plotly::ggplotly(g)
+```
+
+]
+
+???
+
+The Downward trend during coronavirus saw emissions drop by ~10%
+
+The scale of the challenge is to reduce emissions by 10% every year, every year, and the challenge gets hard with each year
+
+That means: we need transformational
+
+---
+
+### Decarbonisation
+
+<iframe src="https://ourworldindata.org/grapher/co2-mitigation-2c" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+---
+
+# Making UK data come to life
+
+![](https://github.com/zonebuilders/zonebuilder/releases/download/v0.0.2.9000/cityscale.png)
+Source: Lovelace, Tennekes, Carlino ([under review](https://zonebuilders.github.io/zonebuilder/articles/paper.html))
+
+![](https://user-images.githubusercontent.com/1825120/141021386-3ee6af6d-8ca8-4f4c-9856-c636f4a8fc0e.png)
+
+
+---
+class: center, middle
+
+# Thanks, look forward to working with you  🖧 + 📈 + ✨ =  🚀!
+
+--
+
+## References
+
+--
+
+Lovelace, R., Goodman, A., Aldred, R., Berkoff, N., Abbas, A., Woodcock, J., 2017. The Propensity to Cycle Tool: An open source online system for sustainable transport planning. Journal of Transport and Land Use 10. https://doi.org/10.5198/jtlu.2016.862
+
+
+--
+
+Morgan, M., Lovelace, R., 2020. Travel flow aggregation: nationally scalable methods for interactive and online visualisation of transport behaviour at the road network level. Environment & Planning B: Planning & Design. https://doi.org/10.1177/2399808320942779
+
+--
+
+Lovelace, R., Tennekes, M., Carlino, D., 2021. ClockBoard: a zoning system for urban analysis. https://doi.org/10.31219/osf.io/vncgw
+

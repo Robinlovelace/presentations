@@ -1,0 +1,331 @@
+---
+title: "The ActDev Project"
+subtitle: "Actionable evidence enabling the planning system to account for and support active travel"
+author: "Robin Lovelace, Joey Talbot"
+institute: "Leeds' [Institute for Transport Studies](https://environment.leeds.ac.uk/transport) and partners"
+date: "ActDev Workshop, 2021-12-07 (updated: `r Sys.Date()`)\nReproducible source code: [github.com/cyipt/actdev](https://github.com/cyipt/actdev)"
+output:
+  xaringan::moon_reader:
+    css: [default, robot, robot-fonts]
+    nature: 
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+<!-- Talk in context: -->
+
+<!-- 1 hr in total, 15 min talk by Robin, 15 demo by Joey, 30 min questions + answers -->
+
+<!-- https://www.eventbrite.co.uk/e/evidence-to-support-active-travel-in-the-planning-system-tickets-211640180477 -->
+
+<!-- 20 minutes Q & A on the ActDev tool -->
+
+
+#### The problem (source: Garden Villages and Garden Towns report, [TfNH](https://tps.org.uk/news/tfnh-report-on-garden-villages-and-garden-towns))
+
+Photo: Bicester Eco Town
+
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/transportfornewhomes/49995904016/in/album-72157714662617023/" title="Bicester 3"><img src="https://live.staticflickr.com/65535/49995904016_3848a910c0_h.jpg" width="1600" height="1200" alt="Bicester 3"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<!-- ![](https://user-images.githubusercontent.com/1825120/103755051-1b6b2f80-5005-11eb-988b-f7c8d3108e53.png) -->
+
+<!-- Source: ['Inside the black box' report](https://www.co.pierce.wa.us/DocumentCenter/View/755/A-GuideToModeling?bidId=) -->
+
+???
+
+This housing estate in Bicester illustrates the problem: it's called the Bicester Eco-Town so you'd be forgiven for thinking that it has a low environmental impact
+
+A picture can tell a thousand words but it still can be deceptive: we need a more objective view of things
+
+---
+
+#### Marketting vs Reality
+
+![](https://www.willmottdixon.co.uk/asset/11080/crop/1428/768)
+
+Source: [Willmott Dixon](https://www.willmottdixon.co.uk/projects/north-west-bicester-eco-town)
+
+
+???
+
+When planning officers are presented with a proposal it is often difficult to evaluate sustainability claims
+
+Guidance and objective measures are scarce, meaning that intuition is often used
+
+What we need is an object evidence base
+
+---
+
+background-image: url(https://user-images.githubusercontent.com/1825120/144555764-b085f647-6448-459a-84f5-4fc947ac2f43.png)
+background-size: contain
+
+#### Data driven evidence  (source: [https://actdev.cyipt.bike/bicester/](https://actdev.cyipt.bike/bicester/routenetwork,buildings/#9.75/51.9082/-1.2006))
+
+<!-- ![](https://user-images.githubusercontent.com/1825120/144555764-b085f647-6448-459a-84f5-4fc947ac2f43.png) -->
+
+???
+
+Why are housing developments being approved in places like this at a time of climate crises?
+
+---
+
+# Demand for housing
+
+```{r, echo=FALSE, fig.width=2}
+knitr::include_graphics(c(
+  "http://researchbriefings.files.parliament.uk/documents/CBP-7671/assets/b1a30d07-0fd0-4e31-88b3-fee717bbea88.png"
+))
+```
+
+Source: Tackling the under-supply of housing in England, [House of Commons Research Briefing Jan 2021](https://commonslibrary.parliament.uk/research-briefings/cbp-7671/)
+
+---
+
+## Policy and research context
+
+```{r, echo=FALSE}
+knitr::include_graphics(c(
+  "https://user-images.githubusercontent.com/1825120/144556770-80237854-00d1-4211-bad5-bd5c3d478a1a.png",
+  "https://user-images.githubusercontent.com/1825120/144557012-d11d36cf-88e1-40ff-81a8-8e60de017510.png"
+))
+```
+
+--
+
+- Tensions between vital policy objectives of [housing](https://commonslibrary.parliament.uk/research-briefings/cbp-7671/)/[levelling up](https://www.gov.uk/government/news/new-homes-to-be-built-as-part-of-government-drive-to-develop-brownfield-land-and-regenerate-communities) vs [decarbonisation](https://www.gov.uk/government/publications/transport-decarbonisation-plan)/[active travel](https://www.gov.uk/government/publications/gear-change-one-year-on-review)
+
+--
+
+- Transport models were designed to support growth in car ownership and reduce journey times (Boyce and Williams, 2015)
+
+--
+
+- Few tools for assessing active travel potential or provision in/around new developments (Megan Streb MSc)
+
+--
+
+<!-- - Yet tools for transport planning and development are based on old priorities -->
+
+
+???
+
+Governments must meet multiple competing objectives
+
+The August 2020 planning white paper outlined the need to create beautiful places and provide housing
+
+A House of [Commons Research Briefing](https://commonslibrary.parliament.uk/research-briefings/cbp-7671/) from January 2021 outlined the challenge of increasing housing supply to meet the aim of building 300k houses per year
+
+The July 2021 Decarbonising transport paper set out dramatic policies for the sector with rapid uptake of walking and cycling: "We will aim to have 
+half of all journeys 
+in towns and cities 
+cycled or walked"
+
+And in the 2021 Gear Change one year on policy paper, the prime minister said in the foreword
+
+"I support councils, of all parties, which are trying to promote cycling and bus
+use. And if you are going to oppose these schemes, you must tell us what
+your alternative is, because trying to squeeze more cars and delivery vans
+on the same roads and hoping for the best is not going to work."
+
+As we've seen the problem is largely political but it has has a substantial technical component
+
+The 'tools of the trade' 
+
+  - Climate science, air pollution and health force a shift in focus
+  - The concepts of 'participatory democracy' and 'citizen science' mean there is a need for collaborative solutions
+
+Despite substantial academic work on integrated land-use transport models and an entire academic journal dedicated to it
+
+Planning and transport not always joined up
+
+---
+
+## The ActDev tool
+
+4 month UKRI funded project on high impact research in transport/planning
+
+Publicly available tool with maps and data on active travel levels, potential and provision
+
+![](https://user-images.githubusercontent.com/1825120/110671502-79afbc80-81c6-11eb-9dc5-52046b1d04c8.gif)
+---
+
+## Levels of analysis
+
+
+![](https://user-images.githubusercontent.com/1825120/110673378-9ea52f00-81c8-11eb-9822-58d44e1ecae2.png)
+
+---
+
+#### The ActDev Team: agile, reproducible, open data science and software development
+
+![](https://user-images.githubusercontent.com/1825120/110677777-75d36880-81cd-11eb-8c59-eb406066bc4a.png)
+
+--
+
+![](https://user-images.githubusercontent.com/1825120/110678305-0e69e880-81ce-11eb-98aa-7d91fd71e81c.png)
+
+![](https://user-images.githubusercontent.com/1825120/110678068-ca76e380-81cd-11eb-8dec-f191dfe708b6.png)
+
+---
+
+## About this workshop
+
+![](https://user-images.githubusercontent.com/1825120/110672803-f0998500-81c7-11eb-9f9a-d2019028dca4.png)
+--
+
+- Opportunity to present the tool, get feedback, help decide next steps
+
+---
+
+## Feedback from Workshop in March 2021
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">This is absolutely glorious and I and many others were simply astounded when we saw it at that workshop on Friday. <br><br>Go and have a look if you&#39;re involved in urban design and place - you won&#39;t regret it. <a href="https://t.co/1hlxMM5MO1">https://t.co/1hlxMM5MO1</a></p>&mdash; Kit Allwinter (@KitAllwinter) <a href="https://twitter.com/KitAllwinter/status/1372976668604829696?ref_src=twsrc%5Etfw">March 19, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+<!-- ![](https://user-images.githubusercontent.com/1825120/110797848-79203000-8271-11eb-80be-99b8d7abcec5.png) -->
+
+---
+
+## Stakeholder mapping
+
+- Professional planners: Lynda Addison, Lead on planning and transport integration, Transport Planning Society
+
+- Active travel planners: Julian Sanchez, Active Travel, Programme Manager, Essex County Council, Kit Allwinter, Active Travel Officer West Yorkshire Combined Authority
+
+- Consultants, e.g. Lucy Taussig, Consultant, Active Travel
+
+- Local Authority Planning Officers
+
+- NGOs, e.g. Megan Streb, Partnership Manager, Sustrans
+
+- The wider public
+
+---
+
+---
+
+## Research findings
+
+- Median distance to town centre is 3.2 km only three within 2.0 km
+- **14%** of trips made by active travel around 35 sample site locations compared with **14% nationwide**
+- Provision of good infrastructure varies considerably
+
+![](https://user-images.githubusercontent.com/1825120/110777119-ad3b2700-8258-11eb-87f9-553449faa757.png)
+
+---
+
+## Planning applications nationwide
+
+Location of 100k+ 'large development sites' 
+
+Analysis is work in progress
+
+![](https://user-images.githubusercontent.com/1825120/110936020-26557f80-8328-11eb-9b1f-39dd73640962.png)
+<!-- ## Using the tool to assess site location -->
+
+<!-- ![](https://user-images.githubusercontent.com/1825120/110680440-85a07c00-81d0-11eb-9658-7f303e72372f.png) -->
+
+<!-- ??? -->
+
+<!-- Trip patterns -->
+
+<!-- - Add images showning trip/distance/mode splits -->
+
+<!-- - Great Kneighton -->
+
+<!-- - Wynward -->
+
+<!-- --- -->
+
+<!-- ## Using the tool to assess (and improve) walking and cycling routes -->
+
+<!-- ![](https://user-images.githubusercontent.com/1825120/110777119-ad3b2700-8258-11eb-87f9-553449faa757.png) -->
+
+<!-- ??? -->
+
+<!-- Joey -->
+
+<!-- - Busyness levels -->
+
+<!-- - Circuity -->
+
+<!-- - Great Kneighton vs Upton -->
+
+
+---
+
+# Modelling change: scenarios
+
+![](https://raw.githubusercontent.com/cyipt/actdev/main/data-small/scenario-overview.png)
+
+---
+
+## Site level data
+
+![](https://user-images.githubusercontent.com/1825120/110680440-85a07c00-81d0-11eb-9658-7f303e72372f.png)
+
+---
+
+## Core ActDev Layers
+
+See https://actdev.cyipt.bike/manual/
+
+![](https://user-images.githubusercontent.com/1825120/110682147-876b3f00-81d2-11eb-96e9-b86203ec250e.png)
+
+---
+
+## Contextual layers
+
+![](https://user-images.githubusercontent.com/1825120/110693965-f4390600-81df-11eb-8d7a-c37ea0e23f1f.png)
+
+---
+
+## The A/B Street tool
+
+![](https://user-images.githubusercontent.com/1825120/110777940-9d701280-8259-11eb-9c17-c56f5b709c83.gif)
+
+---
+
+## Live demo of the tool
+
+![](https://user-images.githubusercontent.com/1825120/110671502-79afbc80-81c6-11eb-9dc5-52046b1d04c8.gif)
+---
+
+# References
+
+Boyce, D.E., Williams, H.C.W.L., 2015. Forecasting Urban Travel: Past, Present and Future. Edward Elgar Publishing.
+
+Beimborn, E., Kennedy, R., 1996. Inside the Blackbox: Making Transportation Models Work for Livable Communities. Citizens for a Better Environment.
+
+Lovelace, R., Parkin, J., Cohen, T., 2020. Open access transport models: A leverage point in sustainable transport planning. Transport Policy 97, 47–54. https://doi.org/10.1016/j.tranpol.2020.06.015
+
+---
+
+# Thanks
+
+
+Thanks to the University of Leeds' LSSI, the Institute for Transport Studies, UKRI and the Department for Transport
+
+[![](https://avatars3.githubusercontent.com/u/22447619?s=400&u=2d566bedf62374d5066a50d2dd7c87c84470f69b&v=4)](https://environment.leeds.ac.uk/transport)
+
+
+---
+
+## The importance of open data and open tools
+
+![](https://www.robinlovelace.net/publication/lovelace-open-2020/featured.png)
+- Transport models have a huge impact on transport planning
+- More people with access to good data -> better outcomes
+
+???
+
+- New paper, Lovelace et al (2020) describes the emergence and possibilities for 'open access models'
+
+---
+
+## The ActDev Questionnaire
+
+![](https://user-images.githubusercontent.com/1825120/110797354-e5e6fa80-8270-11eb-8b9d-26b2ac1c0403.png)
+Your feedback will help improve our work
+
