@@ -1,6 +1,6 @@
 ---
-title: "The ActDev Project"
-subtitle: "Actionable evidence enabling the planning system to account for and support active travel"
+title: "ActDev Project"
+subtitle: "Actionable Evidence Supporting Active Travel (and Decarbonisation) in the Planning System"
 author: "Robin Lovelace, Joey Talbot"
 institute: "Leeds' [Institute for Transport Studies](https://environment.leeds.ac.uk/transport) and partners"
 date: "ActDev Workshop, 2021-12-07 (updated: `r Sys.Date()`)\nReproducible source code: [github.com/cyipt/actdev](https://github.com/cyipt/actdev)"
@@ -204,6 +204,45 @@ Publicly available tool with maps and data on active travel levels, potential an
 Source: Academic paper under review (Talbot et al. [2022](https://osf.io/7fuq5/))
 
 ![](https://user-images.githubusercontent.com/1825120/144582516-fb32cf82-aeb3-4ff5-810c-02095bb6eb2c.png)
+---
+
+## Possible next steps
+
+.pull-left[
+
+- Review of stakeholder needs, engagement with relative parties, e.g. DfT, DLUHC, [BEIS](https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy), [CCC](https://www.theccc.org.uk/), the nascent [Active Travel England](https://www.gov.uk/government/news/338-million-package-to-further-fuel-active-travel-boom), local authority planning officers, and more
+
+- Additional data sources
+
+- Improve modelling to include more explanatory variables
+
+- Refine treatment of walking
+
+- Additional trip purposes
+
+- Scale up nationally
+
+- Training, outreach, maintenance
+
+]
+
+.pull-right[
+
+![](https://user-images.githubusercontent.com/1825120/110936020-26557f80-8328-11eb-9b1f-39dd73640962.png)
+]
+
+---
+
+# Community feedback
+
+Source: the ActDev code repository's [issue tracker at github.com/cyipt](https://github.com/cyipt/actdev/issues)
+
+![](https://user-images.githubusercontent.com/1825120/144586091-1324e0b3-836d-4144-ba52-5e65eea70732.png)
+???
+
+Our open source and agile development process allows anyone to suggest additions
+
+We have already added three more sites following popular demand, there is demand for more
 
 ---
 
