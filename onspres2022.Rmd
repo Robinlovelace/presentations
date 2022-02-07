@@ -140,6 +140,46 @@ Source: [UKRI CREDS project repo](https://github.com/creds2/od-data)
 
 ![](https://github.com/creds2/od-data/raw/master/overview_map1.png)
 
+---
+
+### OA-WPZ data
+
+There are 17,848,366 OA to WPZ records, 170k OAs, 54k WPZ
+
+For 5km buffer around London, 1.5 million OD pairs with destinations
+
+[![](https://user-images.githubusercontent.com/1825120/152778656-603196b0-26d3-4c49-8940-6c0d3c9e1ce5.png)](https://rpubs.com/RobinLovelace/863109)
+
+---
+
+### Reproducible example
+
+.left-column[
+
+
+```{r, echo=TRUE}
+u = "https://github.com/ITSLeeds/od/releases/download/v0.3.1/od_intra_top_sf.geojson"
+desire_lines_oa_wpz_1k = sf::read_sf(u)
+oas_in_buffer = sf::read_sf("https://github.com/ITSLeeds/od/releases/download/v0.3.1/oas_in_buffer.geojson")
+wpz_in_buffer = sf::read_sf("https://github.com/ITSLeeds/od/releases/download/v0.3.1/wpz_in_buffer.geojson")
+library(tmap)
+tmap_mode("view")
+m = tm_shape(desire_lines_oa_wpz_1k) +
+  tm_lines() +
+  tm_shape(oas_in_buffer) + tm_dots(col = "darkgreen") +
+  tm_shape(wpz_in_buffer) + tm_dots(col = "darkred")
+```
+
+]
+
+.right-column[
+
+```{r}
+m
+```
+
+]
+
 
 ---
 
