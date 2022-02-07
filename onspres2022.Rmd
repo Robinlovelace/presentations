@@ -109,12 +109,20 @@ I have particular expertise in R and geocomputation with R in particular.
 
 ---
 
-## Experience working with OD data
+### Experience working with OD data
 
-Adding value and detail to existing OD data
+Adding value and detail to existing OD data.
+Source: Lovelace, Félix and Carlino ([2022](https://osf.io/qux6g/) preprint)
 
 ![](https://github.com/Robinlovelace/odjitter/raw/responses/README_files/figure-gfm/jittered514-1.png)
 
+---
+
+### From OD data to travel behaviour
+
+Source: Lovelace, Félix and Carlino ([2022](https://osf.io/qux6g/) preprint)
+
+![](https://github.com/Robinlovelace/odjitter/raw/responses/README_files/figure-gfm/rneted-1.png)
 
 ---
 
@@ -281,4 +289,9 @@ Morgan, M., Lovelace, R., 2020. Travel flow aggregation: nationally scalable met
 --
 
 Lovelace, R., Tennekes, M., Carlino, D., 2021. ClockBoard: a zoning system for urban analysis. https://doi.org/10.31219/osf.io/vncgw
+
+--
+
+Lovelace, Robin, Rosa Félix, and Dustin Carlino. “Jittering: A Computationally Efficient Method for Generating Realistic Route Networks from Origin-Destination Data.” OSF Preprints, January 13, 2022. https://doi.org/10.31219/osf.io/qux6g.
+
 
