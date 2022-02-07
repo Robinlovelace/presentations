@@ -126,7 +126,53 @@ Source: Lovelace, Félix and Carlino ([2022](https://osf.io/qux6g/) preprint)
 
 ---
 
-## Expertise: developing tools for policy making
+### Validating synthetic OD datasets
+
+Source: Lovelace, Félix and Carlino ([2022](https://osf.io/qux6g/) preprint)
+
+![](https://github.com/Robinlovelace/odnet/raw/main/README_files/figure-gfm/rnets-1.png)
+
+---
+
+### Scalability vs resolution
+
+Source: [UKRI CREDS project repo](https://github.com/creds2/od-data)
+
+![](https://github.com/creds2/od-data/raw/master/overview_map1.png)
+
+
+---
+
+### Data sources for movement estimates
+
+.pull-left[
+
+## Open data
+
+- Traffic count data
+- Urban Observatory type data (Newcastle, Birmingham, Manchester)
+- Faceboook and Google open mobility data
+- 'OSM2od' - spatial interaction model
+- Modelled data
+  - jittering: spatial disaggregation
+  - temporal disaggregation
+- Scenarios of change - e.g. Go Dutch open data estimates of cycling potential
+
+]
+
+.pull-right[
+
+## Proprietary data
+
+- National Travel Survey
+- Mobile Telephone Data
+- Large GPS type data (biobank, Google timeline, Straval)
+
+]
+
+---
+
+## From OD data to policy tools
 
 .left-column[
 
@@ -146,15 +192,16 @@ ActDev tool for informing planning process
 
 ---
 
-# Expertise: open source software, community building
+# Open source software, community building
+
+- New high performance libraries
 
 ![](https://user-images.githubusercontent.com/1825120/142075245-3dee4b6e-e4d6-424d-b4aa-a72458e88fd6.png)
 
 ---
 
-
 .left-column[
-## Domain experience
+## OD data and policy
 
 Close working relationship with DfT over past 6 years
 
