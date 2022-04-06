@@ -1,7 +1,7 @@
 ---
 title: "Assessing methods for generating route networks from origin-destionation data"
 subtitle: "Jittering, routing, and visualisation\nGISRUK 2022, Liverpool"
-author: "Robin Lovelace, University of Leeds <br>[Data Science Fellow at N. 10](https://www.ukri.org/opportunity/esrc-adr-uk-no-10-data-science-fellowships-2021/)\n+Rosa Félix, Dustin Carlino, Roger Beecham"
+author: "Robin Lovelace, University of Leeds <br>+[Rosa Félix](http://www.rosafelix.bike/), [Dustin Carlino](https://dabreegster.github.io/), [Roger Beecham](https://www.roger-beecham.com/)"
 date: "2022-4-06"
 output:
   xaringan::moon_reader:
@@ -148,6 +148,91 @@ Problem: we need a validation dataset
 
 ---
 
+## Code!
+
+See reproducible repo + manuscript here: https://github.com/Robinlovelace/odnet
+
+.pull-left[
+
+System command line implementation (compile Rust code):
+
+```bash
+cargo install --git https://github.com/dabreegster/odjitter
+
+odjitter jitter --od-csv-path od_iz_ed.csv \
+  --zones-path iz_zones11_ed.geojson \
+  --subpoints-path road_network_ed.geojson \
+  --max-per-od 10 --output-path output_max50.geojson
+```
+
+
+]
+
+.pull-right[
+
+R implementation
+
+```{r, echo=FALSE}
+if(!file.exists("cycle_counts_edinburgh_summary_2020-03-02-2022-01-05.geojson")) {
+system("wget https://github.com/Robinlovelace/odnet/releases/download/0/cycle_counts_edinburgh_summary_2020-03-02-2022-01-05.geojson")
+system("wget https://github.com/ITSLeeds/od/releases/download/v0.3.1/od_iz_ed.csv")
+system("wget https://github.com/ITSLeeds/od/releases/download/v0.3.1/iz_zones11_ed.geojson")
+system("wget https://github.com/Robinlovelace/odnet/releases/download/0/road_network_ed.geojson")
+}
+```
+
+```{r, eval=FALSE, echo=TRUE}
+remotes::install_github("dabreegster/odjitter", subdir = "r")
+```
+
+```{r, echo=TRUE, message=FALSE}
+od = read_csv("od_iz_ed.csv")
+```
+
+```{r, echo=TRUE}
+od_jittered = odjitter::jitter(
+  od = od,
+  zones = sf::read_sf("iz_zones11_ed.geojson"),
+  subpoints = sf::read_sf("road_network_ed.geojson")
+  )
+```
+
+]
+
+---
+
+#### Next steps
+
+Exploring the parameter space: different origin and destination points + weights, routing 'engines', disaggregation.
+
+.pull-left[
+
+## Selection of input data: open options
+
+- Traffic count data
+- Urban Observatory type data (Newcastle, Birmingham, Manchester)
+- Faceboook and Google open mobility data
+- 'OSM2od' - spatial interaction model
+- Modelled data
+  - jittering: spatial disaggregation
+  - temporal disaggregation
+- Scenarios of change - e.g. Go Dutch open data estimates of cycling potential
+
+]
+
+.pull-right[
+
+## Non-open data data
+
+- National Travel Survey
+- Mobile Telephone Data
+- Large GPS type data (biobank, Google timeline, Straval)
+
+]
+
+
+---
+
 ### Discussion: scalability vs resolution
 
 Source: [UKRI CREDS project repo](https://github.com/creds2/od-data)
@@ -198,36 +283,6 @@ m
 
 ]
 
-
----
-
-### Data sources for movement estimates
-
-.pull-left[
-
-## Open data
-
-- Traffic count data
-- Urban Observatory type data (Newcastle, Birmingham, Manchester)
-- Faceboook and Google open mobility data
-- 'OSM2od' - spatial interaction model
-- Modelled data
-  - jittering: spatial disaggregation
-  - temporal disaggregation
-- Scenarios of change - e.g. Go Dutch open data estimates of cycling potential
-
-]
-
-.pull-right[
-
-## Proprietary data
-
-- National Travel Survey
-- Mobile Telephone Data
-- Large GPS type data (biobank, Google timeline, Straval)
-
-]
-
 ---
 
 ## From OD data to policy tools
@@ -256,112 +311,6 @@ ActDev tool for informing planning process
 
 ![](https://user-images.githubusercontent.com/1825120/142075245-3dee4b6e-e4d6-424d-b4aa-a72458e88fd6.png)
 
----
-
-.left-column[
-## OD data and policy
-
-Close working relationship with DfT over past 6 years
-
-Collaborations with Ordnance Survey (LIDA), National Highways (training), links with DLUHC and Open Innovation Team
-
-Transport behaviour, infrastructure, safety, energy
-
-]
-.right-column[
-
-![](https://raw.githubusercontent.com/cyipt/actdev/main/data-small/scenario-overview.png)
-
-![](https://user-images.githubusercontent.com/1825120/142076842-bc87bf5b-f8b2-4fbc-bcb4-a4da575b171f.png)
-
-]
-
----
-
-.left-column[
-
-# Ideas
-
-Hackathons
-
-Active travel
-
-Road safety policy
-
-Post COVID recovery
-
-Levelling up metrics
-
-Nature recovery networks
-
-Citizen science and data literacy
-
-]
-
-.right-column[
-
-![](https://saferactive.github.io/trafficalmr/articles/covid.png)
-
-![](https://a-b-street.github.io/docs/project/history/retrospective/edit_roads.gif)
-
-]
-
----
-
-## Example: Climate change, what data science can bring
-
-.left-column[
-
-Emotive and potentially polarising issue
-
-Data can provide a shared starting point
-
-Nationally scenarios are vital
-
-Locally, visions, trust, buy-in and participation are key
-
-]
-
-.right-column[
-
-
-<!-- <iframe src="https://ourworldindata.org/grapher/annual-co-emissions-by-region" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe> -->
-
-```{r, eval=FALSE, echo=FALSE}
-piggyback::pb_upload("annual-co-emissions-by-region.csv")
-piggyback::pb_download_url("annual-co-emissions-by-region.csv")
-```
-
-```{r, include=FALSE}
-emissions = readr::read_csv("https://github.com/Robinlovelace/presentations/releases/download/2020-02/annual-co-emissions-by-region.csv")
-emissions = emissions %>% rename(Emissions = `Annual CO2 emissions (zero filled)`)
-emissions_regions = emissions %>%
-  filter(is.na(Code)) %>%
-  filter(Entity != "World") %>% 
-  filter(!str_detect(string = Entity, pattern = "EU|Fr|Ku|Leew|exc|Pan|Ry|St"))
-```
-
-```{r}
-g = ggplot(emissions_regions) +
-  geom_line(aes(Year, Emissions, colour = Entity), show.legend = FALSE)
-plotly::ggplotly(g)
-```
-
-]
-
-???
-
-The Downward trend during coronavirus saw emissions drop by ~10%
-
-The scale of the challenge is to reduce emissions by 10% every year, every year, and the challenge gets hard with each year
-
-That means: we need transformational
-
----
-
-### Decarbonisation
-
-<iframe src="https://ourworldindata.org/grapher/co2-mitigation-2c" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
 
 ---
 
