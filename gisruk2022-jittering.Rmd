@@ -18,33 +18,13 @@ tmap_mode("view")
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Bio
+# Background
 
-I'm an Associate Professor of **Transport Data Science** at the Leeds Institute for Transport Studies (ITS). I have experience not only of data science research but of developing new **methods**, **tools** and **software** to inform policy. 
---
-
-## Application
-
-Becoming an ESRC-ADR UK No.10 Data Science Fellow will allow me to make the best use of my **expertise to support the needs of central government**, especially in relation to ... decarbonisation, active travel and the government's leveling-up agenda.
-The government has set-out these priorities ...
-the [*Decarbonising transport: setting the challenge*](https://www.gov.uk/government/publications/creating-the-transport-decarbonisation-plan) and the *Levelling Up plan*.
-
---
-
-Translating the laudable objectives of these documents into deliverable plans requires an evidence-based approach, to achieve maximum impact and value for money **at the local level**, an area in which I have substantial experience.
+![](https://github.com/npct/pct-team/blob/master/figures/front-page-leeds-pct-demo.png?raw=true)
 
 ---
 
-# Background, collaborations, interests
-
-- BSc in Geography (Bristol) and MSc in Environmental Science (York), PhD in energy costs of commuting [2014](http://etheses.whiterose.ac.uk/5027/)
-- Limitations of available tools for modelling led to the development of new methodologies and the book Spatial Microsimulation with R ([2016](https://spatial-microsim-book.robinlovelace.net/))
-- Co-authored Efficient R Programming ([2016](https://csgillespie.github.io/efficientR/))
-- Lead Developer of Propensity to Cycle Tool (PCT) ([2017](https://www.jtlu.org/index.php/jtlu/article/view/862))
-- Author of Geocomputation with R ([2019](http://geocompr.robinlovelace.net/transport.html))
-- Substantial [research](https://www.robinlovelace.net/publication/) output ([h-index](https://scholar.google.com/citations?user=xDJHVCAAAAAJ&hl=en): 20)
-
---
+# Tools of the trade
 
 ```{r, out.width="30%", fig.show='hold', echo=FALSE}
 knitr::include_graphics(c(
