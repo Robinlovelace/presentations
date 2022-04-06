@@ -50,22 +50,25 @@ knitr::include_graphics(c(
 
 ---
 
----
-
 .left-column[
 
-### Expertise: Geocomputation
+### Modelling framework
 
-Computationally efficient data science tools
+Modular
 
-Intuitive, future proof, scalable code
+Future proof
 
-Geographic vector data analysis
+Scalable
+
+Vector/
 
 ![](https://user-images.githubusercontent.com/1825120/141863981-31a11068-a5f3-4e19-9471-b03dbb36f9a8.png)
-Geographic raster data
+
+Raster/
 
 ![](https://geocompr.robinlovelace.net/02-spatial-data_files/figure-html/raster-intro-plot-1.png)
+Source: Morgan and Lovelace ([2020](https://doi.org/10.1177/2399808320942779 )) Implementation: [stplanr](https://docs.ropensci.org/stplanr/index.html)
+
 
 ]
 
@@ -77,7 +80,7 @@ Geographic raster data
 knitr::include_graphics("https://user-images.githubusercontent.com/1825120/142071229-81358e26-5e8d-437e-9ef8-91704a4e690f.png")
 ```
 
-Source: Morgan and Lovelace (2020) https://doi.org/10.1177/2399808320942779
+Approach: OD -> Desire Line -> Route -> Route Networks
 
 ]
 
@@ -89,32 +92,63 @@ I have particular expertise in R and geocomputation with R in particular.
 
 ---
 
-### Experience working with OD data
+## What is Jittering?
+
+![](https://user-images.githubusercontent.com/1825120/161987006-e5783db3-e3db-402b-9641-dc4aeb1d01d7.png)
+
+Source:  Lovelace, R., Félix, R., & Carlino, D. (2022, January 13). Jittering: A computationally efficient method for generating realistic route networks from origin-destination data. Transport Findings, in Press https://doi.org/10.31219/osf.io/qux6g 
+
+---
+
+## Current default: centroid-based desire lines (+routes+rnets)
+
+![](https://github.com/Robinlovelace/odjitter/raw/main/figures/od-top-3-zones-metafigure.png)
+
+---
+
+## Jittering in action: minimal reproducible example
+
+![](https://github.com/Robinlovelace/odjitter/raw/main/README_files/figure-gfm/jitters-1.png)
+
+---
+
+### Jittering a larger dataset
 
 Adding value and detail to existing OD data.
 Source: Lovelace, Félix and Carlino ([2022](https://osf.io/qux6g/) preprint)
 
-![](https://github.com/Robinlovelace/odjitter/raw/responses/README_files/figure-gfm/jittered514-1.png)
+![](https://raw.githubusercontent.com/Robinlovelace/odjitter/main/README_files/figure-gfm/jittered514-1.png)
 
 ---
 
-### From OD data to travel behaviour
+## Resulting route network
 
-Source: Lovelace, Félix and Carlino ([2022](https://osf.io/qux6g/) preprint)
-
-![](https://github.com/Robinlovelace/odjitter/raw/responses/README_files/figure-gfm/rneted-1.png)
+![](https://github.com/Robinlovelace/odjitter/raw/main/README_files/figure-gfm/rneted-1.png)
 
 ---
 
-### Validating synthetic OD datasets
+## Validating the approach: this paper!
 
-Source: Lovelace, Félix and Carlino ([2022](https://osf.io/qux6g/) preprint)
+Problem: we need a validation dataset
+
+--
+
+![](https://github.com/Robinlovelace/odnet/raw/main/README_files/figure-gfm/overview-1.png)
+
+---
+
+### Model experiments: jittering parameters
+
+![](https://github.com/Robinlovelace/odnet/raw/main/README_files/figure-gfm/output1-1.png)
+---
+
+## Results!
 
 ![](https://github.com/Robinlovelace/odnet/raw/main/README_files/figure-gfm/rnets-1.png)
 
 ---
 
-### Scalability vs resolution
+### Discussion: scalability vs resolution
 
 Source: [UKRI CREDS project repo](https://github.com/creds2/od-data)
 
@@ -122,7 +156,7 @@ Source: [UKRI CREDS project repo](https://github.com/creds2/od-data)
 
 ---
 
-### OA-WPZ data
+### Alternative validation datasets: OA-WPZ data
 
 There are 17,848,366 OA to WPZ records, 170k OAs, 54k WPZ
 
@@ -154,9 +188,13 @@ m = tm_shape(desire_lines_oa_wpz_1k) +
 
 .right-column[
 
-```{r}
+See [here](https://rpubs.com/anon-user/887139) for map
+
+```{r, eval=FALSE}
 m
 ```
+
+![](https://user-images.githubusercontent.com/1825120/161992916-2d1dfea6-e783-4b2d-b6b8-61522f38ad8e.png)
 
 ]
 
