@@ -1,8 +1,8 @@
 ---
-title: "New Mobility Datasets"
-subtitle: "ONS Expert Panel"
-author: "Robin Lovelace, University of Leeds <br>[Data Science Fellow at N. 10](https://www.ukri.org/opportunity/esrc-adr-uk-no-10-data-science-fellowships-2021/)"
-date: "2022-02-07"
+title: "Assessing methods for generating route networks from origin-destionation data"
+subtitle: "Jittering, routing, and visualisation\nGISRUK 2022, Liverpool"
+author: "Robin Lovelace, University of Leeds <br>[Data Science Fellow at N. 10](https://www.ukri.org/opportunity/esrc-adr-uk-no-10-data-science-fellowships-2021/)\n+Rosa Félix, Dustin Carlino, Roger Beecham"
+date: "2022-4-06"
 output:
   xaringan::moon_reader:
     nature:
