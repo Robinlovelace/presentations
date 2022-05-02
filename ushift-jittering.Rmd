@@ -1,0 +1,358 @@
+---
+title: "Methods for generating dense route networks from origin-destionation data"
+subtitle: "Jittering, routing, and visualisation\nU-Shift Seminar 2022-05, Portugal"
+author: "Robin Lovelace, University of Leeds <br>Paper co-authors:[Rosa Félix](http://www.rosafelix.bike/), [Dustin Carlino](https://dabreegster.github.io/), [Roger Beecham](https://www.roger-beecham.com/)"
+date: "2022-4-06"
+output:
+  xaringan::moon_reader:
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tmap)
+tmap_mode("view")
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+GISRUK talk on assessing route networks: https://zenodo.org/record/6410196
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Just presented new &#39;jittering&#39; approach to pre-processing origin-destination (OD) data by diversifying simulated O/D locations <a href="https://twitter.com/GISRUK?ref_src=twsrc%5Etfw">@GISRUK</a>🎉<br><br>Great to get these new methods + reproducible implementation in open source software (<a href="https://twitter.com/rustlang?ref_src=twsrc%5Etfw">@rustlang</a> + <a href="https://twitter.com/hashtag/RStats?src=hash&amp;ref_src=twsrc%5Etfw">#RStats</a> + ...) out there, give them a spin! <a href="https://t.co/vaydCHajm8">pic.twitter.com/vaydCHajm8</a></p>&mdash; Robin Lovelace (@robinlovelace) <a href="https://twitter.com/robinlovelace/status/1511739257962045440?ref_src=twsrc%5Etfw">April 6, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+
+
+---
+
+# Background
+
+![](https://github.com/npct/pct-team/blob/master/figures/front-page-leeds-pct-demo.png?raw=true)
+
+---
+
+# Tools of the trade
+
+```{r, out.width="30%", fig.show='hold', echo=FALSE}
+knitr::include_graphics(c(
+  "https://docs.ropensci.org/stplanr/reference/figures/stplanr.png",
+  "https://raw.githubusercontent.com/ropensci/stats19/master/man/figures/logo.png",
+  "https://github.com/Robinlovelace/geocompr/blob/main/images/geocompr_hex.png?raw=true"
+))
+```
+
+--
+
+- Evidence-based policies in government: [Data Science Fellowship at N. 10](https://www.ukri.org/opportunity/esrc-adr-uk-no-10-data-science-fellowships-2021/)
+
+???
+
+- Turing Fellowship 
+- LIDA internship on open transport infrastructure data
+- Links with DfT, MHCLG, TfNH, international partners
+
+--
+
+- Future areas of development: Reproducible Bayesian modelling of proportions (Dirichlet regression), Machine Learning, Decarbonisation Agenda
+
+---
+
+.left-column[
+
+### Modelling framework
+
+Modular
+
+Future proof
+
+Scalable
+
+Vector/
+
+![](https://user-images.githubusercontent.com/1825120/141863981-31a11068-a5f3-4e19-9471-b03dbb36f9a8.png)
+
+Raster/
+
+![](https://geocompr.robinlovelace.net/02-spatial-data_files/figure-html/raster-intro-plot-1.png)
+Source: Morgan and Lovelace ([2020](https://doi.org/10.1177/2399808320942779 )) Implementation: [stplanr](https://docs.ropensci.org/stplanr/index.html)
+
+
+]
+
+--
+
+.right-column[
+
+```{r}
+knitr::include_graphics("https://user-images.githubusercontent.com/1825120/142071229-81358e26-5e8d-437e-9ef8-91704a4e690f.png")
+```
+
+Approach: OD -> Desire Line -> Route -> Route Networks
+
+]
+
+???
+
+I am an all-round data scientist with experience with Python, Julia, and command line tools such as Docker and shell scripting for scalable data science applications.
+
+I have particular expertise in R and geocomputation with R in particular.
+
+---
+
+## What is Jittering?
+
+![](https://user-images.githubusercontent.com/1825120/161987006-e5783db3-e3db-402b-9641-dc4aeb1d01d7.png)
+
+Source:  Lovelace, R., Félix, R., & Carlino, D. (2022, January 13). Jittering: A computationally efficient method for generating realistic route networks from origin-destination data. Transport Findings, in Press https://doi.org/10.31219/osf.io/qux6g 
+
+---
+
+## Current default: centroid-based desire lines (+routes+rnets)
+
+![](https://github.com/Robinlovelace/odjitter/raw/main/figures/od-top-3-zones-metafigure.png)
+
+---
+
+## Jittering in action: minimal reproducible example
+
+![](https://github.com/Robinlovelace/odjitter/raw/main/README_files/figure-gfm/jitters-1.png)
+
+---
+
+### Jittering a larger dataset
+
+Adding value and detail to existing OD data.
+Source: Lovelace, Félix and Carlino ([2022](https://osf.io/qux6g/) preprint)
+
+![](https://raw.githubusercontent.com/Robinlovelace/odjitter/main/README_files/figure-gfm/jittered514-1.png)
+
+---
+
+## Resulting route network
+
+![](https://github.com/Robinlovelace/odjitter/raw/main/README_files/figure-gfm/rneted-1.png)
+
+---
+
+## Validating the approach: this paper!
+
+Problem: we need a validation dataset
+
+--
+
+![](https://github.com/Robinlovelace/odnet/raw/main/README_files/figure-gfm/overview-1.png)
+
+---
+
+### Model experiments: jittering parameters
+
+![](https://github.com/Robinlovelace/odnet/raw/main/README_files/figure-gfm/output1-1.png)
+---
+
+## Results!
+
+![](https://github.com/Robinlovelace/odnet/raw/main/README_files/figure-gfm/rnets-1.png)
+
+---
+
+## Code!
+
+See reproducible repo + manuscript here: https://github.com/Robinlovelace/odnet
+
+.pull-left[
+
+System command line implementation (compile Rust code):
+
+```bash
+cargo install --git https://github.com/dabreegster/odjitter
+
+odjitter jitter --od-csv-path od_iz_ed.csv \
+  --zones-path iz_zones11_ed.geojson \
+  --subpoints-path road_network_ed.geojson \
+  --max-per-od 10 --output-path output_max50.geojson
+```
+
+
+]
+
+.pull-right[
+
+R implementation
+
+```{r, echo=FALSE}
+if(!file.exists("cycle_counts_edinburgh_summary_2020-03-02-2022-01-05.geojson")) {
+system("wget https://github.com/Robinlovelace/odnet/releases/download/0/cycle_counts_edinburgh_summary_2020-03-02-2022-01-05.geojson")
+system("wget https://github.com/ITSLeeds/od/releases/download/v0.3.1/od_iz_ed.csv")
+system("wget https://github.com/ITSLeeds/od/releases/download/v0.3.1/iz_zones11_ed.geojson")
+system("wget https://github.com/Robinlovelace/odnet/releases/download/0/road_network_ed.geojson")
+}
+```
+
+```{r, eval=FALSE, echo=TRUE}
+remotes::install_github("dabreegster/odjitter", subdir = "r")
+```
+
+```{r, echo=TRUE, message=FALSE}
+od = read_csv("od_iz_ed.csv")
+```
+
+```{r, echo=TRUE}
+od_jittered = odjitter::jitter(
+  od = od,
+  zones = sf::read_sf("iz_zones11_ed.geojson"),
+  subpoints = sf::read_sf("road_network_ed.geojson")
+  )
+```
+
+]
+
+---
+
+#### Next steps
+
+Exploring the parameter space: different origin and destination points + weights, routing 'engines', disaggregation.
+
+.pull-left[
+
+#### Selection of input data: open options
+
+- Traffic count data
+- Urban Observatory type data (Newcastle, Birmingham, Manchester)
+- Faceboook and Google open mobility data
+- 'OSM2od' - spatial interaction model
+- Modelled data
+  - jittering: spatial disaggregation
+  - temporal disaggregation
+
+]
+
+.pull-right[
+
+#### Non-open data data
+
+- National Travel Survey
+- Mobile Telephone Data
+- Large GPS type data (biobank, Google timeline, Straval)
+
+]
+
+
+---
+
+### Discussion: scalability vs resolution
+
+Source: [UKRI CREDS project repo](https://github.com/creds2/od-data)
+
+![](https://github.com/creds2/od-data/raw/master/overview_map1.png)
+
+---
+
+### Alternative validation datasets: OA-WPZ data
+
+There are 17,848,366 OA to WPZ records, 170k OAs, 54k WPZ
+
+For 5km buffer around London, 1.5 million OD pairs with destinations
+
+[![](https://user-images.githubusercontent.com/1825120/152778656-603196b0-26d3-4c49-8940-6c0d3c9e1ce5.png)](https://rpubs.com/RobinLovelace/863109)
+
+---
+
+### Reproducible example
+
+.left-column[
+
+
+```{r, echo=TRUE}
+u = "https://github.com/ITSLeeds/od/releases/download/v0.3.1/od_intra_top_sf.geojson"
+desire_lines_oa_wpz_1k = sf::read_sf(u)
+oas_in_buffer = sf::read_sf("https://github.com/ITSLeeds/od/releases/download/v0.3.1/oas_in_buffer.geojson")
+wpz_in_buffer = sf::read_sf("https://github.com/ITSLeeds/od/releases/download/v0.3.1/wpz_in_buffer.geojson")
+library(tmap)
+tmap_mode("view")
+m = tm_shape(desire_lines_oa_wpz_1k) +
+  tm_lines() +
+  tm_shape(oas_in_buffer) + tm_dots(col = "darkgreen") +
+  tm_shape(wpz_in_buffer) + tm_dots(col = "darkred")
+```
+
+]
+
+.right-column[
+
+See [here](https://rpubs.com/anon-user/887139) for map
+
+```{r, eval=FALSE}
+m
+```
+
+![](https://user-images.githubusercontent.com/1825120/161992916-2d1dfea6-e783-4b2d-b6b8-61522f38ad8e.png)
+
+]
+
+---
+
+## From OD data to policy tools
+
+.left-column[
+
+Lead Developer of the DfT's PCT (Lovelace et al. 2017) : transformational impact on planning in the UK (source: REF Impact Case Study)
+
+COVID response: RAPID tool (Lovelace et al. 2020)
+
+ActDev tool for informing planning process
+
+]
+
+.right-column[
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nNYroA16JEQ?start=120" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+]
+
+---
+
+# Open source software, community building
+
+- New high performance libraries
+
+![](https://user-images.githubusercontent.com/1825120/142075245-3dee4b6e-e4d6-424d-b4aa-a72458e88fd6.png)
+
+
+---
+
+# Making UK data come to life
+
+![](https://github.com/zonebuilders/zonebuilder/releases/download/v0.0.2.9000/cityscale.png)
+Source: Lovelace, Tennekes, Carlino ([under review](https://zonebuilders.github.io/zonebuilder/articles/paper.html))
+
+![](https://user-images.githubusercontent.com/1825120/141021386-3ee6af6d-8ca8-4f4c-9856-c636f4a8fc0e.png)
+
+
+---
+class: center, middle
+
+# Thanks, look forward to working with you  🖧 + 📈 + ✨ =  🚀!
+
+--
+
+## References
+
+--
+
+Lovelace, R., Goodman, A., Aldred, R., Berkoff, N., Abbas, A., Woodcock, J., 2017. The Propensity to Cycle Tool: An open source online system for sustainable transport planning. Journal of Transport and Land Use 10. https://doi.org/10.5198/jtlu.2016.862
+
+
+--
+
+Morgan, M., Lovelace, R., 2020. Travel flow aggregation: nationally scalable methods for interactive and online visualisation of transport behaviour at the road network level. Environment & Planning B: Planning & Design. https://doi.org/10.1177/2399808320942779
+
+--
+
+Lovelace, R., Tennekes, M., Carlino, D., 2021. ClockBoard: a zoning system for urban analysis. https://doi.org/10.31219/osf.io/vncgw
+
+--
+
+Lovelace, Robin, Rosa Félix, and Dustin Carlino. “Jittering: A Computationally Efficient Method for Generating Realistic Route Networks from Origin-Destination Data.” OSF Preprints, January 13, 2022. https://doi.org/10.31219/osf.io/qux6g.
+
+
