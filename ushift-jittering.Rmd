@@ -1,7 +1,7 @@
 ---
 title: "Methods for generating dense route networks from origin-destionation data"
 subtitle: "Jittering, routing, and visualisation\nU-Shift Seminar 2022-05, Portugal"
-author: "Robin Lovelace, University of Leeds <br>Paper co-authors:[Rosa Félix](http://www.rosafelix.bike/), [Dustin Carlino](https://dabreegster.github.io/), [Roger Beecham](https://www.roger-beecham.com/)"
+author: "Robin Lovelace, University of Leeds <br>Paper co-authors: [Rosa Félix](http://www.rosafelix.bike/), [Dustin Carlino](https://dabreegster.github.io/), [Roger Beecham](https://www.roger-beecham.com/)"
 date: "2022-4-06"
 output:
   xaringan::moon_reader:
