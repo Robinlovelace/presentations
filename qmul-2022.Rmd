@@ -1,0 +1,185 @@
+---
+title: "Open source software and open data in transport research, planning and modelling"
+subtitle: "[Queen Mary's Digital Environment Research Institute](https://www.qmul.ac.uk/deri/)"
+author: "Robin Lovelace, University of Leeds"
+date: "2022-09-22"
+output:
+  xaringan::moon_reader:
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tmap)
+tmap_mode("view")
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Data can make a difference
+
+![](https://github.com/npct/pct-team/blob/master/figures/front-page-leeds-pct-demo.png?raw=true)
+
+
+???
+
+---
+
+## [ActDev](https://actdev.cyipt.bike/): a data driven tool for evidence-based planning
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nNYroA16JEQ?start=124" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+--
+
+Interactive demo: https://actdev.cyipt.bike/
+
+Talbot, Joseph, et al. 2021. ‘Active Travel Oriented Development: Assessing the Suitability of Sites for New Homes’. https://osf.io/7fuq5/
+
+
+---
+
+
+.left-column[
+
+### Too much data?
+
+A nice problem to have?
+
+Data historically a limiting factor
+
+New approaches needed to tackle 'big noise'
+
+Boyce, D.E., Williams, H.C.W.L., 2015. Forecasting Urban Travel: Past, Present and Future.
+
+]
+
+--
+
+.right-column[
+
+<!-- ![](https://user-images.githubusercontent.com/1825120/167034112-b00e091a-9e2a-4ff3-9e4f-4e71e7fe18f6.png) -->
+![](https://user-images.githubusercontent.com/1825120/161992916-2d1dfea6-e783-4b2d-b6b8-61522f38ad8e.png)
+
+Lovelace, Robin, Mark Birkin, Philip Cross, and Martin Clarke. 2016. ‘From Big Noise to Big Data' https://doi.org/10.1111/gean.12081.
+]
+
+???
+
+- For most of the history of transport planning data scarcity has been a major concern
+- Now we have an abundance of datasets, many of them incompatible
+- Concrete example: OD to WPZ data in central London (could ask if anyone knows, it's a mess hehe)
+
+---
+
+# Building new tools of the trade
+
+```{r, out.width="30%", fig.show='hold', echo=FALSE}
+knitr::include_graphics(c(
+  "https://docs.ropensci.org/stplanr/reference/figures/stplanr.png",
+  "https://raw.githubusercontent.com/ropensci/stats19/master/man/figures/logo.png",
+  "https://github.com/Robinlovelace/geocompr/blob/main/images/geocompr_hex.png?raw=true"
+))
+```
+
+--
+
+- Evidence-based policies in government: [Data Science Fellowship at N. 10](https://www.ukri.org/opportunity/esrc-adr-uk-no-10-data-science-fellowships-2021/)
+
+???
+
+- Turing Fellowship 
+- LIDA internship on open transport infrastructure data
+- Links with DfT, MHCLG, TfNH, international partners
+
+--
+
+- Future areas of development: Reproducible Bayesian modelling of proportions (Dirichlet regression), Machine Learning, Decarbonisation Agenda
+
+---
+
+.left-column[
+
+### The future of transport tools
+
+Modular
+
+Future proof
+
+Scalable
+
+Vector/
+
+![](https://user-images.githubusercontent.com/1825120/141863981-31a11068-a5f3-4e19-9471-b03dbb36f9a8.png)
+
+Raster/
+
+![](https://geocompr.robinlovelace.net/02-spatial-data_files/figure-html/raster-intro-plot-1.png)
+Source: Morgan and Lovelace ([2020](https://doi.org/10.1177/2399808320942779 )) Implementation: [stplanr](https://docs.ropensci.org/stplanr/index.html)
+
+]
+
+--
+
+.right-column[
+
+```{r}
+knitr::include_graphics("https://user-images.githubusercontent.com/1825120/142071229-81358e26-5e8d-437e-9ef8-91704a4e690f.png")
+```
+
+Approach: OD -> Desire Line -> Route -> Route Networks
+
+]
+
+???
+
+I am an all-round data scientist with experience with Python, Julia, and command line tools such as Docker and shell scripting for scalable data science applications.
+
+I have particular expertise in R and geocomputation with R in particular.
+
+---
+
+### Discussion: scalability vs resolution
+
+Source: [UKRI CREDS project repo](https://github.com/creds2/od-data)
+
+![](https://github.com/creds2/od-data/raw/master/overview_map1.png)
+
+---
+
+# Making transport data come to life
+
+![](https://github.com/zonebuilders/zonebuilder/releases/download/v0.0.2.9000/cityscale.png)
+Source: Lovelace, Tennekes, Carlino ([2022](https://zonebuilders.github.io/zonebuilder/articles/paper.html))
+
+![](https://user-images.githubusercontent.com/1825120/141021386-3ee6af6d-8ca8-4f4c-9856-c636f4a8fc0e.png)
+
+
+---
+class: center, middle
+
+# Thanks, look forward to networking + questions  🖧 + 📈 + ✨ =  🚀!
+
+--
+
+## References
+
+--
+
+Lovelace, R., Goodman, A., Aldred, R., Berkoff, N., Abbas, A., Woodcock, J., 2017. The Propensity to Cycle Tool: An open source online system for sustainable transport planning. Journal of Transport and Land Use 10. https://doi.org/10.5198/jtlu.2016.862
+
+
+--
+
+Morgan, M., Lovelace, R., 2020. Travel flow aggregation: nationally scalable methods for interactive and online visualisation of transport behaviour at the road network level. Environment & Planning B: Planning & Design. https://doi.org/10.1177/2399808320942779
+
+--
+
+Lovelace, R., Tennekes, M., Carlino, D., 2021. ClockBoard: a zoning system for urban analysis. https://doi.org/10.31219/osf.io/vncgw
+
+--
+
+Lovelace, Robin, Rosa Félix, and Dustin Carlino. “Jittering: A Computationally Efficient Method for Generating Realistic Route Networks from Origin-Destination Data.” OSF Preprints, January 13, 2022. https://doi.org/10.31219/osf.io/qux6g.
+
+
