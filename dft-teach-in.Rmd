@@ -22,6 +22,39 @@ output:
 
 <!-- 20 minutes Q & A on the ActDev tool -->
 
+## Session plan
+
+
+### Introduction to my work and previous tools
+
+15 minutes on the ActDev tool
+
+15 minutes using the tool
+
+15 minutes writing reproducible R code
+
+---
+
+## Introduction to me and my research
+
+![](https://user-images.githubusercontent.com/1825120/142075245-3dee4b6e-e4d6-424d-b4aa-a72458e88fd6.png)
+
+See warm-up slides here: https://www.robinlovelace.net/presentations/dft-nexus#1
+
+???
+
+Overall plan: 
+
+10 15 minutes on my work and previous tools
+
+15 minutes on the ActDev tool
+
+15 minutes using the tool
+
+15 minutes writing reproducible R code
+
+---
+
 
 #### The problem (source: Garden Villages and Garden Towns report, [TfNH](https://tps.org.uk/news/tfnh-report-on-garden-villages-and-garden-towns))
 
