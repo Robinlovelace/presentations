@@ -16,22 +16,33 @@ output:
 
 <!-- Talk in context: -->
 
-<!-- 1 hr in total, 15 min talk by Robin, 15 demo by Joey, 30 min questions + answers -->
-
-<!-- https://www.eventbrite.co.uk/e/evidence-to-support-active-travel-in-the-planning-system-tickets-211640180477 -->
 
 <!-- 20 minutes Q & A on the ActDev tool -->
 
 ## Session plan
 
 
-### Introduction to my work and previous tools
+#### 1 Introduction to my work and previous tools
 
-15 minutes on the ActDev tool
+- https://www.pct.bike/
+- https://www.cyipt.bike/rapid/
+- https://github.com/ITSLeeds/
 
-15 minutes using the tool
+--
 
-15 minutes writing reproducible R code
+#### 2 The ActDev tool
+
+--
+
+#### 3 Live demo and testing: using the tool
+
+
+
+#### 4 Coding and questions
+
+- Beginner in R: install R and follow instructions at https://itsleeds.github.io/rrsrr/
+- Intermediate level: work through the code in Chapter 13 of Geocomputation with R: https://geocompr.robinlovelace.net/transport.html
+- Advanced: Add a new site in the ActDev tool: https://github.com/cyipt/actdev/blob/main/code/tests/add-new-site.md
 
 ---
 
