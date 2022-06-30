@@ -3,7 +3,7 @@ title: "Active Travel and New Housing Developments"
 subtitle: "from data to impact"
 author: "Robin Lovelace"
 institute: "Leeds' [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)/DfT Offices/Teams"
-date: "Tomorrows Transport `r Sys.Date()`)\nReproducible source code: [github.com/cyipt/actdev](https://github.com/cyipt/actdev)"
+date: "Tomorrows Transport `r Sys.Date()`\nReproducible source code: [github.com/cyipt/actdev](https://github.com/cyipt/actdev)"
 output:
   xaringan::moon_reader:
     css: [default, robot, robot-fonts]
