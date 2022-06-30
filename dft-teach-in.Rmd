@@ -54,15 +54,15 @@ See warm-up slides here: https://www.robinlovelace.net/presentations/dft-nexus#1
 
 ???
 
-Overall plan: 
+We have 5 research groups
 
-10 15 minutes on my work and previous tools
+Working with TASM
 
-15 minutes on the ActDev tool
+Links with WYCA
 
-15 minutes using the tool
+Academic input
 
-15 minutes writing reproducible R code
+Sarah Sharples
 
 ---
 
