@@ -76,6 +76,43 @@ Source: https://www.pct.bike/m/?r=south-yorkshire
 
 ![](https://user-images.githubusercontent.com/1825120/177321498-2cf33219-22a7-41aa-91c7-eb86a69e05fd.png)
 
+---
+
+## Data limitation: size of zones
+
+![](https://user-images.githubusercontent.com/1825120/177325287-5e2aee0a-5d08-4d39-af60-25a3d0b58720.png)
+Some LSOA zones are 5+ km wide!
+
+Source: https://www.pct.bike/m/?r=hereford-and-worcester
+
+---
+
+## Impacts of input data and (lack of) preprocessing
+
+![](https://user-images.githubusercontent.com/1825120/177326416-a34a239c-5144-4046-86bf-812326dad05a.png)
+---
+
+## Travel to school data: not enough on its own
+
+![](https://user-images.githubusercontent.com/1825120/177327233-4fb6886e-ac53-4747-9039-c7895ab356af.png)
+
+---
+
+### Increasing spatial resolution for rural areas
+
+![](https://github.com/Robinlovelace/odjitter/raw/main/README_files/figure-gfm/jitters-1.png)
+Source: Lovelace, Robin, Rosa Félix, and Dustin Carlino. “Jittering: A Computationally Efficient Method for Generating Realistic Route Networks from Origin-Destination Data.” Findings, April 8, 2022, 33873. https://doi.org/10.32866/001c.33873.
+
+---
+
+## Results of jittering
+
+![](https://user-images.githubusercontent.com/1825120/177327971-b92c7d5e-dfd4-43f3-bb12-5350f7dcdb2d.png)
+Source: sample of 2021-2022 data representing travel to school potential in Leeds
+
+Part of the Estimating Active Travel Potential to Schools project at 10DS
+
+
 
 ---
 
