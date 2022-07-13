@@ -1,5 +1,5 @@
 ---
-title: "Reproducible Geocomputation for Policy-Relevant Research"
+title: "Reproducible Geocomputation for Policy-Relevant Research and Tools"
 subtitle: "CASA, UCL, London"
 author: "Robin Lovelace, University of Leeds"
 date: "2022-07-13"
@@ -18,28 +18,61 @@ tmap_mode("view")
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+## Session plan
+
+
+#### 1 Introduction to my work and previous tools
+
+- https://www.pct.bike/
+- https://www.cyipt.bike/rapid/
+- https://github.com/ITSLeeds/
+
+--
+
+#### 2 New and emerging tools
+
+--
+
+#### 3 Live demo and testing: ActDev
+
+#### 4 Coding and questions
+
+- Beginner in R: install R and follow instructions at https://itsleeds.github.io/rrsrr/
+- Intermediate level: work through the code in Chapter 13 of Geocomputation with R: https://geocompr.robinlovelace.net/transport.html
+- Advanced: Add a new site in the ActDev tool: https://github.com/cyipt/actdev/blob/main/code/tests/add-new-site.md
+
+
+---
+
+## 1 Introduction to me and my research
+
+![](https://user-images.githubusercontent.com/1825120/142075245-3dee4b6e-e4d6-424d-b4aa-a72458e88fd6.png)
+
+Further info: https://www.robinlovelace.net/
+
+???
+
+We have 5 research groups
+
+Working with TASM
+
+Links with WYCA
+
+Academic input
+
+Sarah Sharples
+
+---
+
 # Data can make a difference
 
 ![](https://github.com/npct/pct-team/blob/master/figures/front-page-leeds-pct-demo.png?raw=true)
 
-
 ???
 
----
-
-## [ActDev](https://actdev.cyipt.bike/): a data driven tool for evidence-based planning
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nNYroA16JEQ?start=124" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
---
-
-Interactive demo: https://actdev.cyipt.bike/
-
-Talbot, Joseph, et al. 2021. ‘Active Travel Oriented Development: Assessing the Suitability of Sites for New Homes’. https://osf.io/7fuq5/
-
+Where I am now: PCT used by many in government
 
 ---
-
 
 .left-column[
 
@@ -73,7 +106,83 @@ Lovelace, Robin, Mark Birkin, Philip Cross, and Martin Clarke. 2016. ‘From Big
 
 ---
 
-# Building new tools of the trade
+# Existing tools: The Propensity to Cycle Tool
+
+- Early prototype of the tool developed at Open Data Institute Leeds hackathon, 2015
+- National deployment of the Propensity to Cycle Tool 2 years later ([PCT.bike](http://www.pct.bike/)) (Lovelace et al. 2017)
+
+```{r, echo=FALSE, eval=TRUE}
+knitr::include_graphics("https://raw.githubusercontent.com/npct/pct-team/master/figures/early.png")
+```
+
+---
+
+## Key aspects of the PCT
+
+- Based on open source code
+- Based on open data
+- Results published as open data
+- Publicly available web application encourages participation and evidence-based debate
+
+Open data and accessible results lead to participation. See https://twitter.com/search?q=cyipt.bike%2Frapid 
+
+![](https://user-images.githubusercontent.com/1825120/124230675-3d062900-db07-11eb-831e-f7f42e19aefc.png)
+
+---
+
+# Reproducibility and extending the tool
+
+- Find commuting desire lines in West Yorkshire between 1 and 3 km long in which more people drive than cycle:
+
+```{r, eval=FALSE, echo=FALSE}
+# Aim: get top 1000 lines in repo
+u = "https://github.com/npct/pct-outputs-regional-notR/raw/master/commute/msoa/west-yorkshire/l.geojson"
+library(dplyr)
+library(sf)
+desire_lines_all = read_sf(u)
+desire_lines = desire_lines_all %>% 
+  top_n(10, all)
+write_sf(desire_lines, "desire_lines.geojson")
+piggyback::pb_upload("desire_lines.geojson")
+```
+
+
+```{r, message=FALSE, eval=TRUE}
+# Set-up, after installing R and checking out www.pct.bike:
+u = "https://github.com/ITSLeeds/TDS/releases/download/0.1/desire_lines.geojson"
+library(dplyr)
+library(sf)
+desire_lines = read_sf(u)
+```
+
+```{r}
+plot(desire_lines["bicycle"])
+```
+
+
+---
+
+## How it works
+
+![](https://user-images.githubusercontent.com/1825120/123762809-0e940e00-d8bb-11eb-8dab-0e881299bbef.png)
+
+---
+
+## Demo of the PCT
+
+Source: https://www.pct.bike/
+
+
+![](https://user-images.githubusercontent.com/1825120/123867504-5a2fd180-d926-11eb-9b7a-1988d4b6c830.png)
+
+
+---
+
+# Existing tools: the Rapid Cycleway Prioritisation Tool
+
+---
+
+# 2 New and emerging tools
 
 ```{r, out.width="30%", fig.show='hold', echo=FALSE}
 knitr::include_graphics(c(
@@ -134,9 +243,39 @@ Approach: OD -> Desire Line -> Route -> Route Networks
 
 ???
 
-I am an all-round data scientist with experience with Python, Julia, and command line tools such as Docker and shell scripting for scalable data science applications.
+So what's the overall approach here?
 
-I have particular expertise in R and geocomputation with R in particular.
+
+---
+
+# 3 Live demo and testing: ActDev
+
+## [ActDev](https://actdev.cyipt.bike/): a data driven tool for evidence-based planning
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nNYroA16JEQ?start=124" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+--
+
+Interactive demo: https://actdev.cyipt.bike/
+
+Talbot, Joseph, et al. 2021. ‘Active Travel Oriented Development: Assessing the Suitability of Sites for New Homes’. https://osf.io/7fuq5/
+
+---
+
+The ActDev project: https://actdev.cyipt.bike/
+
+![](https://user-images.githubusercontent.com/361423/107999638-cb0dc700-6fdf-11eb-9105-cf851e5cc02b.png)
+
+- A/B Street - R integration, see https://github.com/a-b-street/abstr
+- Give it a try!
+  - Find a new housing development that has good active travel provision and potential
+     - How could active travel provision be made better?
+  - Find a housing development that has poor active travel provision
+      - How could active travel provision be improved, based on the data?
+      - Should new houses be built in this location?
+
+---
+
 
 ---
 
@@ -145,7 +284,6 @@ I have particular expertise in R and geocomputation with R in particular.
 Source: [UKRI CREDS project repo](https://github.com/creds2/od-data)
 
 ![](https://github.com/creds2/od-data/raw/master/overview_map1.png)
-
 ---
 
 # Making transport data come to life
@@ -155,11 +293,20 @@ Source: Lovelace, Tennekes, Carlino ([2022](https://zonebuilders.github.io/zoneb
 
 ![](https://user-images.githubusercontent.com/1825120/141021386-3ee6af6d-8ca8-4f4c-9856-c636f4a8fc0e.png)
 
+---
+
+# 4 Coding and questions
+
+- Beginner in R: install R and follow instructions at https://itsleeds.github.io/rrsrr/
+- Intermediate level: work through the code in Chapter 13 of Geocomputation with R: https://geocompr.robinlovelace.net/transport.html
+- Intermediate: demo of the {simodels} R package: https://github.com/Robinlovelace/simodels
+- Advanced: Installation and use of the odjitter package: https://github.com/Robinlovelace/odjitter
+- Advanced: Add a new site in the ActDev tool: https://github.com/cyipt/actdev/blob/main/code/tests/add-new-site.md
 
 ---
 class: center, middle
 
-# Thanks, look forward to networking + questions  🖧 + 📈 + ✨ =  🚀!
+# Thanks!
 
 --
 
