@@ -106,6 +106,123 @@ Lovelace, Robin, Mark Birkin, Philip Cross, and Martin Clarke. 2016. ‘From Big
 
 ---
 
+#### Problems worthy of your time
+
+--
+
+
+
+.left-column[
+
+# Ideas
+
+Hackathons
+
+Active travel
+
+Road safety policy
+
+Post COVID recovery
+
+Levelling up metrics
+
+Nature recovery networks
+
+Citizen science and data literacy
+
+]
+
+.right-column[
+
+![](https://saferactive.github.io/trafficalmr/articles/covid.png)
+
+![](https://a-b-street.github.io/docs/project/history/retrospective/edit_roads.gif)
+
+]
+
+---
+
+### Climate change: The elephant in the room
+
+<iframe src="https://giphy.com/embed/4bMoVkgc8QVCQo97kw" width="480" height="208" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p>
+
+???
+
+What is climate change? And how does it related to open source software?
+
+
+It's great to be able to talk about climate change upfront. Usually it's behind the scenes.
+
+To solve problems you need to talk about them.
+
+Everyone including the elephant knows that climate change means the world is getting warmer.
+
+But fewer people talk about 'global drying' and likely impacts such as sudden sea level rise that can only be described as catastrophic
+
+As with health, the most solutions tackle the root causes of the problem. So what is the root cause of the problem? We can go back a few steps...
+
+Climate change is caused by emissions.
+
+Emissions are (primarily) caused by combustion of fossil fuels
+
+But what causes that? Energy consumption.
+
+What causes energy use? Demand for energy intensive things, transport, manufacturing
+
+---
+
+## Example: Climate change, what data science can bring
+
+.left-column[
+
+Emotive and potentially polarising issue
+
+Data can provide a shared starting point
+
+Nationally scenarios are vital
+
+Locally, visions, trust, buy-in and participation are key
+
+]
+
+.right-column[
+
+
+<!-- <iframe src="https://ourworldindata.org/grapher/annual-co-emissions-by-region" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe> -->
+
+```{r, eval=FALSE, echo=FALSE}
+piggyback::pb_upload("annual-co-emissions-by-region.csv")
+piggyback::pb_download_url("annual-co-emissions-by-region.csv")
+```
+
+```{r, include=FALSE}
+emissions = readr::read_csv("https://github.com/Robinlovelace/presentations/releases/download/2020-02/annual-co-emissions-by-region.csv")
+emissions = emissions %>% rename(Emissions = `Annual CO2 emissions (zero filled)`)
+emissions_regions = emissions %>%
+  filter(is.na(Code)) %>%
+  filter(Entity != "World") %>% 
+  filter(!str_detect(string = Entity, pattern = "EU|Fr|Ku|Leew|exc|Pan|Ry|St"))
+```
+
+```{r, echo=FALSE}
+g = ggplot(emissions_regions) +
+  geom_line(aes(Year, Emissions, colour = Entity), show.legend = FALSE)
+plotly::ggplotly(g)
+```
+
+]
+
+
+???
+
+The Downward trend during coronavirus saw emissions drop by ~10%
+
+The scale of the challenge is to reduce emissions by 10% every year, every year, and the challenge gets hard with each year
+
+That means: we need transformational
+
+---
+
 # Existing tools: The Propensity to Cycle Tool
 
 - Early prototype of the tool developed at Open Data Institute Leeds hackathon, 2015
@@ -284,6 +401,11 @@ The ActDev project: https://actdev.cyipt.bike/
 Source: [UKRI CREDS project repo](https://github.com/creds2/od-data)
 
 ![](https://github.com/creds2/od-data/raw/master/overview_map1.png)
+
+???
+
+Also complexity vs simplicity and readability
+
 ---
 
 # Making transport data come to life
