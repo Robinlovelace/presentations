@@ -1,0 +1,330 @@
+---
+title: "How data will help us win"
+subtitle: "From evidence-based policies to participatory planning"
+author: "Robin Lovelace, University of Leeds <br>[Data Science Fellow at No. 10](https://www.ukri.org/opportunity/esrc-adr-uk-no-10-data-science-fellowships-2021/)<br>[Data Scientist at ATE](https://www.gov.uk/government/organisations/active-travel-england)"
+date: "2022-08-02"
+output:
+  xaringan::moon_reader:
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tmap)
+tmap_mode("view")
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Bio 🌱
+
+I'm an Associate Professor of **Transport Data Science**, University of Leeds. Experienced data scientist with track record developing + deploying new **methods**, **tools** and **software** + influencing policy. 
+
+--
+
+## 10DS Fellowship 🏗
+
+10DS: data science team in No. 10 under Laura Gilbert, head of data on No. 10
+
+October 2021 to March 2023 (Jan-Dec 2022 80% FTE placement phase)
+
+As No.10 Data Science Fellow my job is to **use data science expertise to support the needs of central government**.
+--
+
+## Work in Active Travel England 🚀
+
+2 days per week: working at ATE to build a world leading data science, monitoring/evaluation and **tool-building** team
+
+???
+
+especially in relation to ... decarbonisation, active travel and the government's leveling-up agenda.
+The government has set-out these priorities ...
+<!-- the *Decarbonising transport: setting the challenge* -->
+<!-- ^[https://www.gov.uk/government/publications/creating-the-transport-decarbonisation-plan] -->
+<!-- report (a precursor to the forthcoming Transport Decarbonisation Plan), the *Gear Change* vision for walking and cycling, -->
+<!-- ^[https://www.gov.uk/government/publications/cycling-and-walking-plan-for-england] -->
+<!-- and the *Levelling Up Fund* prospectus. -->
+<!-- ^[https://www.gov.uk/government/publications/levelling-up-fund-prospectus] -->
+
+---
+
+# Where I'm coming from
+
+```{r, echo=FALSE}
+# cities = c("Hereford", "Bristol", "Salamanca", "York", "Sheffield", "Leeds", "Melbourne", "Hamilton, NZ", "Lisbon", "Pennsylvania", "Maastricht", "Edinburgh", "Cardiff")
+# locations = tmaptools::geocode_OSM(cities, as.sf = TRUE)
+# locations$years = c("1985-04", "2004-08", "2006-07", "2008-09", "2009-13", "2014-22", "Research links", "Research links", "Research links", "Research links", "Research links", "Research links", "Research links")
+# locations$bbox = NULL
+# saveRDS(locations, "locations.Rds")
+# locations = readRDS("locations.Rds")
+# dput(locations)
+locations = 
+structure(list(query = c("Hereford", "Bristol", "Salamanca", 
+"York", "Sheffield", "Leeds", "Melbourne", "Hamilton, NZ", "Lisbon", 
+"Pennsylvania", "Maastricht", "Edinburgh", "Cardiff"), lat = c(52.0553813, 
+51.4538022, 40.9651572, 53.9590555, 53.3806626, 53.7974185, -37.8142176, 
+-37.7878809, 38.7077507, 40.9699889, 50.8512438, 55.9533456, 
+51.4816546), lon = c(-2.7151735, -2.5972985, -5.6640182, -1.0815361, 
+-1.4702278, -1.5437941, 144.9631608, 175.281788, -9.1365919, 
+-77.7278831, 5.6909768, -3.1883749, -3.1791934), lat_min = c(52.0283758, 
+51.3972838, 40.9146276, 53.7990555, 53.3045116, 53.6989675, -38.49937, 
+-37.846039, 38.6913994, 39.7197662, 50.8038053, 55.8187919, 51.3216546
+), lat_max = c(52.0776615, 51.5444317, 40.9931932, 54.1190555, 
+53.5031042, 53.9458715, -37.40175, -37.6993298, 38.7967584, 42.5146891, 
+50.9120028, 56.0040837, 51.6416546), lon_min = c(-2.7747454, 
+-2.7183704, -5.735802, -1.2415361, -1.8014715, -1.8004214, 144.44405, 
+175.1843007, -9.2298356, -80.5210833, 5.6388661, -3.4495326, 
+-3.3391934), lon_max = c(-2.6725099, -2.5104192, -5.6226215, 
+-0.9215361, -1.3246685, -1.2903516, 146.1925, 175.3448766, -9.0863328, 
+-74.689672, 5.7629249, -3.0749512, -3.0191934), point = structure(list(
+    structure(c(-2.7151735, 52.0553813), class = c("XY", "POINT", 
+    "sfg")), structure(c(-2.5972985, 51.4538022), class = c("XY", 
+    "POINT", "sfg")), structure(c(-5.6640182, 40.9651572), class = c("XY", 
+    "POINT", "sfg")), structure(c(-1.0815361, 53.9590555), class = c("XY", 
+    "POINT", "sfg")), structure(c(-1.4702278, 53.3806626), class = c("XY", 
+    "POINT", "sfg")), structure(c(-1.5437941, 53.7974185), class = c("XY", 
+    "POINT", "sfg")), structure(c(144.9631608, -37.8142176), class = c("XY", 
+    "POINT", "sfg")), structure(c(175.281788, -37.7878809), class = c("XY", 
+    "POINT", "sfg")), structure(c(-9.1365919, 38.7077507), class = c("XY", 
+    "POINT", "sfg")), structure(c(-77.7278831, 40.9699889), class = c("XY", 
+    "POINT", "sfg")), structure(c(5.6909768, 50.8512438), class = c("XY", 
+    "POINT", "sfg")), structure(c(-3.1883749, 55.9533456), class = c("XY", 
+    "POINT", "sfg")), structure(c(-3.1791934, 51.4816546), class = c("XY", 
+    "POINT", "sfg"))), n_empty = 0L, precision = 0, crs = structure(list(
+    input = "EPSG:4326", wkt = "GEOGCRS[\"WGS 84\",\n    DATUM[\"World Geodetic System 1984\",\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433]],\n    CS[ellipsoidal,2],\n        AXIS[\"geodetic latitude (Lat)\",north,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        AXIS[\"geodetic longitude (Lon)\",east,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n    USAGE[\n        SCOPE[\"unknown\"],\n        AREA[\"World\"],\n        BBOX[-90,-180,90,180]],\n    ID[\"EPSG\",4326]]"), class = "crs"), bbox = structure(c(xmin = -77.7278831, 
+ymin = -37.8142176, xmax = 175.281788, ymax = 55.9533456), class = "bbox"), class = c("sfc_POINT", 
+"sfc")), years = c("1985-04", "2004-08", "2006-07", "2008-09", 
+"2009-13", "2014-22", "Research links", "Research links", "Research links", 
+"Research links", "Research links", "Research links", "Research links"
+)), row.names = c(NA, 13L), sf_column = "point", agr = structure(c(query = NA_integer_, 
+lat = NA_integer_, lon = NA_integer_, lat_min = NA_integer_, 
+lat_max = NA_integer_, lon_min = NA_integer_, lon_max = NA_integer_, 
+years = NA_integer_), levels = c("constant", "aggregate", "identity"
+), class = "factor"), class = c("sf", "data.frame"))
+tm_shape(locations, bbox = tmaptools::bb(locations[c(1, 2, 4, 12), ], ext = 1.2)) +
+  tm_dots("years", size = 0.3, palette = "Spectral")
+```
+
+???
+
+The UK is a global leader in not only open access data and data science
+
+We have a huge amount to offer and I know of people coming here from the USA, usually the brain drain goes in the opposite direction!
+
+---
+
+#### What can data do for us?
+
+![](https://saferactive.github.io/trafficalmr/articles/covid.png)
+
+![](https://a-b-street.github.io/docs/project/history/retrospective/edit_roads.gif)
+
+???
+
+4 main things, first 2 are well known, the second 2 are not:
+
+- Provide objective and persuasive information about the world and making the case for change
+
+- Tell or reinforce stories about change, down to the local level
+
+- Create a long term vision that is based on reality that we can aim towards
+
+- Enable more participatory and therefore democratic and successful processes
+
+---
+
+# Example: The Propensity to Cycle Tool
+
+![](https://github.com/npct/pct-team/blob/master/figures/front-page-leeds-pct-demo.png?raw=true)
+
+???
+
+First thing to say: Ministers, and this is Chris Grayling, like digital tools, quicker than reading a PDF
+
+The tool has influenced hundreds of millions of pounds of investment in strategic cycle networks
+
+More than that, it's changed the way that planning happens
+
+We can go way beyond it with a team
+
+---
+
+# Thinking about data (science)
+
+Data science as climbing the DIKW pyramid
+
+```{r, echo=FALSE, out.width="70%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/DIKW_Pyramid.svg/220px-DIKW_Pyramid.svg.png")
+```
+
+???
+
+Definitions of data science:
+
+- Climbing the DIKW pyramid
+
+- Systematic and scalable data processing
+
+- Statistics that is actually useful: getting shit done with data
+
+---
+
+# How can data help different parts of ATE?
+
+![](https://user-images.githubusercontent.com/1825120/181658879-72bc8c14-2704-45c4-a8bb-63d7d749417d.png)
+
+Source: https://www.tldraw.com/r/1659053600045
+
+???
+
+ActDev can help Isabel Gumpert
+
+OpenInfra can help Brian
+
+Participatory and citizen science tools can help everyone
+
+---
+
+# Example: travel to school data
+
+![](https://user-images.githubusercontent.com/1825120/181659133-ab095c6e-b52a-4bc4-85de-9c3a0096833e.png)
+
+![](https://user-images.githubusercontent.com/1825120/181659374-bbd21050-0192-4548-8bab-1479c63fc444.png)
+
+---
+
+# Making transport possibilities come to life
+
+![](https://github.com/zonebuilders/zonebuilder/releases/download/v0.0.2.9000/cityscale.png)
+
+
+![](https://user-images.githubusercontent.com/1825120/141021386-3ee6af6d-8ca8-4f4c-9856-c636f4a8fc0e.png)
+
+---
+
+# Details... 
+
+---
+
+# The importance of tools
+
+```{r, out.width="30%", fig.show='hold', echo=FALSE}
+knitr::include_graphics(c(
+  "https://docs.ropensci.org/stplanr/reference/figures/stplanr.png",
+  "https://raw.githubusercontent.com/ropensci/stats19/master/man/figures/logo.png",
+  "https://github.com/Robinlovelace/geocompr/blob/main/images/geocompr_hex.png?raw=true"
+))
+```
+
+--
+
+- Evidence-based policies in government: [Data Science Fellowship at N. 10](https://www.ukri.org/opportunity/esrc-adr-uk-no-10-data-science-fellowships-2021/)
+
+???
+
+- Turing Fellowship 
+- LIDA internship on open transport infrastructure data
+- Links with DfT, MHCLG, TfNH, international partners
+
+---
+
+.left-column[
+
+### Expertise: Geocomputation
+
+Computationally efficient data science tools
+
+Intuitive, future proof, scalable code
+
+Geographic vector data analysis
+
+![](https://user-images.githubusercontent.com/1825120/141863981-31a11068-a5f3-4e19-9471-b03dbb36f9a8.png)
+Geographic raster data
+
+![](https://geocompr.robinlovelace.net/02-spatial-data_files/figure-html/raster-intro-plot-1.png)
+
+]
+
+--
+
+.right-column[
+
+```{r}
+knitr::include_graphics("https://user-images.githubusercontent.com/1825120/142071229-81358e26-5e8d-437e-9ef8-91704a4e690f.png")
+```
+
+Source: Morgan and Lovelace (2020) https://doi.org/10.1177/2399808320942779
+
+]
+
+???
+
+I am an all-round data scientist with experience with Python, Julia, and command line tools such as Docker and shell scripting for scalable data science applications.
+
+I have particular expertise in R and geocomputation with R in particular.
+
+---
+
+## Expertise: developing tools for policy making
+
+.left-column[
+
+Lead Developer of the DfT's PCT (Lovelace et al. 2017) : transformational impact on planning in the UK (source: REF Impact Case Study)
+
+COVID response: RAPID tool (Lovelace et al. 2020)
+
+ActDev tool for informing planning process
+
+]
+
+.right-column[
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nNYroA16JEQ?start=120" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+]
+
+---
+
+# Expertise: open source software, community building
+
+![](https://user-images.githubusercontent.com/1825120/142075245-3dee4b6e-e4d6-424d-b4aa-a72458e88fd6.png)
+
+---
+
+
+.left-column[
+## Domain experience
+
+Close working relationship with DfT over past 6 years
+
+Collaborations with Ordnance Survey (LIDA), National Highways (training), links with DLUHC and Open Innovation Team
+
+Transport behaviour, infrastructure, safety, energy
+
+]
+.right-column[
+
+![](https://raw.githubusercontent.com/cyipt/actdev/main/data-small/scenario-overview.png)
+
+![](https://user-images.githubusercontent.com/1825120/142076842-bc87bf5b-f8b2-4fbc-bcb4-a4da575b171f.png)
+
+]
+
+---
+
+# Teaching materials and data science training
+
+```{r, out.width="33%", fig.show='hold'}
+knitr::include_graphics(c(
+  "https://images.tandf.co.uk/common/jackets/amazon/978149871/9781498711548.jpg",
+  "https://csgillespie.github.io/efficientR/figures/f0_web.png",
+  "https://geocompr.robinlovelace.net/images/cover.png"
+))
+```
+
+--
+
+- Data science training for the Department for Transport, Highways England, RAC Foundation
+- Hackathons sponsored by the R foundation and the Department for Transport
