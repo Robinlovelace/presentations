@@ -185,6 +185,8 @@ OpenInfra can help Brian
 
 Participatory and citizen science tools can help everyone
 
+Also a question of collaborators: for another slide
+
 ---
 
 # Example: travel to school data
@@ -204,11 +206,16 @@ Participatory and citizen science tools can help everyone
 
 ---
 
-# Details... 
+# Extra slides + links
 
----
+- PCT: https://www.pct.bike/
+- CyIPT: https://www.cyipt.bike/
+- ActDev slides: https://www.robinlovelace.net/presentations/actdev-dft-slides.html
+- Rapid: https://www.cyipt.bike/rapid/
+- A/B Street: https://github.com/a-b-street/abstreet
+- GrowBike: https://growbike.net/city/london
 
-# The importance of tools
+## Extra: The importance of tools
 
 ```{r, out.width="30%", fig.show='hold', echo=FALSE}
 knitr::include_graphics(c(
@@ -232,18 +239,19 @@ knitr::include_graphics(c(
 
 .left-column[
 
-### Expertise: Geocomputation
+### Extra: Importance of geo tools
 
-Computationally efficient data science tools
+Active travel interventions are local
 
-Intuitive, future proof, scalable code
+Tools should be:
 
-Geographic vector data analysis
+Accessible
 
-![](https://user-images.githubusercontent.com/1825120/141863981-31a11068-a5f3-4e19-9471-b03dbb36f9a8.png)
-Geographic raster data
+Evolving
 
-![](https://geocompr.robinlovelace.net/02-spatial-data_files/figure-html/raster-intro-plot-1.png)
+Scalable
+
+Open
 
 ]
 
@@ -261,70 +269,4 @@ Source: Morgan and Lovelace (2020) https://doi.org/10.1177/2399808320942779
 
 ???
 
-I am an all-round data scientist with experience with Python, Julia, and command line tools such as Docker and shell scripting for scalable data science applications.
 
-I have particular expertise in R and geocomputation with R in particular.
-
----
-
-## Expertise: developing tools for policy making
-
-.left-column[
-
-Lead Developer of the DfT's PCT (Lovelace et al. 2017) : transformational impact on planning in the UK (source: REF Impact Case Study)
-
-COVID response: RAPID tool (Lovelace et al. 2020)
-
-ActDev tool for informing planning process
-
-]
-
-.right-column[
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nNYroA16JEQ?start=120" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-]
-
----
-
-# Expertise: open source software, community building
-
-![](https://user-images.githubusercontent.com/1825120/142075245-3dee4b6e-e4d6-424d-b4aa-a72458e88fd6.png)
-
----
-
-
-.left-column[
-## Domain experience
-
-Close working relationship with DfT over past 6 years
-
-Collaborations with Ordnance Survey (LIDA), National Highways (training), links with DLUHC and Open Innovation Team
-
-Transport behaviour, infrastructure, safety, energy
-
-]
-.right-column[
-
-![](https://raw.githubusercontent.com/cyipt/actdev/main/data-small/scenario-overview.png)
-
-![](https://user-images.githubusercontent.com/1825120/142076842-bc87bf5b-f8b2-4fbc-bcb4-a4da575b171f.png)
-
-]
-
----
-
-# Teaching materials and data science training
-
-```{r, out.width="33%", fig.show='hold'}
-knitr::include_graphics(c(
-  "https://images.tandf.co.uk/common/jackets/amazon/978149871/9781498711548.jpg",
-  "https://csgillespie.github.io/efficientR/figures/f0_web.png",
-  "https://geocompr.robinlovelace.net/images/cover.png"
-))
-```
-
---
-
-- Data science training for the Department for Transport, Highways England, RAC Foundation
-- Hackathons sponsored by the R foundation and the Department for Transport
