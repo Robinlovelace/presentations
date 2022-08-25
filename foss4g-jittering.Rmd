@@ -1,7 +1,7 @@
 ---
-title: "Assessing methods for generating route networks from origin-destionation data"
-subtitle: "Jittering, routing, and visualisation\nGISRUK 2022, Liverpool"
-author: "Robin Lovelace, University of Leeds <br>+[Rosa Félix](http://www.rosafelix.bike/), [Dustin Carlino](https://dabreegster.github.io/), [Roger Beecham](https://www.roger-beecham.com/)"
+title: "Jittering and routing options for converting origin-destination data into route networks"
+subtitle: "Towards accurate estimates of movement at the street level"
+author: "Robin Lovelace, University of Leeds <br>+[Rosa Félix](http://www.rosafelix.bike/), [Dustin Carlino](https://dabreegster.github.io/)"
 date: "[FOSS4G 2022](https://2022.foss4g.org/schedule_academic.php)"
 output:
   xaringan::moon_reader:
