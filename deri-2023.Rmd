@@ -1,7 +1,7 @@
 ---
 title: "Open source and participatory transportation planning"
 subtitle: "DERI Seminar, London, Zoom"
-author: "Robin Lovelace, University of Leeds"
+author: "Robin Lovelace, University of Leeds<br>Dustin Carlino, Alan Turing Institute<br>Companion slides: [Google Slides](https://docs.google.com/presentation/d/18C0Vl5652yBZZnsNafSBwwP9AbxED2iEgWoiZx8kZ5Y)"
 date: "2023-01-26"
 output:
   xaringan::moon_reader:
