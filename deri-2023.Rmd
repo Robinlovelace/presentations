@@ -1,0 +1,238 @@
+---
+title: "Open source and participatory transportation planning"
+subtitle: "DERI Seminar, London, Zoom"
+author: "Robin Lovelace, University of Leeds"
+date: "2023-01-26"
+output:
+  xaringan::moon_reader:
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tmap)
+tmap_mode("view")
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Outline plan
+
+
+#### 1 Introduction to open tools for transport planning
+
+- https://www.pct.bike/
+- https://www.cyipt.bike/rapid/
+- https://github.com/ITSLeeds/
+
+--
+
+#### 2 Case study: A/B Street (Dustin)
+
+--
+
+---
+
+## 1 Introduction to me and my research
+
+![](https://user-images.githubusercontent.com/1825120/142075245-3dee4b6e-e4d6-424d-b4aa-a72458e88fd6.png)
+
+Further info: https://www.robinlovelace.net/
+
+???
+
+We have 5 research groups
+
+Working with TASM
+
+Links with WYCA
+
+Academic input
+
+Sarah Sharples
+
+---
+
+# Data can make a difference
+
+![](https://github.com/npct/pct-team/blob/master/figures/front-page-leeds-pct-demo.png?raw=true)
+
+???
+
+Where I am now: PCT used by many in government
+
+---
+
+.left-column[
+
+### Too much data?
+
+A nice problem to have?
+
+Data historically a limiting factor
+
+New approaches needed to tackle 'big noise'
+
+Boyce, D.E., Williams, H.C.W.L., 2015. Forecasting Urban Travel: Past, Present and Future.
+
+]
+
+--
+
+.right-column[
+
+<!-- ![](https://user-images.githubusercontent.com/1825120/167034112-b00e091a-9e2a-4ff3-9e4f-4e71e7fe18f6.png) -->
+![](https://user-images.githubusercontent.com/1825120/161992916-2d1dfea6-e783-4b2d-b6b8-61522f38ad8e.png)
+
+Lovelace, Robin, Mark Birkin, Philip Cross, and Martin Clarke. 2016. ‘From Big Noise to Big Data' https://doi.org/10.1111/gean.12081.
+]
+
+???
+
+- For most of the history of transport planning data scarcity has been a major concern
+- Now we have an abundance of datasets, many of them incompatible
+- Concrete example: OD to WPZ data in central London (could ask if anyone knows, it's a mess hehe)
+
+---
+
+#### Problems worthy of your time
+
+--
+
+
+
+.left-column[
+
+# Ideas
+
+Hackathons
+
+Active travel
+
+Road safety policy
+
+Post COVID recovery
+
+Levelling up metrics
+
+Nature recovery networks
+
+Citizen science and data literacy
+
+]
+
+.right-column[
+
+![](https://saferactive.github.io/trafficalmr/articles/covid.png)
+
+![](https://a-b-street.github.io/docs/project/history/retrospective/edit_roads.gif)
+
+]
+
+---
+
+# Existing tools: The Propensity to Cycle Tool
+
+- Early prototype of the tool developed at Open Data Institute Leeds hackathon, 2015
+- National deployment of the Propensity to Cycle Tool 2 years later ([PCT.bike](http://www.pct.bike/)) (Lovelace et al. 2017)
+
+```{r, echo=FALSE, eval=TRUE}
+knitr::include_graphics("https://raw.githubusercontent.com/npct/pct-team/master/figures/early.png")
+```
+
+---
+
+## Key aspects of the PCT
+
+- Based on open source code
+- Based on open data
+- Results published as open data
+- Publicly available web application encourages participation and evidence-based debate
+
+Open data and accessible results lead to participation. See https://twitter.com/search?q=cyipt.bike%2Frapid 
+
+![](https://user-images.githubusercontent.com/1825120/124230675-3d062900-db07-11eb-831e-f7f42e19aefc.png)
+
+---
+
+## How it works
+
+![](https://user-images.githubusercontent.com/1825120/123762809-0e940e00-d8bb-11eb-8dab-0e881299bbef.png)
+
+---
+
+## Making evidence meaningful and actionable
+
+Source: https://www.pct.bike/
+
+
+![](https://user-images.githubusercontent.com/1825120/123867504-5a2fd180-d926-11eb-9b7a-1988d4b6c830.png)
+
+---
+
+.left-column[
+
+### The future of transport tools
+
+Modular
+
+Future proof
+
+Scalable
+
+Vector/
+
+![](https://user-images.githubusercontent.com/1825120/141863981-31a11068-a5f3-4e19-9471-b03dbb36f9a8.png)
+
+Raster/
+
+![](https://geocompr.robinlovelace.net/02-spatial-data_files/figure-html/raster-intro-plot-1.png)
+Source: Morgan and Lovelace ([2020](https://doi.org/10.1177/2399808320942779 )) Implementation: [stplanr](https://docs.ropensci.org/stplanr/index.html)
+
+]
+
+--
+
+.right-column[
+
+```{r}
+knitr::include_graphics("https://user-images.githubusercontent.com/1825120/142071229-81358e26-5e8d-437e-9ef8-91704a4e690f.png")
+```
+
+Approach: OD -> Desire Line -> Route -> Route Networks
+
+]
+
+???
+
+So what's the overall approach here?
+
+---
+class: center, middle
+
+# Thanks!
+
+--
+
+## References
+
+--
+
+Lovelace, R., Goodman, A., Aldred, R., Berkoff, N., Abbas, A., Woodcock, J., 2017. The Propensity to Cycle Tool: An open source online system for sustainable transport planning. Journal of Transport and Land Use 10. https://doi.org/10.5198/jtlu.2016.862
+
+
+--
+
+Morgan, M., Lovelace, R., 2020. Travel flow aggregation: nationally scalable methods for interactive and online visualisation of transport behaviour at the road network level. Environment & Planning B: Planning & Design. https://doi.org/10.1177/2399808320942779
+
+--
+
+Lovelace, R., Tennekes, M., Carlino, D., 2021. ClockBoard: a zoning system for urban analysis. https://doi.org/10.31219/osf.io/vncgw
+
+--
+
+Lovelace, Robin, Rosa Félix, and Dustin Carlino. “Jittering: A Computationally Efficient Method for Generating Realistic Route Networks from Origin-Destination Data.” OSF Preprints, January 13, 2022. https://doi.org/10.31219/osf.io/qux6g.
+
+
