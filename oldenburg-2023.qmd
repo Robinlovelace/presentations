@@ -7,12 +7,23 @@ execute:
 bibliography: references-oldenburg.bib
 ---
 
-```{=html}
-<!---
- The Economics of Low-Carbon Markets workshop will take place 4-5 September in Oldenburg (Germany), marking 10 years since the event was first held. 
+## Abstract
+
+::: incremental
+The Economics of Low-Carbon Markets workshop will take place 4-5 September in Oldenburg (Germany), marking 10 years since the event was first held.
 I will be presenting at the "Policy Session" on open compuational tools such as the Propensity to Cycle Tool that have informed policy.
---->
-```
+
+Key concepts:
+
+-   Geocomputation and spatial data science for research and evidence-based policies
+
+-   Open source software and research
+
+-   Reproducibility
+
+-   From research to impact
+:::
+
 ## A bit about me
 
 ```{r}
@@ -91,6 +102,24 @@ Source: [Tidy geographic data](https://ogh23.robinlovelace.net/tidy) course note
 
 ## Economics of Low Carbon Markets
 
-TODO: add image of travel here
+![](images/Screenshot_20230903-131355.png)
+
+![](images/Screenshot_20230903-131355-2.png)
+
+## Open collaboration
+
+![](images/paste-1.png)
+
+-   Any 'live comments' welcome (requires a GitHub account), see slides and source code at [robinlovelace.net/presenations/oldenburg-2023.html](https://www.robinlovelace.net/presentations/oldenburg-2023.html)
+
+## Why open collaboration?
+
+-   Open communication + sharing can lead to new collaborations
+
+-   Cas study: paper with statisticians on modelling transport safety [@gilardi2022]
+
+-   ![](images/paste-2.png)
 
 ## References
+
+See slides online at [robinlovelace.net/presenations/oldenburg-2023.html](https://www.robinlovelace.net/presentations/oldenburg-2023.html)

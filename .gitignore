@@ -8,3 +8,7 @@
 !*.Rmd
 !*.R
 !*.bib
+!*.png
+
+# ...and these directories
+!images/
