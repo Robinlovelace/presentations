@@ -98,7 +98,7 @@ Source: [Tidy geographic data](https://ogh23.robinlovelace.net/tidy) course note
 
 ## Geocomputation
 
-> Geocomputation is the application and development of computational methods for geographic data processing, analysis, modeling and visualisation with command-line tools and scripts, focussed on performance, reproducibility and modularity 
+> Geocomputation is the application and development of computational methods for geographic data processing, analysis, modeling and visualisation with command-line tools and scripts, focussed on performance, reproducibility and modularity
 
 Source: Geocomputation with R [@lovelace2019]
 
@@ -107,15 +107,13 @@ Source: Geocomputation with R [@lovelace2019]
 ::: columns
 ::: column
 ::: incremental
+-   Multidisciplinary event focused on the economics of low carbon markets
 
-- Multidisciplinary event focused on the economics of low carbon markets
+-   Methodological and empirical research
 
-- Methodological and empirical research
+-   On multiple geographic scales
 
-- On multiple geographic scales
-
-- How can geocomputation help?
-
+-   How can geocomputation help?
 :::
 :::
 
@@ -162,15 +160,29 @@ GitHub is not just for programmers [@braga2023]
 
 ![](images/paste-4.png)
 
-## Platforms for open + collaborative research
+## Tools for collaboration
 
-![](images/paste-5.png)
+::: columns
+::: column
+::: incremental
 
-New tools such as Manubot make collaboration easier [@himmelstein2019]
+-   New tools such as Manubot make collaboration easier [@himmelstein2019]
 
-Source code: <https://github.com/manubot/>
+-   Source code: <https://github.com/manubot/>
 
-## Research to support low carbon futures
+-   Example of 'tracked changes' in GitHub: [github.com/zonebuilder](https://github.com/zonebuilders/zonebuilder/pull/38)
+
+-   Now published a fully reproducible paper [@lovelace2022]
+:::
+:::
+::: column
+![](images/paste-6.png)
+:::
+:::
+
+## ![](images/paste-5.png)
+
+# Low carbon research
 
 ![](images/PXL_20230903_062531314.jpg)
 
