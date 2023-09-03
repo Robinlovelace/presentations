@@ -102,9 +102,29 @@ Source: [Tidy geographic data](https://ogh23.robinlovelace.net/tidy) course note
 
 ## Economics of Low Carbon Markets
 
+::: columns
+::: column
 ![](images/Screenshot_20230903-131355.png)
+:::
 
+::: column
 ![](images/Screenshot_20230903-131355-2.png)
+:::
+:::
+
+## Open tools in the wild
+
+-   Example: OSMand
+
+::: columns
+::: column
+![](images/Screenshot_20230903-131457.png)
+:::
+:::
+
+::: column
+![](images/Screenshot_20230903-133204.png)
+:::
 
 ## Open collaboration
 
@@ -119,6 +139,26 @@ Source: [Tidy geographic data](https://ogh23.robinlovelace.net/tidy) course note
 -   Cas study: paper with statisticians on modelling transport safety [@gilardi2022]
 
 -   ![](images/paste-2.png)
+
+## Asking questions in an open forum
+
+![](images/paste-3.png)
+
+Source: <https://github.com/r-spatial/sf/issues/966>
+
+## GitHub for collaborative research
+
+GitHub is not just for programmers [@braga2023]
+
+![](images/paste-4.png)
+
+## Platforms for open + collaborative research
+
+![](images/paste-5.png)
+
+New tools such as Manubot make collaboration easier [@himmelstein2019]
+
+Source code: <https://github.com/manubot/>
 
 ## References
 
