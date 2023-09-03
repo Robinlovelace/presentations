@@ -1,0 +1,96 @@
+---
+title: "Geocomputation, reproducible research and open tools to inform the transition away from fossil fuels"
+subtitle: "Economics of Low-Carbon Markets workshop"
+format: revealjs
+execute: 
+  cache: true
+bibliography: references-oldenburg.bib
+---
+
+```{=html}
+<!---
+ The Economics of Low-Carbon Markets workshop will take place 4-5 September in Oldenburg (Germany), marking 10 years since the event was first held. 
+I will be presenting at the "Policy Session" on open compuational tools such as the Propensity to Cycle Tool that have informed policy.
+--->
+```
+## A bit about me
+
+```{r}
+#| include: false
+#| cache: false
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE
+)
+library(tidyverse)
+library(tmap)
+```
+
+```{r}
+#| eval: false
+locations = rbind(
+  osmextract:::oe_search("Hereford"),
+  osmextract:::oe_search("Bristol"),
+  osmextract:::oe_search("Salamanca"),
+  osmextract:::oe_search("York"),
+  osmextract:::oe_search("Sheffield"),
+  osmextract:::oe_search("Leeds"),
+  osmextract:::oe_search("York"),
+  osmextract:::oe_search("Poznan"),
+  osmextract:::oe_search("Oldenburg")
+)
+sf::write_sf(locations, "locations-2023.geojson", delete_dsn = TRUE)
+```
+
+```{r}
+locations = sf::read_sf("locations-2023.geojson")
+
+```
+
+```{r}
+```
+
+```{r}
+#| cache: false
+locations$dates = c(
+  2003,
+  2004,
+  2006,
+  2008,
+  2009,
+  2013,
+  2022,
+  2023,
+  2023
+)
+locations = locations |> 
+  mutate(dates = as.character(dates), display_name)
+tmap_leaflet(
+  qtm(
+    locations, 
+    symbols.size = 2,
+    symbols.col = "dates",
+    symbols.palette = "viridis",
+    basemaps = providers$OpenStreetMap
+  )
+)
+
+```
+
+## OpenGeoHub
+
+![](https://user-images.githubusercontent.com/1825120/263552520-4079b188-f921-4c6f-9391-bfd7891a4f52.gif)
+
+Source: [Tidy geographic data](https://ogh23.robinlovelace.net/tidy) course notes from OpenGeoHub 2023, building on Geocomputation with R @lovelace2019.
+
+## Geocomputation
+
+> Geocomputation is the application and development of computational methods for geographic data processing, analysis, modeling and visualisation with command-line tools and scripts, focussed on performance, reproducibility and modularity @lovelace2019
+
+## Economics of Low Carbon Markets
+
+TODO: add image of travel here
+
+## References
