@@ -7,23 +7,21 @@ execute:
 bibliography: references-oldenburg.bib
 ---
 
-## Abstract
+## Key concepts
 
 ::: incremental
-The Economics of Low-Carbon Markets workshop will take place 4-5 September in Oldenburg (Germany), marking 10 years since the event was first held.
-I will be presenting at the "Policy Session" on open compuational tools such as the Propensity to Cycle Tool that have informed policy.
 
-Key concepts:
+<!---
+ The Economics of Low-Carbon Markets workshop will take place 4-5 September in Oldenburg (Germany), marking 10 years since the event was first held.
+I will be presenting at the "Policy Session" on open compuational tools such as the Propensity to Cycle Tool that have informed policy. 
+--->
 
 -   Geocomputation and spatial data science for research and evidence-based policies
 
 -   Open source software and research
 
-```{=html}
-<!---
- -   Reproducibility 
---->
-```
+-   Reproducibility 
+
 -   From research to impact
 :::
 
