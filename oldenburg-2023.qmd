@@ -165,8 +165,7 @@ GitHub is not just for programmers [@braga2023]
 ::: columns
 ::: column
 ::: incremental
-
--   New tools such as Manubot make collaboration easier [@himmelstein2019]
+-   New tools such as Manubot and Quarto make collaboration easier
 
 -   Source code: <https://github.com/manubot/>
 
@@ -175,6 +174,7 @@ GitHub is not just for programmers [@braga2023]
 -   Now published a fully reproducible paper [@lovelace2022]
 :::
 :::
+
 ::: column
 ![](images/paste-6.png)
 :::
@@ -182,10 +182,117 @@ GitHub is not just for programmers [@braga2023]
 
 ## ![](images/paste-5.png)
 
+Collaborative writing platorms
+
+## Open source social media
+
+::: columns
+::: column
+::: fragment
+<iframe src="https://fosstodon.org/@robinlovelace/111001094776247726/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen">
+
+</iframe>
+
+```{=html}
+<script src="https://fosstodon.org/embed.js" async="async"></script>
+```
+:::
+:::
+
+::: column
+::: fragment
+Open source -\> options
+
+<iframe src="https://fosstodon.org/@LeafyEricScott/111001275607941237/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen">
+
+</iframe>
+
+```{=html}
+<script src="https://fosstodon.org/embed.js" async="async"></script>
+```
+:::
+:::
+:::
+
+## Quarto
+
+-   These slides were built with [quarto](https://quarto.org/)
+
+```         
+---
+title: "Geocomputation, reproducible research and open tools to inform the transition away from fossil fuels"
+subtitle: "Economics of Low-Carbon Markets workshop"
+format: revealjs
+execute: 
+  cache: true
+bibliography: references-oldenburg.bib
+---
+
+## Abstract
+```
+
+Source: https://github.com/Robinlovelace/presentations/blob/master/oldenburg-2023.qmd
+
 # Low carbon research
 
 ![](images/PXL_20230903_062531314.jpg)
 
-## References
+## Tools for low carbon transport planning
+
+::: columns
+::: column
+::: incremental
+-   Bid for funding outside our comfort zone (2014)
+-   Development of a prototype tool (2015)
+-   Lauch of national tool as part of investment strategy (2017)
+-   Addition of travel to school (2019)
+-   Extension to Wales, Scotland, Republic of Ireland, Portugal (2020+)
+:::
+:::
+
+::: column
+![](images/paste-8.png)
+:::
+:::
+
+## Policy impact
+
+![](images/paste-7.png)
+
+## The power of geographic data
+
+Enables understanding of distributional impacts of policies, e.g. agglomeration.
+Source: @moreno-monroy2018
+
+![](images/paste-9.png)
+
+## Generating accessibility data
+
+![](images/paste-10.png)
+
+## Disaggregating origin-destination data
+
+Souce: Lovelace et al ([2022](https://doi.org/10.32866/001c.33873)) 'Jittering: A Computationally Efficient Method for Generating Realistic Route Networks from Origin-Destination Data'.
+
+![](images/paste-11.png)
+
+## A larger OD dataset
+
+![](images/paste-12.png)
+
+## Resulting networks
+
+![](images/paste-13.png)
+
+## More info
 
 See slides online at [robinlovelace.net/presenations/oldenburg-2023.html](https://www.robinlovelace.net/presentations/oldenburg-2023.html)
+
+For more on zoning systems, see: Lovelace, Robin, Martijn Tennekes, and Dustin Carlino.
+2022.
+"ClockBoard: A Zoning System for Urban Analysis." Journal of Spatial Information Science, no. 24 (June): 63--85.
+https://doi.org/10.5311/JOSIS.2022.24.172.
+
+For more on Geocomputation with R, see https://r.geocompx.org, and join our Discord server at https://discord.gg/PMztXYgNxp
+
+## References {.smaller}
