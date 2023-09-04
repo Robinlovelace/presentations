@@ -19,8 +19,11 @@ Key concepts:
 
 -   Open source software and research
 
--   Reproducibility
-
+```{=html}
+<!---
+ -   Reproducibility 
+--->
+```
 -   From research to impact
 :::
 
@@ -96,11 +99,42 @@ tmap_leaflet(
 
 Source: [Tidy geographic data](https://ogh23.robinlovelace.net/tidy) course notes from OpenGeoHub 2023, building on Geocomputation with R @lovelace2019.
 
-## Geocomputation
+## Geocomputation {.smaller}
 
+::: columns
+::: column
 > Geocomputation is the application and development of computational methods for geographic data processing, analysis, modeling and visualisation with command-line tools and scripts, focussed on performance, reproducibility and modularity
 
 Source: Geocomputation with R [@lovelace2019]
+:::
+
+::: column
+```{r}
+#| echo: true
+library(leaflet)
+popup = c("Robin", "Jakub", "Jannes")
+leaflet() |>
+  addProviderTiles("NASAGIBS.ViirsEarthAtNight2012") |>
+  addMarkers(lng = c(-3, 23, 11),
+             lat = c(52, 53, 49), 
+             popup = popup)
+```
+:::
+:::
+
+## Open source books
+
+::: columns
+::: column
+![](https://r.geocompx.org/images/cover.png)
+:::
+
+::: column
+For more open source books see [bookdown.org](https://bookdown.org/home/archive/) ![](https://r-spatial.org/book/images/cover.jpg)
+:::
+:::
+
+## Reproducibility
 
 ## Economics of Low Carbon Markets
 
@@ -272,9 +306,18 @@ Source: @moreno-monroy2018
 
 ## Disaggregating origin-destination data
 
+::: columns
+::: column
+
 Souce: Lovelace et al ([2022](https://doi.org/10.32866/001c.33873)) 'Jittering: A Computationally Efficient Method for Generating Realistic Route Networks from Origin-Destination Data'.
 
+:::
+::: column
+
 ![](images/paste-11.png)
+
+:::
+:::
 
 ## A larger OD dataset
 
@@ -283,6 +326,37 @@ Souce: Lovelace et al ([2022](https://doi.org/10.32866/001c.33873)) 'Jittering: 
 ## Resulting networks
 
 ![](images/paste-13.png)
+
+## Open tools to inform policy
+
+::: columns
+::: column
+::: incremental
+-   [www.pct.bike](https://www.pct.bike)
+-   [www.cruse.bike](https://www.cruse.bike)
+-   biclaR, hosted at [biclar.tmlmobilidade.pt](https://biclar.tmlmobilidade.pt/index/)
+-   [www.npt.scot](https://nptscot.github.io)
+:::
+:::
+
+::: column
+### Live demo
+
+![](images/paste-14.png)
+:::
+:::
+
+## Open question
+
+How can Geocomputation be better used to support low carbon economics research?
+
+![](images/paste-15.png)
+
+::: {.smaller}
+
+Source: Morton et al. [2018](https://doi.org/10.1016/j.trd.2018.07.008) 'Fuel Price Differentials and Car Ownership: A Spatial Analysis of Diesel Cars in Northern Ireland'.
+
+:::
 
 ## More info
 
