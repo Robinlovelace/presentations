@@ -12,3 +12,4 @@
 
 # ...and these directories
 !images/
+.Rproj.user

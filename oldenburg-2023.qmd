@@ -7,6 +7,10 @@ execute:
 bibliography: references-oldenburg.bib
 ---
 
+::: {.notes}
+Speaker notes 1 go here.
+:::
+
 ## Key concepts
 
 ::: incremental
@@ -23,6 +27,10 @@ I will be presenting at the "Policy Session" on open compuational tools such as 
 -   Reproducibility 
 
 -   From research to impact
+:::
+
+::: {.notes}
+Speaker notes 1 go here.
 :::
 
 ## A bit about me

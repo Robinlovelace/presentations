@@ -1,0 +1,192 @@
+---
+title: "Data for a step change in active travel"
+# subtitle: "From evidence-based policies to participatory planning"
+author: "Robin Lovelace<br>🎩 University of Leeds 🎩 <br>[Head of Data Science at ATE](https://www.gov.uk/government/organisations/active-travel-england)"
+date: "2023-12-13"
+output:
+  xaringan::moon_reader:
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(tmap)
+tmap_mode("view")
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### Bio 🌱
+
+I'm an Associate Professor of **Transport Data Science**, University of Leeds. Experienced data scientist with track record developing + deploying new **methods**, **tools** and **software** + influencing policy. 
+
+--
+
+### 10DS Fellowship -> Active Travel England 🏗
+
+10DS: data science team in No. 10 under Laura Gilbert, head of data on No. 10
+
+October 2021 to March 2023 (Jan-Dec 2022 80% FTE placement phase)
+
+As No.10 Data Science Fellow my job is to **use data science expertise to support the needs of central government**.
+
+2 days per week: working at ATE to build a world leading data science, monitoring/evaluation and **tool-building** team
+
+--
+
+### Work in Active Travel England 🚀
+
+Head of Data and Digital (2023) Head of Data Science (2024)
+
+???
+
+especially in relation to ... decarbonisation, active travel and the government's leveling-up agenda.
+The government has set-out these priorities ...
+<!-- the *Decarbonising transport: setting the challenge* -->
+<!-- ^[https://www.gov.uk/government/publications/creating-the-transport-decarbonisation-plan] -->
+<!-- report (a precursor to the forthcoming Transport Decarbonisation Plan), the *Gear Change* vision for walking and cycling, -->
+<!-- ^[https://www.gov.uk/government/publications/cycling-and-walking-plan-for-england] -->
+<!-- and the *Levelling Up Fund* prospectus. -->
+<!-- ^[https://www.gov.uk/government/publications/levelling-up-fund-prospectus] -->
+
+---
+
+#### What can data do for us?
+
+![](https://saferactive.github.io/trafficalmr/articles/covid.png)
+
+![](https://a-b-street.github.io/docs/project/history/retrospective/edit_roads.gif)
+
+???
+
+4 main things, first 2 are well known, the second 2 are not:
+
+- Provide objective and persuasive information about the world and making the case for change
+
+- Tell or reinforce stories about change, down to the local level
+
+- Create a long term vision that is based on reality that we can aim towards
+
+- Enable more participatory and therefore democratic and successful processes
+
+---
+
+# Example: The Propensity to Cycle Tool
+
+![](https://github.com/npct/pct-team/blob/master/figures/front-page-leeds-pct-demo.png?raw=true)
+
+???
+
+First thing to say: Ministers, and this is Chris Grayling, like digital tools, quicker than reading a PDF
+
+The tool has influenced hundreds of millions of pounds of investment in strategic cycle networks
+
+More than that, it's changed the way that planning happens
+
+We can go way beyond it with a team
+
+---
+
+# Thinking about data (science)
+
+Data science as climbing the DIKW pyramid
+
+```{r, echo=FALSE, out.width="70%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/DIKW_Pyramid.svg/220px-DIKW_Pyramid.svg.png")
+```
+
+???
+
+Definitions of data science:
+
+- Climbing the DIKW pyramid
+
+- Systematic and scalable data processing
+
+- Statistics that is actually useful: getting shit done with data
+
+---
+
+# Example: travel to school data
+
+![](https://user-images.githubusercontent.com/1825120/181659133-ab095c6e-b52a-4bc4-85de-9c3a0096833e.png)
+
+![](https://user-images.githubusercontent.com/1825120/181659374-bbd21050-0192-4548-8bab-1479c63fc444.png)
+
+---
+
+# Making transport possibilities come to life
+
+![](https://github.com/zonebuilders/zonebuilder/releases/download/v0.0.2.9000/cityscale.png)
+
+
+![](https://user-images.githubusercontent.com/1825120/141021386-3ee6af6d-8ca8-4f4c-9856-c636f4a8fc0e.png)
+
+---
+
+# Extra slides + links
+
+- PCT: https://www.pct.bike/
+- CyIPT: https://www.cyipt.bike/
+- ActDev slides: https://www.robinlovelace.net/presentations/actdev-dft-slides.html
+- Rapid: https://www.cyipt.bike/rapid/
+- A/B Street: https://github.com/a-b-street/abstreet
+- GrowBike: https://growbike.net/city/london
+
+## Extra: The importance of tools
+
+```{r, out.width="30%", fig.show='hold', echo=FALSE}
+knitr::include_graphics(c(
+  "https://docs.ropensci.org/stplanr/reference/figures/stplanr.png",
+  "https://raw.githubusercontent.com/ropensci/stats19/master/man/figures/logo.png",
+  "https://github.com/Robinlovelace/geocompr/blob/main/images/geocompr_hex.png?raw=true"
+))
+```
+
+--
+
+- Evidence-based policies in government: [Data Science Fellowship at N. 10](https://www.ukri.org/opportunity/esrc-adr-uk-no-10-data-science-fellowships-2021/)
+
+???
+
+- Turing Fellowship 
+- LIDA internship on open transport infrastructure data
+- Links with DfT, MHCLG, TfNH, international partners
+
+---
+
+.left-column[
+
+### Extra: Importance of geo tools
+
+Active travel interventions are local
+
+Tools should be:
+
+Accessible
+
+Evolving
+
+Scalable
+
+Open
+
+]
+
+--
+
+.right-column[
+
+```{r}
+knitr::include_graphics("https://user-images.githubusercontent.com/1825120/142071229-81358e26-5e8d-437e-9ef8-91704a4e690f.png")
+```
+
+Source: Morgan and Lovelace (2020) https://doi.org/10.1177/2399808320942779
+
+]
+
+???
+
+

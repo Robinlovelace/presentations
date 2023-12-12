@@ -2,7 +2,7 @@
 title: "How data will help us win"
 subtitle: "From evidence-based policies to participatory planning"
 author: "Robin Lovelace, University of Leeds <br>[Data Science Fellow at No. 10](https://www.ukri.org/opportunity/esrc-adr-uk-no-10-data-science-fellowships-2021/)<br>[Data Scientist at ATE](https://www.gov.uk/government/organisations/active-travel-england)"
-date: "2022-08-02"
+date: "2023-12-13"
 output:
   xaringan::moon_reader:
     nature:
@@ -10,6 +10,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
+
 
 ```{r, include=FALSE}
 library(tidyverse)
