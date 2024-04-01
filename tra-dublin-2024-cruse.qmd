@@ -1,0 +1,153 @@
+---
+title: "CRUSE"
+subtitle: "Cycle Route Uptake and Scenario Estimation Tool workshop"
+author: "Robin Lovelace and Joey Talbot on behalf of the CRUSE team"
+institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
+format:
+  revealjs:
+    embed-resources: true
+# Update with each save:
+editor:
+  render-on-save: true
+---
+
+## Agenda
+
+-   Introduction (5 min)
+
+-   Changes to CRUSE: extension work (15 min)
+
+-   Testing new website (10 min)
+
+-   Feedback, Q&A + discussion (30 min)
+
+    -   General feedback on new site
+    -   Feedback on the recreational outputs
+    -   Feedback on the tourism network
+
+## Introduction
+
+```{r ncn, fig.cap="Map illustrating the National Cycle Network proposed by Transport Infrastructure Ireland in 2010.", eval=FALSE}
+# knitr::include_graphics("../figures/national-cycle-network-tii-2010.png")
+```
+
+<!-- ![](../figures/national-cycle-network-tii-2010.png) -->
+
+Source: [National Cycle Network Scoping Study](https://www.eltis.org/sites/default/files/case-studies/documents/2012_12_27_final_ncnscopingstudyaugust201011.pdf)
+
+![](images/paste-4.png)
+
+## Interactive, open, robust, national evidence
+
+<!-- Source: [demo tourist network](https://rpubs.com/RobinLovelace/1115449) -->
+
+<!-- ![](images/paste-8.png) -->
+
+![](images/cruse-website.png)
+
+## Presentation in Sligo
+
+-   We presented at the TII National Roads and Greenways Conference, September 2022
+
+![](images/paste-17.png)
+
+## Overview: how did we get here?
+
+![](images/paste-2.png)
+
+## What is CRUSE?
+
+![](images/paste-3.png)
+
+## Impact of recreation: old
+
+![](images/paste-7.png)
+
+## Impact of updated build + visualisation
+
+![](images/paste-5.png)
+
+## Impact of recreation: new
+
+![](images/paste-6.png)
+
+## Updates to county level statistics
+
+-   Note: number of trip to be updated
+
+![](images/paste-9.png)
+
+## Results: trip distance/frequency/mode
+
+![](images/paste-10.png)
+
+## Sampling cycleways as tourist trip origins/destinations
+
+![](images/paste-14.png)
+
+## Weighted tourism potential
+
+![](images/paste-16.png)
+
+## Trips between Counties - unjittered
+
+![](images/paste-15.png)
+
+## Trips between Counties - jittered
+
+![](images/paste-13.png)
+
+## Results: National cycle tourism (balanced network)
+
+![](images/paste-11-resized.png)
+
+## Results: National cycle tourism (fastest network)
+
+![](images/paste-12.png)
+
+## Notes on modelling approach
+
+-   identifying destinations for recreational trips
+
+    -   cycleways (Greenways, EuroVelo, Sports Ireland and OSM)
+    -   tourism nodes from Geodirectory (e.g. campsites)
+    -   green spaces from OSM
+
+## Notes on modelling II
+
+-   simulating trips to destinations
+
+    -   number of trips: 5 recreational cycle trips per 100 people (from PAG Unit 13 - see link in recreational.Rmd)
+    -   turn destinations into point layer
+    -   assign destination weights
+    -   intra-county and inter-county trips
+
+-   routing
+
+-   validation <!-- -   strava -->
+
+## Next steps: Phase 2
+
+-   Update to include new Census results
+-   New POWSCAR data [available from 2023](https://www.cso.ie/en/census/census2022/powscar/)
+-   Updates to User Interface
+-   Improvements to make the contributions and additions easier
+    -   Refactor the codebase
+    -   Open source the codebase
+    -   Building a community of contributors
+-   Training and community building
+
+## Feedback, Q&A, discussion
+
+-   Does the network in your home County look reasonable?
+-   Are the visualisations clear and appropriate?
+-   How do you envisage using the CRUSE tool in your work?
+-   Is anything missing?
+
+## Links
+
+-   To compare old site with new site see pages at
+
+    -   Old site: <https://cruse.bike/>
+
+    -   New site: [https://dev.cruse.bike/](https://cruse.bike/){.uri}
