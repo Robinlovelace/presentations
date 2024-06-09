@@ -1,7 +1,7 @@
 ---
-title: "CRUSE"
-subtitle: "Cycle Route Uptake and Scenario Estimation Tool workshop"
-author: "Robin Lovelace and Joey Talbot on behalf of the CRUSE team"
+title: "CRUSE to safe cycling in Ireland:"
+subtitle: "an open source methodology to support active travel"
+author: "Robin Lovelaceon behalf of the CRUSE team"
 institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
 format:
   revealjs:
