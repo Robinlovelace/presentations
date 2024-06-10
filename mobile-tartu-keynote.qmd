@@ -48,12 +48,16 @@ bibliography: refs_tartu.bib
 
 ::: incremental
 -   Definitions: what is reproducible research and future proof transport planning?
--   Reproducible research
--   Open source tools
+-   Reproducible research and open tools
 -   Future-proof transport planning
 :::
 
 ## Definitions
+
+> a tool is a ...
+> piece of software or online service; a model ...
+> is method or process that is expounded in theoretical terms; software is ...
+> instructions that underlies digital tools @lovelace2021
 
 **Reproducible research**: Other people can re-generate your results
 
@@ -71,7 +75,9 @@ bibliography: refs_tartu.bib
 
 . . .
 
-**Future-proof** work that is likely to be useful in the medium-term future (10 years+), regardless of (political, economic, technological) changes
+**Future-proof** work that is likely to be useful in the medium-term future
+
+<!-- (10 years+), regardless of (political, economic, technological) changes -->
 
 ## Reproducibility
 
@@ -79,12 +85,181 @@ Reproducibility is a continuous variable [@peng2011]
 
 ![](images/paste-18.png)
 
+# Reproducible research
+
+## Why make your research (more) reproducible?
+
+:::: columns
+
+::: {.column width="80%"}
+
+![](images/paste-36.png)
+
+Source: @raff2023
+
+:::
+
+::: {.column width="20%"}
+
+::: {.incremental}
+
+- Scientific rigour
+- Benefits to your future self
+- Benefits to others
+- Huge increase in potential for impact
+
+:::
+
+:::
+
+::::
+
+
+
+## Why *not* make your research reproducible?
+
+::: {.column width="20%"}
+![](images/paste-28.png)
+:::
+
+::: column
+-   Time
+
+-   Know-how
+
+-   Lack of permission
+
+-   Software is not open
+
+-   Data is not open access
+
+-   Someone might use it in unethical ways
+
+-   Someone might "steal" the work
+:::
+
 ## Example of fully reproducible research
+
+![](images/paste-23.png)
+
+@lovelace2022
+
+## Reproducibility and generalisability
+
+![](images/paste-24.png)
+
+Illustration of the ClockBoard zoning system used to visualize a geographically dependendent phenomena: air quality, measured in mass of PM10 particles, measured in micrograms per cubic meter, from the London Atmospheric Emissions Inventory (LAEI).
+The facets show the data in spatial grid available from the LAEI, facet Am and aggregated to London boroughs B, to ClockBoard zones covering all the input data shown in C, and ClockBoard zones clipped by the administrative boundary of Greater London in D.
+
+## Application: road traffic casualties
+
+![](images/paste-26.png)
+
+![](images/paste-27.png)
+
+## International comparisons
+
+::: columns
+::: {.column width="70%"}
+![](images/paste-25.png)
+:::
+
+::: {.column width="30%"}
+**Premise**: A key reason for reproducibility is *generalisability*.
+:::
+:::
+
+# Open source software and open access tools
+
+# Future-proof transport planning {background-image="images/paste-35.png" background-opacity="0.5"}
+
+<!-- ![](images/paste-35.png) -->
+
+Source: [situational-awareness.ai](https://situational-awareness.ai/wp-content/uploads/2024/06/situationalawareness.pdf)
+
+## Drivers of demand for transport planning
+
+transport planning software was originally designed in the late 1950s and onwards to plan for
+
+> increased use of cars \[for personal travel\], and trucks for deliveries and goods movement @boyce2015
+
+Thankfully that is no longer a priority:
+
+> Policy drivers have changed dramatically since then: climate change mitigation, air quality improvement and public health are prioritised in the emergent ‘sustainable mobility paradigm’ @lovelace2021
+
+How could/should/will demand shift in the future?
+
+## AI takeover?
+
+<!-- <iframe src="https://ourworldindata.org/grapher/test-scores-ai-capabilities-relative-human-performance?country=Handwriting+recognition~Speech+recognition~Image+recognition~Reading+comprehension~Language+understanding~Predictive+reasoning~Code+generation~Complex+reasoning~General+knowledge+tests~Nuanced+language+interpretation~Math+problem-solving~Reading+comprehension+with+unanswerable+questions&tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe> -->
+
+![](images/paste-32.png)
+
+## Where are we headed with AI?
+
+![](images/paste-33.png)
+
+Source: <https://situational-awareness.ai>
+
+## The limits of AI
+
+![](images/paste-21.png)
+
+[@nezhurina]
+
+## Environmental costs of 'AI'
+
+::: columns
+::: {.column width="55%"}
+![](images/paste-29.png)
+
+![](images/paste-31.png)
+:::
+
+::: {.column width="45%"}
+IT sector was already poised to become a decarbonisation bottleneck
+
+![](images/paste-30.png)
+:::
+:::
+
+Source: [theregister.com](https://www.theregister.com/2024/05/16/microsoft_co2_emissions/) and @gupta2021
+
+## Factoring-in build-out of AI data centres
+
+![](images/paste-34.png)
+
+## Conclusions
+
+-   Reproducible research is a key part of future-proofing transport planning, for your work, and for the discipline as a whole
+
+-   Open source software and open access tools are key to this, especially if you want to have humans in the loop
+
+-   AI is not a panacea, and has its own environmental costs
+
+-   In this context, there are some key desirable features of future-proof transport models and associated software and tools:
+
+    -   Open source
+    -   Open access
+    -   Reproducible
+    -   Human-in-the-loop
+    -   Easily adaptable to new data sources, methods, and demands
+
+## References
+
+::: {#refs}
+:::
+
+## Appendix: What if the machines *do* take over? {#sec-appendix}
+
+-   Would you want the AIs to be trained on your work?
+    -   Initial thought: no way, that's my data!
+    -   Second thought: if the AIs are going to take over, they might as well be well-informed, by good information and good intentions!
+-   Would you want to be able to understand how the AIs work?
 
 ...
 
-
-
+````{=html}
 <!-- ## Before you proceed...
 
 ### Requirements for the coding examples in this demo
@@ -354,21 +529,4 @@ or, create a new project using these demo slides as a full template.
 ``` bash
 quarto use template grantmcdermott/quarto-revealjs-clean-demo
 ``` -->
-
-## References
-
-::: {#refs}
-:::
-
-## Appendix {#sec-appendix}
-
-```{r}
-#| cache: true
-#| label: tbl-attsum
-#| tbl-cap: Summary of the base R `attitude` dataset
-
-library(modelsummary)
-datasummary_skim(attitude)
-```
-
-[[Back to main](#sec-crossref)]{.button}
+````
