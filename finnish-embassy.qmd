@@ -19,32 +19,31 @@ execute:
 
 ## Context
 
-- About me and my background
-  - Professor of Transport Data Science at University of Leeds
-  - Focus on open, reproducible transport planning tools
-  - Worked in Active Travel England to build data and digital capacity
-- What I'll be talking about today: open, reproducible, internationally-scalable transport tools
-- How this aligns with GREENTRAVEL project's aims and themes
+-   About me and my background
+    -   Professor of Transport Data Science at University of Leeds
+    -   Focus on open, reproducible transport planning tools
+    -   Worked in Active Travel England to build data and digital capacity
+-   What I'll be talking about today: open, reproducible, internationally-scalable transport tools
+-   How this aligns with GREENTRAVEL project's aims and themes
 
-::: {.notes}
+::: notes
 Thank you for the invitation to speak at this networking event on active, sustainable and green urban mobility at the Finnish Embassy.
 
 I'm particularly excited to be here because of the strong alignment between my work on open transport planning tools and the GREENTRAVEL project's focus on:
 
-- Greenery and green infrastructure in urban environments
-- Active travel promotion and planning
-- Exposure-aware routing that considers air quality and environmental factors
-- Multi-city analysis to enable international comparisons and learning
+-   Greenery and green infrastructure in urban environments
+-   Active travel promotion and planning
+-   Exposure-aware routing that considers air quality and environmental factors
+-   Multi-city analysis to enable international comparisons and learning
 
 These themes run through everything I'll be presenting today, and I hope we can find opportunities to collaborate and share knowledge across our projects.
+
+What I'll be covering today includes:
+
+-   Why open and future-proof?
+-   Scalable tools and case studies (UK, Portugal, international)
+-   Opportunities to connect with GREENTRAVEL and partners
 :::
-
-
-## Contents
-
-- Why open and future-proof?
-- Scalable tools and case studies (UK, Portugal, international)
-- Opportunities to connect with GREENTRAVEL and partners
 
 ## Why open access beyond open source?
 
@@ -60,56 +59,7 @@ Source: [@lovelace2020]
 :::
 :::::
 
-## Reproducible research in practice
-
-- Fully reproducible pipelines improve trust, reuse and scale
-- Example: spanishoddata package and paper now part of rOpenSpain community
-
-![](images/paste-13.png)
-
-## Network Planning Tool for Scotland (NPT)
-
-- Discover and prioritise active travel networks at scale
-- Open data, transparent methods, web UI for planners and the public
-- Source: npt.scot
-
-![](images/paste-91.png)
-
-## Network Planning Workspace (NPW)
-
-- Collaborative design space for schemes, scenarios and evidence
-- Bridges data science and delivery
-- Source: npw.scot
-
-![](images/paste-90.png)
-
-## International portability by design
-
-- Shared, open building blocks (data, code, methods)
-- Modular tools adapted from UK to other cities/regions
-- Aligns with GREENTRAVEL’s multi-city analyses and exposure-aware routing
-
-## Opportunities to align with GREENTRAVEL
-
-- Green routes and exposure metrics as first-class decision inputs
-- Combine survey/VR insights with network analytics and open platforms
-- Co-develop reproducible, comparable indicators across cities
-
-## Ideas for near-term collaboration
-
-- ActiveCount: scalable, low-cost active travel counts
-
-![](images/paste-79.png)
-
-- SchoolRoutes: safer, greener routes to school
-
-![](images/paste-80.png)
-
-- NetGen: crowd-informed network generation; “the crowd is the territory” [@anderson2018]
-
-![](images/paste-81.png)
-
-## How to get involved
+## Communities of practice
 
 ::::: columns
 ::: {.column width="65%"}
@@ -119,17 +69,86 @@ Source: [@lovelace2020]
 :::
 
 ::: {.column width="35%"}
-- Get a GitHub account
-- Ask questions, open issues
-- Share datasets, reproducible examples
-- Pilot features, report bugs, contribute docs
+-   Open source books have 80+ contributors
+-   Technical solutions are only as good as the community using (and contributing to) them
+-   Share datasets, reproducible examples
+-   Pilot features, report bugs, contribute docs
 :::
 :::::
 
+## Example: plan.activetravelengland.gov.uk
+
+![](images/paste-95.png)
+
+## Reproducible research in practice
+
+-   Fully reproducible pipelines improve trust, reuse and scale
+-   Example: spanishoddata package and paper now part of rOpenSpain community
+
+![](images/plan-ate.png)
+
+## Network Planning Tool for Scotland ([npts.scot](https://npts.scot))
+
+-   Discover and prioritise active travel networks at scale
+-   Open data, transparent methods, web UI for planners and the public
+-   National estimates of road traffic volumes and cycling Level of Service
+
+![](images/paste-91.png)
+
+::: notes
+-   Could be deployed in Finland?
+:::
+
+```{=html}
+<!-- ## Network Planning Workspace (NPW)
+
+- Collaborative design space for schemes, scenarios and evidence
+- Bridges data science and delivery
+- Source: npw.scot
+
+![](images/paste-90.png) -->
+```
+
+## International portability by design
+
+-   Shared, open building blocks (data, code, methods)
+-   Modular tools adapted from UK to other cities/regions
+-   Aligns with GREENTRAVEL’s multi-city analyses and exposure-aware routing
+
+```{=html}
+<!-- ## Opportunities to align with GREENTRAVEL
+
+- Green routes and exposure metrics as first-class decision inputs
+- Combine survey/VR insights with network analytics and open platforms
+- Co-develop reproducible, comparable indicators across cities -->
+```
+
+## Ideas for collaboration
+
+------------------------------------------------------------------------
+
+### TRACE: scalable, low-cost active travel counts
+
+![](images/paste-79.png)
+
+------------------------------------------------------------------------
+
+### SchoolRoutes: safer, greener routes to school
+
+![](images/paste-80.png)
+
+------------------------------------------------------------------------
+
+### NetGen: crowd-informed network generation; “the crowd is the territory” [@anderson2018]
+
+![](images/paste-81.png)
+
+------------------------------------------------------------------------
+
 # Thank you
 
-- Slides and code: github.com/robinlovelace/presentations
-- Contact: r.lovelace@leeds.ac.uk | @robinlovelace.bsky.social
+-   Slides and code: github.com/robinlovelace/presentations
+-   Contact: r.lovelace\@leeds.ac.uk \| @robinlovelace.bsky.social
 
 ## References {.scrollable}
 
