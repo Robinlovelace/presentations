@@ -1,0 +1,137 @@
+---
+title: New tools for internationally-scalable future-proof transport planning
+format:
+  clean-revealjs:
+    self-contained: true
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Robin Lovelace
+    email: r.lovelace@leeds.ac.uk
+    affiliations: Institute for Transport Studies, University of Leeds
+    orcid: 0000-0001-5679-6536
+date: 2025-10-22
+bibliography: references.bib
+execute:
+  cache: true
+---
+
+## Context
+
+- About me and my background
+  - Professor of Transport Data Science at University of Leeds
+  - Focus on open, reproducible transport planning tools
+  - Worked in Active Travel England to build data and digital capacity
+- What I'll be talking about today: open, reproducible, internationally-scalable transport tools
+- How this aligns with GREENTRAVEL project's aims and themes
+
+::: {.notes}
+Thank you for the invitation to speak at this networking event on active, sustainable and green urban mobility at the Finnish Embassy.
+
+I'm particularly excited to be here because of the strong alignment between my work on open transport planning tools and the GREENTRAVEL project's focus on:
+
+- Greenery and green infrastructure in urban environments
+- Active travel promotion and planning
+- Exposure-aware routing that considers air quality and environmental factors
+- Multi-city analysis to enable international comparisons and learning
+
+These themes run through everything I'll be presenting today, and I hope we can find opportunities to collaborate and share knowledge across our projects.
+:::
+
+
+## Contents
+
+- Why open and future-proof?
+- Scalable tools and case studies (UK, Portugal, international)
+- Opportunities to connect with GREENTRAVEL and partners
+
+## Why open access beyond open source?
+
+::::: columns
+::: {.column width="45%"}
+“Open access goes beyond open source … users are encouraged to view and edit the source code, with measures taken to make it more user-friendly.”
+
+Source: [@lovelace2020]
+:::
+
+::: {.column width="55%"}
+![](images/paste-10.png)
+:::
+:::::
+
+## Reproducible research in practice
+
+- Fully reproducible pipelines improve trust, reuse and scale
+- Example: spanishoddata package and paper now part of rOpenSpain community
+
+![](images/paste-13.png)
+
+## Network Planning Tool for Scotland (NPT)
+
+- Discover and prioritise active travel networks at scale
+- Open data, transparent methods, web UI for planners and the public
+- Source: npt.scot
+
+![](images/paste-91.png)
+
+## Network Planning Workspace (NPW)
+
+- Collaborative design space for schemes, scenarios and evidence
+- Bridges data science and delivery
+- Source: npw.scot
+
+![](images/paste-90.png)
+
+## International portability by design
+
+- Shared, open building blocks (data, code, methods)
+- Modular tools adapted from UK to other cities/regions
+- Aligns with GREENTRAVEL’s multi-city analyses and exposure-aware routing
+
+## Opportunities to align with GREENTRAVEL
+
+- Green routes and exposure metrics as first-class decision inputs
+- Combine survey/VR insights with network analytics and open platforms
+- Co-develop reproducible, comparable indicators across cities
+
+## Ideas for near-term collaboration
+
+- ActiveCount: scalable, low-cost active travel counts
+
+![](images/paste-79.png)
+
+- SchoolRoutes: safer, greener routes to school
+
+![](images/paste-80.png)
+
+- NetGen: crowd-informed network generation; “the crowd is the territory” [@anderson2018]
+
+![](images/paste-81.png)
+
+## How to get involved
+
+::::: columns
+::: {.column width="65%"}
+![](images/paste-86.png)
+
+![](images/paste-87.png)
+:::
+
+::: {.column width="35%"}
+- Get a GitHub account
+- Ask questions, open issues
+- Share datasets, reproducible examples
+- Pilot features, report bugs, contribute docs
+:::
+:::::
+
+# Thank you
+
+- Slides and code: github.com/robinlovelace/presentations
+- Contact: r.lovelace@leeds.ac.uk | @robinlovelace.bsky.social
+
+## References {.scrollable}
+
+::: {#refs}
+:::
