@@ -1,0 +1,705 @@
+---
+title: Data Science for Future-Proof Transport Planning
+format: 
+  # Install plugin with quarto install extension grantmcdermott/quarto-revealjs-clean
+  clean-revealjs:
+    self-contained: true
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Inaugural Lecture<br>Robin Lovelace
+    orcid: 0000-0001-5679-6536
+    email: r.lovelace@leeds.ac.uk
+    affiliations: University of Leeds
+date: 2025-05-08
+bibliography: references.bib
+execute: 
+  cache: true
+---
+
+```{r}
+#| include: false
+#| cache: false
+library(tidyverse)
+library(sf)
+remotes::install_cran("rmapshaper")
+library(tmap)
+tmap_mode("view")
+```
+
+## Contents
+
+Past
+
+-   Before Leeds
+-   Leeds
+
+**Present**
+
+-   Transport Data Science
+-   Biclar
+-   Network Planning Tool
+
+**FUTURE**
+
+::: notes
+-   Past: my journey and the people who made it possible
+    -   Taking the liberty of talking about my life
+-   Present: where I'm at
+-   Future: where I'm going
+:::
+
+## My journey
+
+```{r}
+#| include: false
+locations = read_csv("locations.csv")
+# locations
+# # A tibble: 7 × 2
+#   address    year
+#   <chr>     <dbl>
+# 1 Hereford   1985
+# 2 Bristol    2004
+# 3 Salamanca  2006
+# 4 Bristol    2007
+# 5 York       2008
+# 6 Sheffield  2009
+# 7 Leeds      2013
+locations_until = locations |>
+  mutate(
+    until = c(as.character(year[-1]), ""),
+    Years = paste0(address, ": ", year, " - ", until)
+  )
+locations_salamanca = locations_until |>
+  filter(address == "Salamanca")
+locations_minimal = locations |>
+  filter(address != "Salamanca") |>
+  filter(year != 2007) |>
+  mutate(
+    until = c(as.character(year[-1]), ""),
+    Years = paste0(address, ": ", year, " - ", until)
+  )
+locations_updated = bind_rows(
+  locations_salamanca,
+  locations_minimal
+) |>
+  arrange(year) |>
+  transmute(
+    Location = address,
+    Years
+  )
+locations_updated |>
+  knitr::kable()
+readr::write_csv(locations_updated, "locations_updated.csv")
+```
+
+```{r}
+if (!file.exists("locations.geojson")) {
+  locations = read_csv("locations_updated.csv")
+  locations_lonlat = sapply(locations$Location, stplanr::geo_code)
+  # locations_lonlat_df = data.frame(
+  #   lon = runif(nrow(locations), -2, 2),
+  #   lat = runif(nrow(locations), 40, 55)
+  # )
+  locations_lonlat_df = locations_lonlat |>
+    t() |>
+    as.data.frame() |>
+    setNames(c("lon", "lat"))
+  locations_sfc = sf::st_as_sf(locations_lonlat_df, coords = c("lon", "lat"), crs = 4326)
+  locations_sf = sf::st_sf(
+    locations,
+    geometry = locations_sfc$geometry
+  )
+  sf::write_sf(locations_sf, "locations.geojson", delete_dsn = TRUE)
+} else {
+  locations_sf = read_sf("locations.geojson")
+}
+```
+
+```{r}
+#| label: fig-locations-1
+#| fig.cap: "Places I have lived for 1+ years"
+tm_shape(locations_sf) + 
+  tm_dots("lightblue", size = 1) +
+  tm_text("Years")
+```
+
+# Past. Herefordshire (1985-2004) {.center background-image="images/paste-15.png" background-opacity="0.5"}
+
+Photo taken: 1932 in Norton Canon, Herefordshire
+
+::: notes
+-   Hard to know how far to go back
+-   Where I was born seems a good place to start, in Norton Canon
+-   It wasn't this house, but was in the same location, in a photo taken in 1932. I have no idea how my dad got this photo, but it was a great find!
+-   My mum and dad moved to Herefordshire in 1979
+-   I was born in 1985, six years after they moved but the house still wasn't 100% finished, I may have inherited some of my dad's time optimism
+-   Huge thanks to them for physically building a strong foundation for me
+:::
+
+## Where I grew up
+
+Photo: 2025 from Google Street View
+
+![](images/paste-16.png)
+
+## Where I'm from
+
+```{r}
+#| label: fig-locations-hereford
+#| fig.cap: "Places where I spent a lot of time in Herefordshire"
+if (!file.exists("locations_herefordshire.geojson")) {
+Location = c(
+  "HR4 7BP",
+  "Weobley school, Herefordshire",
+  "Hereford",
+  "Leominster, Herefordshire",
+  "Hay on Wye"
+  )
+locations_lonlat = sapply(Location, stplanr::geo_code)
+locations_lonlat_df = locations_lonlat |>
+  t() |>
+  as.data.frame() |>
+  setNames(c("lon", "lat"))
+locations_herefordshire = sf::st_as_sf(locations_lonlat_df, coords = c("lon", "lat"), crs = 4326)
+Location[1] = "Pool Cottage"
+locations_herefordshire$Location = Location
+sf::write_sf(locations_herefordshire, "locations_herefordshire.geojson", delete_dsn = TRUE)
+} else {
+  locations_herefordshire = read_sf("locations_herefordshire.geojson")
+}
+qtm(locations_herefordshire) + 
+  tm_dots("lightblue", size = 1) +
+  tm_text("Location")
+
+```
+
+::: notes
+-   Norton Canon is a village with around 200 people
+-   It had a school, shop, pub church, post office and garage within walking distance when I was growing up but now only has two of those
+-   It's remote, roughly equidistant from Hereford, Leominster and Hay on Wye
+-   Although Hay on Wye is physically closer, it always felt further away because we rarely went that way, but you could feel the Welsh influence in the Black Mountains
+-   I went to school in Weobley, which is a village with a primary school and secondary school, and a few shops, but not much else
+-   I went to Hereford Sixth Form College in what felt like a big city at the time, but is less than a 10th the size of Leeds with around 50,000 people
+-   I worked in the leisure centre in Leominster and played lots of sport
+:::
+
+```{=html}
+<!-- ## Pool Cottage in the garden
+
+![](images/paste-37.png) -->
+```
+
+```{=html}
+<!-- ## Weobley primary school
+
+![](images/paste-38.png) -->
+```
+
+<!-- Photo of Weobley High School / IMD -->
+
+```{=html}
+<!-- ::: notes
+
+This is a photo of the football team in Weobley primary school
+
+::: -->
+```
+
+# Bristol (2004-2008) {.center background-image="images/paste-2.jpeg" background-opacity="0.5"}
+
+Photo taken: April 2025 at the GISRUK conference in Bristol
+
+With a year in Salamanca
+
+```{=html}
+<!-- ![](images/paste-39.png)
+
+## Bristol 2025
+
+![](images/paste-40.png) -->
+```
+
+# Salamanca (2006-2007) {.center background-image="images/paste-3.jpeg" background-opacity="0.5"}
+
+Photo taken: June 2007 from my flat at the time in Salamanca
+
+```{=html}
+<!-- ## Salamanca on Erasmus exchange (2006-2007)
+
+![](images/paste-55.png) -->
+```
+
+# York (2008-2009) {.center background-image="images/paste-4.jpeg" background-opacity="0.5"}
+
+------------------------------------------------------------------------
+
+-   Scholarship to study Environmental Science and Management
+
+```{bash}
+#| eval: false
+# Install imagemagick on ubuntu
+sudo apt install imagemagick
+# Crop the top 15% off images/paste-51.png
+mogrify -gravity North -crop 100%x85%+0+0 images/paste-51.png
+```
+
+::::: columns
+::: {.column width="50%"}
+![](images/paste-52.png)
+
+Influential book "SEWTHA", freely available at [withouthotair.com](https://www.withouthotair.com/) [@mackay2009]
+:::
+
+::: {.column width="50%"}
+![](images/paste-54.png)
+
+Blog post in [The Oil Drum](http://theoildrum.com/node/5976)
+:::
+:::::
+
+# Sheffield {.center background-image="images/paste-1.jpeg" background-opacity="0.5" background-size="70%"}
+
+```{=html}
+<!-- ## a
+
+![](images/paste-43.png) -->
+```
+
+<!-- ![](images/paste-41.png) -->
+
+## Engineers Without Borders (EWB)
+
+![](images/paste-47.png)
+
+# Wind turbine group
+
+![](images/paste-45.png)
+
+## Finished wind turbine
+
+![](images/paste-46.png)
+
+## Interest in sustainable transport
+
+![Cargo bike and bike trailers in action, June 2010](images/paste-49.png)
+
+![](images/paste-48.png)
+
+## My thesis
+
+Source: https://etheses.whiterose.ac.uk/id/eprint/5027/
+
+![](images/paste-61.png)
+
+<!-- ![](images/paste-42.png) -->
+
+## Spatial microsimulation
+
+![](images/paste-56.png)
+
+```{=html}
+<!-- ![](images/paste-57.png)
+
+![](images/paste-58.png)
+
+![](images/paste-59.png)
+
+![](images/paste-60.png) -->
+```
+
+# Past II. Leeds 2013-... {.center background-image="images/paste-5.jpeg" background-opacity="0.5" background-size="70%"}
+
+Photo taken: February 2021, Sugarwell Hill, Leeds
+
+------------------------------------------------------------------------
+
+::: {style="font-size: 0.8em;"}
+**First proper job** (🙏Mark Birkin) and first Leeds-based paper [@lovelace2014]
+:::
+
+::::: columns
+::: {.column width="40%"}
+![](images/paste-62.png)
+:::
+
+::: {.column width="40%"}
+![](images/paste-63.png)
+:::
+:::::
+
+::: notes
+This paper was about using new sources of data to inform models of human movement.
+
+It was fascinating from an academic and methods perspective, and was ideal for strengthening my data science and programming skills.
+
+But it lacked meaning for me: the dataset was on visits to museums in Leeds.
+That is interesting, but not exactly life changing, or the kind of "save the world" stuff I wanted to do.
+
+Incidentally the paper was never actually published, we submitted to a journal but never heard back.
+
+I posted it on the arXiv and it got around 20 citations, which is not bad for a paper that was never published.
+Rather than focus on publishing it elsewhere, I moved on to other things.
+
+Morale of the story: don't give up!
+:::
+
+## Side projects: Cycling uptake work for CyclingUK
+
+![](images/paste-69.png)
+
+Source: CyclingUK (formerly CTC) response to government's [Cycling Delivery Plan](https://www.gov.uk/government/consultations/cycling-delivery-plan-informal-consultation) consultation, available [online at cyclinguk.org](https://www.cyclinguk.org/sites/default/files/document/migrated/news/1411_ctcsj_cdp_response_con_finalca.pdf).
+
+<!-- TODO: add links to this https://www.gov.uk/government/consultations/cycling-delivery-plan-informal-consultation -->
+
+## Work commissioned by CyclingUK (previously CTC)
+
+![](images/paste-66.png)
+
+[Work](https://github.com/Robinlovelace/energy-cycling) on the economic benefits of cycling nationwide with James Woodcock and Fiona Crawford [@crawford2015]
+
+## Propensity to Cycle Tool ([www.pct.bike](https://www.pct.bike/))
+
+::::: columns
+::: {.column width="50%"}
+![](images/paste-64.png) ![](images/paste-65.png) Source: article in practitioner magazine [@lovelace2016].
+:::
+
+::: {.column width="50%"}
+![](images/paste-68.png)
+
+First Propensity to Cycle Tool paper published in an academic journal [@lovelace2017]
+:::
+:::::
+
+## From research to web tool
+
+![](images/paste-70.png)
+
+## Research impact
+
+![](images/paste-71.png){width="70%"}
+
+Source: leeds.ac.uk front page, 2017-03-17
+
+## 4\* Research Excellence Framework (REF) case study
+
+![](images/paste-72.png)
+
+Source: [results2021.ref.ac.uk](https://results2021.ref.ac.uk/impact/847d1191-7f25-46ba-a399-b481125edc8f?page=1) [@lovelace2023]
+
+## Internship in No. 10 Downing Street
+
+::::: columns
+::: {.column width="30%"}
+Fellowship in collaboration with 10 Downing Street, ONS, Data Science Campus, ADRUK, ESRC from November 2021 until April 2023
+
+Source: [Press Release "No.10 Data Science Fellowship"](https://environment.leeds.ac.uk/research-project/1/faculty-of-environment/1757/no-10-data-science-fellowship)
+:::
+
+::: {.column width="70%"}
+<!-- ![](images/paste-76.png) -->
+
+![](images/paste-11.jpeg)
+
+Source: “Packaging Code and Data for Reproducible Research: A Case Study of Journey Time Statistics.” Environment and Planning B @botta2024.
+:::
+:::::
+
+## Active Travel England
+
+<!-- {background-image="images/paste-9.jpeg" background-opacity="0.5" background-size="70%"} -->
+
+::::: columns
+::: {.column width="65%"}
+<img src="images/paste-9.jpeg" alt="Department for Transport&apos;s Data Science for Transport conference" style="width: 80%; opacity: 0.8;"/>
+:::
+
+::: {.column width="35%"}
+2 year contract in the Civil Service from January 2023
+
+My roles:
+
+-   Recruit the team
+-   Lead Data Scientist
+-   Projects: plan.activetravelengland.gov.uk (formerly ATIP), SchoolRoutes
+:::
+:::::
+
+Source: photo taken May 2023 at the Department for Transport's Data Science for Transport conference
+
+------------------------------------------------------------------------
+
+**Active Travel England - Alan Turing Institute grant**
+
+::::: columns
+::: {.column width="80%"}
+![](images/paste-10.jpeg) <!-- ![](images/paste-74.png) -->
+:::
+
+::: {.column width="20%"}
+Transport Minister Jesse Norman testing out the Active Travel Infrastructure Planning (ATIP) tool
+
+Photo credit: [Danny Williams](https://www.linkedin.com/feed/update/urn:li:activity:7041103075536707584/)
+:::
+:::::
+
+## [plan.activetravelengland.gov.uk](https://plan.activetravelengland.gov.uk/)
+
+Now deployed on gov.uk, allowing anyone to browse data and design new schemes (demo if time allows) 🎉 Credit: Dustin Carlino and team
+
+![](images/paste-77.png)
+
+# Present {.center background-image="images/paste-67.png" background-opacity="0.5" background-size="70%"}
+
+::: notes
+And as shown in the photo, they are also transport planning enthusiasts, undertaking action-based research here to find out how old babies need to be before they can go in a bike trailer!
+:::
+
+------------------------------------------------------------------------
+
+::::: columns
+::: {.column width="60%"}
+![](images/paste-7.jpeg)
+:::
+
+::: {.column width="40%"}
+### Massive thanks to
+
+### Katy
+
+### Kit
+
+### Rosa
+:::
+:::::
+
+::: notes
+-   A big part of my life now is my family, and I want to say thank you to my wife Katy and my kids Kit (3 years old) and Rosa (six months old) for their support and love. I couldn't do this without them. I have much better work-life balance now than I did when I was a PhD student
+-   Family is the foundation on which many good things build.
+:::
+
+------------------------------------------------------------------------
+
+::::: columns
+::: {.column width="40%"}
+### My current role
+
+-   Professor of Transport Data Science
+-   Focus on high-impact research
+-   Teaching
+-   Grant funding
+-   Trying to succeed in academia without retreating up an "ivory tower", focus on impact, build a community
+:::
+
+::: {.column width="60%"}
+![](images/paste-12.jpeg)
+:::
+:::::
+
+## What is Transport Data Science?
+
+### What is data science?
+
+![](images/paste-88.png)
+
+A field "to optimize the service contracts and maintenance intervals for industrial products"?
+[@davenport2012]
+
+"Data Science = Statistics + Machine Learning” or "Statistics + Computing + Communication + Sociology + Management"? ([Vybornova, 2025](https://en.itu.dk/Research/PhD-Programme/PhD-Defences/PhD-Defences-2025/March/Anastassia-Vybornova))
+
+## Transport Data Science and Reproducibility
+
+Transport data science is
+
+-   A "discipline that allows you to transform raw data into understanding, insight, and knowledge" [@wickham2023]
+
+-   With reproducible and therefore falsifiable, scientific and scalable code.
+
+-   For deeper understandings of and more evidence-based interventions in transport systems
+
+Reproducibility is a continuous variable [@peng2011]
+
+![](images/paste-18.png)
+
+## Why make your research (more) reproducible?
+
+:::::: columns
+::: {.column width="80%"}
+![](images/paste-36.png)
+
+Source: @raff2023
+:::
+
+:::: {.column width="20%"}
+::: incremental
+-   Scientific rigour
+-   Benefits to your future self
+-   Benefits to others
+-   Huge increase in potential for impact
+:::
+::::
+::::::
+
+## Why *not* make your research reproducible?
+
+::: {.column width="20%"}
+![](images/paste-28.png)
+:::
+
+::: column
+-   Time
+-   Know-how
+-   Lack of permission
+-   Software is not open
+-   Data is not open access
+-   Someone might use it in unethical ways
+-   Someone might "steal" the work
+:::
+
+## Example of fully reproducible research
+
+`spanishoddata` paper and associated package which is now part of rOpenSpain public benefit data science community (see [ropenspain.github.io](https://ropenspain.github.io/spanishoddata/))
+
+![](images/paste-13.png)
+
+## From open source to open access
+
+<!-- ![](images/paste-9.png) -->
+
+::::: columns
+::: {.column width="40%"}
+"In essence ‘open access’ goes beyond ‘open source’ in that users are not only given the option of viewing (potentially indecipherable) source code, but are encouraged to do so, with measures taken in the software itself, and the community that builds it, to make it more user-friendly.""
+
+Source: [@lovelace2020]
+:::
+
+::: {.column width="60%"}
+![](images/paste-10.png)
+:::
+:::::
+
+# FUTURE {.center background-image="images/paste-78.png" background-opacity="0.5"}
+
+Credit: Kit aged 3 (live demo [here](https://photos.lovelaces.org/share/JcIUmi6DGpCUtTdcKet_KbP_P9uO-lG6d7G3HqVbkoo_cy_lORH1ETMta5NOO0Y4B9c) if time allows)
+
+## Principles for future research and practice
+
+:::::: columns
+::: {.column width="70%"}
+![](images/paste-82.png)
+
+<!-- ![](images/paste-83.png) -->
+
+<!-- ![](images/paste-84.png) -->
+
+![](images/paste-13.jpeg)
+:::
+
+:::: {.column width="30%"}
+::: incremental
+-   Faster
+-   More gamified/responsive/accessible
+-   More open/reproducible
+-   Higher resolution
+-   Bolder
+
+Source: "Designing an E-Bike City" [@ballo2024]
+
+<!-- [LTN tool](https://a-b-street.github.io/ltn),  -->
+:::
+::::
+::::::
+
+## Plug: The A/B Street [LTN tool a-b-street.github.io](https://a-b-street.github.io/ltn)
+
+![](images/paste-89.png)
+
+```{=html}
+<!-- <blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:scyxpltepxvut6akgwojidty/app.bsky.feed.post/3lonofp52it2i" data-bluesky-cid="bafyreieyyugmezr6fz4twdcuize6zgpm7xlie6qsgrfqrvrczyucytr2pi" data-bluesky-embed-color-mode="system">
+
+<p lang>
+
+It's been many months since I last tried out the Low Traffic Neighbourhood (LTN) design tool developed by Dustin Carlino, and I'm blown away, it's on another level 🤯 Responsive, informative, intuitive, accessible, fully open.
+See for yourself here: a-b-street.github.io/ltn`<br><br><a href="https://bsky.app/profile/did:plc:scyxpltepxvut6akgwojidty/post/3lonofp52it2i?ref_src=embed"`{=html}\[image or embed\]</a>
+
+</p>
+
+— Robin Lovelace (`<a href="https://bsky.app/profile/did:plc:scyxpltepxvut6akgwojidty?ref_src=embed"`{=html}@robinlovelace.bsky.social</a>) `<a href="https://bsky.app/profile/did:plc:scyxpltepxvut6akgwojidty/post/3lonofp52it2i?ref_src=embed"`{=html}May 8, 2025 at 11:12 AM</a>
+
+</blockquote>
+
+<script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script> -->
+```
+
+<!-- Fosstodon embed failed: -->
+
+<!-- <blockquote class="mastodon-embed" data-embed-url="https://fosstodon.org/@robinlovelace/114471683077494186/embed" style="background: #FCF8FF; border-radius: 8px; border: 1px solid #C9C4DA; margin: 0; max-width: 540px; min-width: 270px; overflow: hidden; padding: 0;"> <a href="https://fosstodon.org/@robinlovelace/114471683077494186" target="_blank" style="align-items: center; color: #1C1A25; display: flex; flex-direction: column; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Roboto, sans-serif; font-size: 14px; justify-content: center; letter-spacing: 0.25px; line-height: 20px; padding: 24px; text-decoration: none;"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 79 75"><path d="M74.7135 16.6043C73.6199 8.54587 66.5351 2.19527 58.1366 0.964691C56.7196 0.756754 51.351 0 38.9148 0H38.822C26.3824 0 23.7135 0.756754 22.2966 0.964691C14.1319 2.16118 6.67571 7.86752 4.86669 16.0214C3.99657 20.0369 3.90371 24.4888 4.06535 28.5726C4.29578 34.4289 4.34049 40.275 4.877 46.1075C5.24791 49.9817 5.89495 53.8251 6.81328 57.6088C8.53288 64.5968 15.4938 70.4122 22.3138 72.7848C29.6155 75.259 37.468 75.6697 44.9919 73.971C45.8196 73.7801 46.6381 73.5586 47.4475 73.3063C49.2737 72.7302 51.4164 72.086 52.9915 70.9542C53.0131 70.9384 53.0308 70.9178 53.0433 70.8942C53.0558 70.8706 53.0628 70.8445 53.0637 70.8179V65.1661C53.0634 65.1412 53.0574 65.1167 53.0462 65.0944C53.035 65.0721 53.0189 65.0525 52.9992 65.0371C52.9794 65.0218 52.9564 65.011 52.9318 65.0056C52.9073 65.0002 52.8819 65.0003 52.8574 65.0059C48.0369 66.1472 43.0971 66.7193 38.141 66.7103C29.6118 66.7103 27.3178 62.6981 26.6609 61.0278C26.1329 59.5842 25.7976 58.0784 25.6636 56.5486C25.6622 56.5229 25.667 56.4973 25.6775 56.4738C25.688 56.4502 25.7039 56.4295 25.724 56.4132C25.7441 56.397 25.7678 56.3856 25.7931 56.3801C25.8185 56.3746 25.8448 56.3751 25.8699 56.3816C30.6101 57.5151 35.4693 58.0873 40.3455 58.086C41.5183 58.086 42.6876 58.086 43.8604 58.0553C48.7647 57.919 53.9339 57.6701 58.7591 56.7361C58.8794 56.7123 58.9998 56.6918 59.103 56.6611C66.7139 55.2124 73.9569 50.665 74.6929 39.1501C74.7204 38.6967 74.7892 34.4016 74.7892 33.9312C74.7926 32.3325 75.3085 22.5901 74.7135 16.6043ZM62.9996 45.3371H54.9966V25.9069C54.9966 21.8163 53.277 19.7302 49.7793 19.7302C45.9343 19.7302 44.0083 22.1981 44.0083 27.0727V37.7082H36.0534V27.0727C36.0534 22.1981 34.124 19.7302 30.279 19.7302C26.8019 19.7302 25.0651 21.8163 25.0617 25.9069V45.3371H17.0656V25.3172C17.0656 21.2266 18.1191 17.9769 20.2262 15.568C22.3998 13.1648 25.2509 11.9308 28.7898 11.9308C32.8859 11.9308 35.9812 13.492 38.0447 16.6111L40.036 19.9245L42.0308 16.6111C44.0943 13.492 47.1896 11.9308 51.2788 11.9308C54.8143 11.9308 57.6654 13.1648 59.8459 15.568C61.9529 17.9746 63.0065 21.2243 63.0065 25.3172L62.9996 45.3371Z" fill="currentColor"/></svg> <div style="color: #787588; margin-top: 16px;">Post by @robinlovelace@fosstodon.org</div> <div style="font-weight: 500;">View on Mastodon</div> </a> </blockquote> <script data-allowed-prefixes="https://fosstodon.org/" async src="https://fosstodon.org/embed.js"></script> -->
+
+## Plug: Kay Axhausen's upcoming talk at ITS
+
+![](images/paste-85.png)
+
+Source: [ticketsource.com](https://www.ticketsource.com/institute-for-transport-studies-university-of-leeds/modelling-radical-change-an-ebike-city-in-zuerich-cmc-seminar-by-kay-axhausen/e-moaavb)
+
+## Idea 1: ActiveCount
+
+![](images/paste-79.png)
+
+Source: [telraam.net](https://telraam.net/#3/34.38/-21.97)
+
+## Idea 2: SchoolRoutes
+
+![](images/paste-80.png)
+
+## Idea 3: NetGen
+
+![](images/paste-81.png)
+
+Image credit: "The crowd is the territory" [@anderson2018]
+
+## Learn more and get involved
+
+:::::: columns
+::: {.column width="70%"}
+![](images/paste-86.png)
+
+![](images/paste-87.png)
+:::
+
+:::: {.column width="30%"}
+::: incremental
+-   Sign up to get a GitHub account
+-   Ask questions about datasets and digital tools
+-   Develop and share ideas
+-   Find bugs, build solutions
+:::
+::::
+::::::
+
+## A final plug: [2 day workshop 18th-19th September](https://store.leeds.ac.uk/product-catalogue/environment/transport-studies/short-courses/0925dstp2-data-science-for-transport-planning)
+
+<blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:scyxpltepxvut6akgwojidty/app.bsky.feed.post/3lokvankyhc2i" data-bluesky-cid="bafyreiac7w7c6rkdcsncm2abusracu23bt3gkyqklt2u5apixqjb5occxy" data-bluesky-embed-color-mode="system">
+
+<p lang>
+
+Exciting news: tickets for the 2-day workshop I'm doing on Data Science for Transport Planning are now available from the University of Leeds.
+See details here: store.leeds.ac.uk/product-cata...<br><br><a href="https://bsky.app/profile/did:plc:scyxpltepxvut6akgwojidty/post/3lokvankyhc2i?ref_src=embed">\[image or embed\]</a>
+
+</p>
+
+— Robin Lovelace (<a href="https://bsky.app/profile/did:plc:scyxpltepxvut6akgwojidty?ref_src=embed">@robinlovelace.bsky.social</a>) <a href="https://bsky.app/profile/did:plc:scyxpltepxvut6akgwojidty/post/3lokvankyhc2i?ref_src=embed">May 7, 2025 at 8:37 AM</a>
+
+</blockquote>
+
+```{=html}
+<script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+```
+
+# Thank you!
+
+## References {.scrollable}
+
+::: {#refs}
+:::
