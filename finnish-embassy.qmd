@@ -45,6 +45,18 @@ What I'll be covering today includes:
 -   Opportunities to connect with GREENTRAVEL and partners
 :::
 
+## International context
+
+The impact of Russia–Ukraine war on crude oil prices: an EMC framework [@zhang2024]
+
+![](images/paste-95.png)
+
+## Internation leadership in applied research
+
+Source: <https://huggingface.co/deepseek-ai/DeepSeek-OCR>
+
+![](images/paste-97.png)
+
 ## Why open access beyond open source?
 
 ::::: columns
@@ -130,6 +142,14 @@ Source: "Dependency" by Randall Munroe: [xkcd.com/2347/](https://xkcd.com/2347/)
 ![](images/xkcd-dependency.png)
 
 ------------------------------------------------------------------------
+
+### Comparing and sharing methods and tools
+
+Illustration of the 'jittering' method for adding value to origin-destination datasets by simulating origins and destinations [@lovelace2022b]
+
+-   There is a need for for fundamental and software engineering for efficient solutions
+
+![](images/jittering.png)
 
 ### TRACE: scalable, low-cost active travel counts
 
