@@ -78,7 +78,7 @@ Source: [@lovelace2020]
 
 ## Example: plan.activetravelengland.gov.uk
 
-![](images/paste-95.png)
+![](images/plan-ate.png)
 
 ## Reproducible research in practice
 
