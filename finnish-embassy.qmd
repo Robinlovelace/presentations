@@ -85,7 +85,7 @@ Source: [@lovelace2020]
 -   Fully reproducible pipelines improve trust, reuse and scale
 -   Example: spanishoddata package and paper now part of rOpenSpain community
 
-![](images/plan-ate.png)
+![](images/seville-flowmap.png)
 
 ## Network Planning Tool for Scotland ([npts.scot](https://npts.scot))
 
