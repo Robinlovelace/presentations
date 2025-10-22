@@ -83,7 +83,7 @@ Source: [@lovelace2020]
 ## Reproducible research in practice
 
 -   Fully reproducible pipelines improve trust, reuse and scale
--   Example: spanishoddata package and paper now part of rOpenSpain community
+-   Example: spanishoddata package and paper now part of rOpenSpain community (Kotov, Lovelace and others, 2025)
 
 ![](images/seville-flowmap.png)
 
@@ -125,6 +125,10 @@ Source: [@lovelace2020]
 
 ## Ideas for collaboration
 
+Source: "Dependency" by Randall Munroe: [xkcd.com/2347/](https://xkcd.com/2347/)
+
+![](images/xkcd-dependency.png)
+
 ------------------------------------------------------------------------
 
 ### TRACE: scalable, low-cost active travel counts
@@ -142,8 +146,6 @@ Source: [@lovelace2020]
 ### NetGen: crowd-informed network generation; “the crowd is the territory” [@anderson2018]
 
 ![](images/paste-81.png)
-
-------------------------------------------------------------------------
 
 # Thank you
 
