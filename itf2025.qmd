@@ -149,9 +149,114 @@ Packages like `stplanr` in R allow you to do complex tasks like analysing origin
 The image shows an analysis of travel patterns in Seville, Spain, done entirely with open-source tools and open data. This kind of analysis is reproducible and can be adapted to any city where you have the necessary data. This is a key part of building institutional capacity.
 :::
 
-## Live Demo: Mapping Southeast Europe with Open Tools
+## Case Study 1: National-Scale Planning (UK)
 
-This code demonstrates how to use the `eurostat` and `giscoR` packages to download and map official geospatial data for the region.
+From local data to national strategy with `plan.activetravelengland.gov.uk`.
+
+-   **Purpose:** Prioritise billions of £ in investment for walking and cycling.
+-   **How it works:**
+    -   Integrates dozens of open datasets (e.g., census, road safety, network data).
+    -   Uses a transparent, open-source model (`pct` R package).
+    -   Provides a web interface for planners across the country.
+-   **Impact:** A consistent, evidence-based approach to national transport planning.
+
+::: notes
+This is a real-world example of building capacity at a national level. Active Travel England, a government agency, needed a way to make fair and effective decisions about where to invest in active travel infrastructure.
+
+We built a tool that combines multiple data sources into a single, accessible platform. Because the methodology is open, local authorities can understand, trust, and even challenge the recommendations.
+
+This demonstrates how a national body can empower local and regional planners, building capacity across the entire system.
+:::
+
+## Active Travel England Tool: [plan.activetravelengland.gov.uk](https://plan.activetravelengland.gov.uk)
+
+![](images/plan-ate.png)
+
+## Case Study 2: Regional Planning (Scotland)
+
+The Network Planning Tool ([npt.scot](https://npt.scot)).
+
+-   **Purpose:** Help regional and local authorities design and prioritise active travel networks.
+-   **Features:**
+    -   Open data and transparent methods.
+    -   Estimates of cycling potential and Level of Service.
+    -   Web UI for planners and the public.
+-   **Lesson:** A powerful tool can be developed and deployed for a specific region, and can serve as a model for others.
+
+::: notes
+
+[add content here for Robin to input: What was the budget for this tool? How long did it take to develop? This would be useful context for the audience.]
+
+The key takeaway is that these tools are not just for analysis; they are for collaboration. They provide a common evidence base that planners, politicians, and the public can use to have a more informed conversation about the future of their transport networks.
+:::
+
+## Network Planning Tool for Scotland: [npt.scot](https://npt.scot)
+
+![](images/paste-91.png)
+
+## Case Study 3: National OD data in Spain
+
+-   The `spanishoddata` package provides access to Spain's national origin-destination mobility survey.
+-   It's a community-driven project, adopted by **rOpenSpain**, ensuring long-term maintenance and quality.
+-   The tool is used by researchers and public bodies, including the **Spanish Ministry of Transport**, for evidence-based planning.
+-   This demonstrates a successful model of collaboration between government, academia, and the open-source community.
+
+::: notes
+This is another great example of building capacity through open, collaborative tools. The government releases the data, and the community builds the tools to make it accessible and useful. This creates a virtuous cycle, where better tools lead to more use of the data, which in turn justifies the continued release and improvement of the data.
+:::
+
+## Mobility analysis with `spanishoddata`
+
+![](images/seville-flowmap.png)
+
+## Making it Happen in Southeast Europe
+
+How can you apply these principles?
+
+1.  **Start with a Data Audit:** What data do you have? What format is it in? What can be opened?
+2.  **Run a Pilot Project:** Choose a specific problem (e.g., mapping cycling potential in one city) and solve it with open tools.
+3.  **Invest in Training:** Build skills in R or Python for spatial data analysis within your statistical offices and transport authorities.
+4.  **Foster Regional Collaboration:** Share data, code, and experiences with neighbouring countries facing similar challenges.
+
+::: notes
+The journey starts with a single step. You don't need to build a national-level tool overnight.
+
+A great first step for a National Statistics Institution is to conduct a thorough audit of existing transport-related data. See what can be standardized and published as open data.
+
+A pilot project is a fantastic way to demonstrate the value of these methods and build momentum. It provides a tangible success story that can be used to justify further investment in capacity building.
+
+Collaboration is key. Events like this are a perfect opportunity to build the networks that will support a regional community of practice.
+:::
+
+## Future Directions: New Data & New Challenges
+
+The landscape is always changing.
+
+-   **New Data Sources:** Mobile phone data, GPS tracks, sensor data offer huge potential.
+    -   Companies can be paid or mandated to share anonymised data for public good, e.g. mobile network operators.
+-   **New Challenges:**
+    -   **Quality & Bias:** Are these new datasets representative?
+    -   **Privacy & Ethics:** How do we use sensitive data responsibly?
+    -   **Governance:** Who owns the data and the insights?
+-   **New tools** provide new ways to add value to existing datasets
+
+::: notes
+As we look to the future, we see exciting new data sources. But these come with serious challenges, as will be discussed in Session 3 of this conference.
+
+We must be 'critical data scientists' and ask hard questions about bias, privacy, and ethics. Who is left out of these new datasets? How can we ensure that data-driven decisions are equitable?
+
+Techniques like jittering, which adds random noise to location data, can help. But technology is only part of the solution. We need strong governance and ethical frameworks. This is a key area where statistical offices have a vital role to play.
+:::
+
+## Jittering Method for Privacy Preservation
+
+Source: @r-spanishoddata
+
+![](images/jittering.png)
+
+## Demo: Mapping Southeast Europe with Open Tools
+
+Results created with the `eurostat` and `giscoR` packages to download and map official geospatial data for the region.
 
 ![Southeast Europe Map](images/se_europe_tmap_gl.png)
 
@@ -215,88 +320,6 @@ tm_shape(all_countries_se) +
   tm_polygons("lightgrey", alpha = 0.5) +
   tm_bubbles(size = "population", col = "blue", scale = 5, alpha = 0.5)
 ```
-
-## Case Study 1: National-Scale Planning (UK)
-
-From local data to national strategy with `plan.activetravelengland.gov.uk`.
-
--   **Purpose:** Prioritise billions of £ in investment for walking and cycling.
--   **How it works:**
-    -   Integrates dozens of open datasets (e.g., census, road safety, network data).
-    -   Uses a transparent, open-source model (`pct` R package).
-    -   Provides a web interface for planners across the country.
--   **Impact:** A consistent, evidence-based approach to national transport planning.
-
-![](images/plan-ate.png)
-
-::: notes
-This is a real-world example of building capacity at a national level. Active Travel England, a government agency, needed a way to make fair and effective decisions about where to invest in active travel infrastructure.
-
-We built a tool that combines multiple data sources into a single, accessible platform. Because the methodology is open, local authorities can understand, trust, and even challenge the recommendations.
-
-This demonstrates how a national body can empower local and regional planners, building capacity across the entire system.
-:::
-
-## Case Study 2: Regional Planning (Scotland)
-
-The Network Planning Tool ([npt.scot](https://npt.scot)).
-
--   **Purpose:** Help regional and local authorities design and prioritise active travel networks.
--   **Features:**
-    -   Open data and transparent methods.
-    -   Estimates of cycling potential and Level of Service.
-    -   Web UI for planners and the public.
--   **Lesson:** A powerful tool can be developed and deployed for a specific region, and can serve as a model for others.
-
-![](images/paste-91.png)
-
-::: notes
-
-[add content here for Robin to input: What was the budget for this tool? How long did it take to develop? This would be useful context for the audience.]
-
-The key takeaway is that these tools are not just for analysis; they are for collaboration. They provide a common evidence base that planners, politicians, and the public can use to have a more informed conversation about the future of their transport networks.
-:::
-
-## Making it Happen in Southeast Europe
-
-How can you apply these principles?
-
-1.  **Start with a Data Audit:** What data do you have? What format is it in? What can be opened?
-2.  **Run a Pilot Project:** Choose a specific problem (e.g., mapping cycling potential in one city) and solve it with open tools.
-3.  **Invest in Training:** Build skills in R or Python for spatial data analysis within your statistical offices and transport authorities.
-4.  **Foster Regional Collaboration:** Share data, code, and experiences with neighbouring countries facing similar challenges.
-
-::: notes
-The journey starts with a single step. You don't need to build a national-level tool overnight.
-
-A great first step for a National Statistics Institution is to conduct a thorough audit of existing transport-related data. See what can be standardized and published as open data.
-
-A pilot project is a fantastic way to demonstrate the value of these methods and build momentum. It provides a tangible success story that can be used to justify further investment in capacity building.
-
-Collaboration is key. Events like this are a perfect opportunity to build the networks that will support a regional community of practice.
-:::
-
-## Future Directions: New Data & New Challenges
-
-The landscape is always changing.
-
--   **New Data Sources:** Mobile phone data, GPS tracks, sensor data offer huge potential.
--   **New Challenges:**
-    -   **Quality & Bias:** Are these new datasets representative?
-    -   **Privacy & Ethics:** How do we use sensitive data responsibly?
-    -   **Governance:** Who owns the data and the insights?
-
-The 'jittering' method is one technique for using sensitive location data while preserving privacy.
-
-![](images/jittering.png)
-
-::: notes
-As we look to the future, we see exciting new data sources. But these come with serious challenges, as will be discussed in Session 3 of this conference.
-
-We must be 'critical data scientists' and ask hard questions about bias, privacy, and ethics. Who is left out of these new datasets? How can we ensure that data-driven decisions are equitable?
-
-Techniques like jittering, which adds random noise to location data, can help. But technology is only part of the solution. We need strong governance and ethical frameworks. This is a key area where statistical offices have a vital role to play.
-:::
 
 # Thank you
 
