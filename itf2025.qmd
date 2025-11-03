@@ -149,6 +149,16 @@ Packages like `stplanr` in R allow you to do complex tasks like analysing origin
 The image shows an analysis of travel patterns in Seville, Spain, done entirely with open-source tools and open data. This kind of analysis is reproducible and can be adapted to any city where you have the necessary data. This is a key part of building institutional capacity.
 :::
 
+## Pillar 3: Communities of Practice
+
+Capacity building is not just about tools, it's about people.
+
+-   A 'Community of Practice' is a group of people who "share a concern or a passion for something they do and learn how to do it better as they interact regularly" [@wenger1998].
+-   Open source projects naturally foster these communities.
+-   Examples: rOpenSci, rOpenSpain, QGIS user groups.
+-   They provide support, share best practices, and drive innovation.
+-   **Key takeaway:** To build capacity, invest in building communities.
+
 ## Case Study 1: National-Scale Planning (UK)
 
 From local data to national strategy with `plan.activetravelengland.gov.uk`.
