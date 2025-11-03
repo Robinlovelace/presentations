@@ -2,7 +2,7 @@
 title: "Building Capacity for Data-Driven Urban Mobility"
 subtitle: "Keynote for the ITF-Eurostat Conference on Promoting Data-Driven Decision-Making"
 format:
-  revealjs:
+  clean-revealjs:
     self-contained: true
 html-math-method:
   method: mathjax
@@ -17,6 +17,14 @@ bibliography: references.bib
 execute:
   cache: true
 ---
+
+
+```{r}
+#| echo: false
+#| eval: false
+# install grantmcdermott/quarto-revealjs-clean extension
+system("quarto install extension grantmcdermott/quarto-revealjs-clean")
+```
 
 
 ## Introduction
@@ -63,8 +71,7 @@ Openness builds trust and empowers collaboration.
 -   **Open Data:** Public data is accessible to everyone.
 -   **Open Methods:** Methodologies are transparent and documented.
 -   **Open Access:** Research and educational materials are freely available.
-
-This creates a **Community of Practice**.
+-   **Community of Practice**.
 :::
 
 ::: {.column width="55%"}
@@ -79,6 +86,30 @@ When methods are open, they can be scrutinized, validated, and improved by the c
 
 When educational resources like our book, "Geocomputation with R", are open access, they lower the barrier for people to learn these vital skills, which is the essence of capacity building.
 :::
+
+
+## Example community of practice: QGIS
+
+![](images/qgis-trends.png)
+
+## Why is QGIS so strong?
+
+:::: columns
+::: {.column width="50%"}
+
+![](images/qgis-contributors.png)
+
+:::
+::: {.column width="50%"}
+
+![](images/qgis-commits.png)
+
+:::
+::::
+
+## Aside: Geographic distribution of QGIS interest
+
+![](images/qgis-trends-locations.png)
 
 ## Pillar 1: Open Data & Standards
 
@@ -122,8 +153,10 @@ The image shows an analysis of travel patterns in Seville, Spain, done entirely 
 
 This code demonstrates how to use the `eurostat` and `giscoR` packages to download and map official geospatial data for the region.
 
+![Southeast Europe Map](images/se_europe_tmap_gl.png)
+
 ```{r}
-#| echo: true
+#| echo: false
 #| message: false
 #| warning: false
 #| eval: false
