@@ -18,6 +18,7 @@ execute:
   cache: true
 ---
 
+
 ## Introduction
 
 -   **Who am I?** Professor of Transport Data Science at the University of Leeds.
@@ -125,16 +126,19 @@ This code demonstrates how to use the `eurostat` and `giscoR` packages to downlo
 #| echo: true
 #| message: false
 #| warning: false
-
+#| eval: false
 # List of required packages
 packages = c("eurostat", "giscoR", "sf", "dplyr", "readr", "tmap")
-
 # Install packages if they are not already installed
 for(p in packages){
+
   if(!require(p, character.only = TRUE)){
-    install.packages(p, repos = "https://cloud.r-project.org")
-  }
-}
+
+        install.packages(p, repos = "https://cloud.r-project.org")
+
+      }
+
+    }
 
 # Load libraries
 library(sf)
@@ -142,35 +146,41 @@ library(dplyr)
 library(readr)
 library(giscoR)
 library(tmap)
+library(eurostat)
 
-# Read the list of Southeast European countries from the CSV
-se_countries_df = read_csv("southeast_europe.csv")
+# Read the lists of countries for narrow and broad definitions
 
-# Get country codes using giscoR
-all_countries = gisco_countries
-se_countries_info = all_countries %>%
-  filter(NAME_ENGL %in% se_countries_df$Country)
+se_eu_countries = read_csv("southeast_europe.csv") # Narrow (EU members)
+se_all_countries = read_csv("southeast_europe2.csv") # Broad
 
-# Fetch country boundaries for all of Europe for context
-europe_map_data = gisco_get_nuts(
-  year = "2021",
-  resolution = "20",
-  nuts_level = "0"
-)
+# Get population data from Eurostat
+pop_data = get_eurostat("tps00001", time_format = "num")
+# pop_data
+# # A tibble: 580 × 5
+#    freq  indic_de geo   TIME_PERIOD  values
+#    <chr> <chr>    <chr>       <dbl>   <dbl>
+#  1 A     JAN      AD           2016   71732
+#  2 A     JAN      AD           2018   74794
 
-# Filter for the Southeast European countries
-se_map_data = europe_map_data %>%
-  filter(CNTR_CODE %in% se_countries_info$CNTR_CODE)
+# Group by country and keep only most recent year:
+pop_data = pop_data |>
+  group_by(geo) |>
+  filter(TIME_PERIOD == max(TIME_PERIOD)) |>
+  ungroup() |>
+  # Rename values column to avoid confusion later
+  rename(population = values) 
+
+# Get geospatial data for the broader region
+all_countries_se = gisco_countries |>
+  filter(NAME_ENGL %in% se_all_countries$Country) |>
+  left_join(pop_data, join_by(CNTR_ID == geo))
 
 # Create and display the interactive map
-tmap_mode("view")
-tm_shape(europe_map_data) +
-  tm_polygons() +
-  tm_shape(se_map_data) +
-  tm_polygons(col = "#336699", alpha = 0.7) +
-  tm_text("NUTS_ID", size = 0.8)
 
-
+tmap_mode("mapbox")
+tm_shape(all_countries_se) +
+  tm_polygons("lightgrey", alpha = 0.5) +
+  tm_bubbles(size = "population", col = "blue", scale = 5, alpha = 0.5)
 ```
 
 ## Case Study 1: National-Scale Planning (UK)
@@ -264,4 +274,5 @@ Techniques like jittering, which adds random noise to location data, can help. B
 ## References {.scrollable}
 
 ::: {#refs}
+
 :::
