@@ -1,0 +1,267 @@
+---
+title: "Building Capacity for Data-Driven Urban Mobility"
+subtitle: "Keynote for the ITF-Eurostat Conference on Promoting Data-Driven Decision-Making"
+format:
+  revealjs:
+    self-contained: true
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: "Professor Robin Lovelace"
+    email: r.lovelace@leeds.ac.uk
+    affiliations: "Institute for Transport Studies, University of Leeds"
+    orcid: 0000-0001-5679-6536
+date: 2025-11-04
+bibliography: references.bib
+execute:
+  cache: true
+---
+
+## Introduction
+
+-   **Who am I?** Professor of Transport Data Science at the University of Leeds.
+-   **My focus:** Building open, reproducible, and policy-relevant transport planning tools.
+-   **Today's topic:** Building *capacity* for data-driven decision-making in urban mobility.
+-   **Why it matters for Southeast Europe:** Supporting sustainable mobility goals and the path to EU collaboration.
+
+::: notes
+Thank you for the introduction and the invitation to speak. It's an honour to be here to open this important conference.
+
+My work is all about bridging the gap between data science and transport policy. I believe that by building capacity through open and transparent methods, we can make better, more equitable decisions about how our cities move.
+
+This is especially relevant for the countries of Southeast Europe, which are at a critical juncture in developing their urban mobility systems. The principles I'll discuss today can help build a strong foundation for evidence-based policymaking and support wider European integration.
+:::
+
+## The Challenge: The Data-to-Policy Gap
+
+We have more data than ever before, but are we using it effectively?
+
+**Common Barriers:**
+
+-   **Data Access:** Data is often siloed, proprietary, or not in a usable format.
+-   **Skills & Tools:** Lack of training and accessible tools to analyse the data.
+-   **Institutional Culture:** Resistance to new methods and a disconnect between analysts and decision-makers.
+-   **Procurement:** Over-reliance on 'black box' commercial solutions.
+
+::: notes
+This is a challenge we see everywhere, not just in transport and not just in Southeast Europe. We are drowning in data but starving for wisdom.
+
+The key barriers are often not technical, but institutional and cultural. How do we get the right data, to the right people, with the right tools, in a way that is trusted and understood by policymakers?
+
+Furthermore, traditional procurement models often lock public authorities into expensive, inflexible, and opaque software. This hinders capacity building and innovation.
+:::
+
+## A Solution: Open & Reproducible Workflows
+
+Openness builds trust and empowers collaboration.
+
+::::: columns
+::: {.column width="45%"}
+-   **Open Source:** The code is free to use, modify, and share.
+-   **Open Data:** Public data is accessible to everyone.
+-   **Open Methods:** Methodologies are transparent and documented.
+-   **Open Access:** Research and educational materials are freely available.
+
+This creates a **Community of Practice**.
+:::
+
+::: {.column width="55%"}
+![](images/paste-10.png)
+:::
+:::::
+
+::: notes
+An open approach is the foundation for building sustainable capacity. It's not just about free software. It's about creating a transparent ecosystem of data, tools, and knowledge.
+
+When methods are open, they can be scrutinized, validated, and improved by the community. This builds trust in the results.
+
+When educational resources like our book, "Geocomputation with R", are open access, they lower the barrier for people to learn these vital skills, which is the essence of capacity building.
+:::
+
+## Pillar 1: Open Data & Standards
+
+Good analysis starts with good data.
+
+-   **Data Standards are Key:**
+    -   GTFS for public transport schedules.
+    -   GBFS for shared micro-mobility (bikes, scooters).
+    -   OpenStreetMap for detailed street network data.
+-   **National Data Portals:** A vital resource for official statistics and geographic data.
+-   **Example:** Sourcing road network data from OpenStreetMap for a whole country.
+
+::: notes
+TODO: Find examples of open data portals in Southeast European countries.
+
+The first step in building data analytics capacity is to get a handle on the data itself. Adopting international standards like GTFS and GBFS is crucial. It makes data interoperable and allows you to use a wide range of existing open-source tools.
+
+OpenStreetMap is an incredibly powerful, free resource for detailed transport network data, which is often more up-to-date than official sources. We can build a model of an entire country's transport network in minutes using OSM.
+:::
+
+## Pillar 2: Open Source Tools
+
+Powerful, free, and adaptable tools for transport analysis.
+
+-   **The R & Python Ecosystems:** Mature, extensive libraries for data science, statistics, and visualisation.
+-   **Example (R):** The `stplanr` package for transport planning and modelling.
+-   **Example (Python):** `geopandas` and `pandana` for network analysis.
+-   These tools can be adapted to local needs and data sources.
+
+![](images/seville-flowmap.png)
+
+::: notes
+You don't need expensive, proprietary software to do high-quality transport analysis. The open-source ecosystems in R and Python provide everything you need.
+
+Packages like `stplanr` in R allow you to do complex tasks like analysing origin-destination data, building transport models, and calculating accessibility metrics.
+
+The image shows an analysis of travel patterns in Seville, Spain, done entirely with open-source tools and open data. This kind of analysis is reproducible and can be adapted to any city where you have the necessary data. This is a key part of building institutional capacity.
+:::
+
+## Live Demo: Mapping Southeast Europe with Open Tools
+
+This code demonstrates how to use the `eurostat` and `giscoR` packages to download and map official geospatial data for the region.
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+
+# List of required packages
+packages = c("eurostat", "giscoR", "sf", "dplyr", "readr", "tmap")
+
+# Install packages if they are not already installed
+for(p in packages){
+  if(!require(p, character.only = TRUE)){
+    install.packages(p, repos = "https://cloud.r-project.org")
+  }
+}
+
+# Load libraries
+library(sf)
+library(dplyr)
+library(readr)
+library(giscoR)
+library(tmap)
+
+# Read the list of Southeast European countries from the CSV
+se_countries_df = read_csv("southeast_europe.csv")
+
+# Get country codes using giscoR
+all_countries = gisco_countries
+se_countries_info = all_countries %>%
+  filter(NAME_ENGL %in% se_countries_df$Country)
+
+# Fetch country boundaries for all of Europe for context
+europe_map_data = gisco_get_nuts(
+  year = "2021",
+  resolution = "20",
+  nuts_level = "0"
+)
+
+# Filter for the Southeast European countries
+se_map_data = europe_map_data %>%
+  filter(CNTR_CODE %in% se_countries_info$CNTR_CODE)
+
+# Create and display the interactive map
+tmap_mode("view")
+tm_shape(europe_map_data) +
+  tm_polygons() +
+  tm_shape(se_map_data) +
+  tm_polygons(col = "#336699", alpha = 0.7) +
+  tm_text("NUTS_ID", size = 0.8)
+
+
+```
+
+## Case Study 1: National-Scale Planning (UK)
+
+From local data to national strategy with `plan.activetravelengland.gov.uk`.
+
+-   **Purpose:** Prioritise billions of £ in investment for walking and cycling.
+-   **How it works:**
+    -   Integrates dozens of open datasets (e.g., census, road safety, network data).
+    -   Uses a transparent, open-source model (`pct` R package).
+    -   Provides a web interface for planners across the country.
+-   **Impact:** A consistent, evidence-based approach to national transport planning.
+
+![](images/plan-ate.png)
+
+::: notes
+This is a real-world example of building capacity at a national level. Active Travel England, a government agency, needed a way to make fair and effective decisions about where to invest in active travel infrastructure.
+
+We built a tool that combines multiple data sources into a single, accessible platform. Because the methodology is open, local authorities can understand, trust, and even challenge the recommendations.
+
+This demonstrates how a national body can empower local and regional planners, building capacity across the entire system.
+:::
+
+## Case Study 2: Regional Planning (Scotland)
+
+The Network Planning Tool ([npt.scot](https://npt.scot)).
+
+-   **Purpose:** Help regional and local authorities design and prioritise active travel networks.
+-   **Features:**
+    -   Open data and transparent methods.
+    -   Estimates of cycling potential and Level of Service.
+    -   Web UI for planners and the public.
+-   **Lesson:** A powerful tool can be developed and deployed for a specific region, and can serve as a model for others.
+
+![](images/paste-91.png)
+
+::: notes
+
+[add content here for Robin to input: What was the budget for this tool? How long did it take to develop? This would be useful context for the audience.]
+
+The key takeaway is that these tools are not just for analysis; they are for collaboration. They provide a common evidence base that planners, politicians, and the public can use to have a more informed conversation about the future of their transport networks.
+:::
+
+## Making it Happen in Southeast Europe
+
+How can you apply these principles?
+
+1.  **Start with a Data Audit:** What data do you have? What format is it in? What can be opened?
+2.  **Run a Pilot Project:** Choose a specific problem (e.g., mapping cycling potential in one city) and solve it with open tools.
+3.  **Invest in Training:** Build skills in R or Python for spatial data analysis within your statistical offices and transport authorities.
+4.  **Foster Regional Collaboration:** Share data, code, and experiences with neighbouring countries facing similar challenges.
+
+::: notes
+The journey starts with a single step. You don't need to build a national-level tool overnight.
+
+A great first step for a National Statistics Institution is to conduct a thorough audit of existing transport-related data. See what can be standardized and published as open data.
+
+A pilot project is a fantastic way to demonstrate the value of these methods and build momentum. It provides a tangible success story that can be used to justify further investment in capacity building.
+
+Collaboration is key. Events like this are a perfect opportunity to build the networks that will support a regional community of practice.
+:::
+
+## Future Directions: New Data & New Challenges
+
+The landscape is always changing.
+
+-   **New Data Sources:** Mobile phone data, GPS tracks, sensor data offer huge potential.
+-   **New Challenges:**
+    -   **Quality & Bias:** Are these new datasets representative?
+    -   **Privacy & Ethics:** How do we use sensitive data responsibly?
+    -   **Governance:** Who owns the data and the insights?
+
+The 'jittering' method is one technique for using sensitive location data while preserving privacy.
+
+![](images/jittering.png)
+
+::: notes
+As we look to the future, we see exciting new data sources. But these come with serious challenges, as will be discussed in Session 3 of this conference.
+
+We must be 'critical data scientists' and ask hard questions about bias, privacy, and ethics. Who is left out of these new datasets? How can we ensure that data-driven decisions are equitable?
+
+Techniques like jittering, which adds random noise to location data, can help. But technology is only part of the solution. We need strong governance and ethical frameworks. This is a key area where statistical offices have a vital role to play.
+:::
+
+# Thank you
+
+-   **Key message:** Sustainable capacity is built on **open data, open tools, and an open community.**
+-   Slides and code: `github.com/robinlovelace/presentations`
+-   Contact: `r.lovelace@leeds.ac.uk`
+
+## References {.scrollable}
+
+::: {#refs}
+:::
