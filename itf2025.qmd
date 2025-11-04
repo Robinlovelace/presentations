@@ -76,6 +76,9 @@ Openness builds trust and empowers collaboration.
 
 ::: {.column width="55%"}
 ![](images/paste-10.png)
+
+Source: @lovelace2020
+
 :::
 :::::
 
@@ -86,6 +89,28 @@ When methods are open, they can be scrutinized, validated, and improved by the c
 
 When educational resources like our book, "Geocomputation with R", are open access, they lower the barrier for people to learn these vital skills, which is the essence of capacity building.
 :::
+
+## Open science for researchers
+
+Source: @braga2023not
+
+::::: columns
+::: {.column width="30%"}
+1.  Open access to the publications
+
+2.  Open access to sample (synthetic if sensitive) data
+
+3.  Open access to the code
+
+4.  Fully reproducible paper published with documentation
+
+5.  Project deployed in tool for non-specialist use
+:::
+
+::: {.column width="70%"}
+![](images/paste-12.png)
+:::
+:::::
 
 
 ## Example community of practice: QGIS
@@ -278,16 +303,11 @@ Results created with the `eurostat` and `giscoR` packages to download and map of
 # List of required packages
 packages = c("eurostat", "giscoR", "sf", "dplyr", "readr", "tmap")
 # Install packages if they are not already installed
-for(p in packages){
-
-  if(!require(p, character.only = TRUE)){
-
-        install.packages(p, repos = "https://cloud.r-project.org")
-
-      }
-
-    }
-
+pkgs_to_install = packages[!packages %in% installed.packages()[,"Package"]]
+if(length(pkgs_to_install)) {
+  install.packages(pkgs_to_install)
+}
+pak::pak("r-tmap/tmap.mapgl")
 # Load libraries
 library(sf)
 library(dplyr)
@@ -298,9 +318,7 @@ library(eurostat)
 
 # Read the lists of countries for narrow and broad definitions
 
-se_eu_countries = read_csv("southeast_europe.csv") # Narrow (EU members)
 se_all_countries = read_csv("southeast_europe2.csv") # Broad
-
 # Get population data from Eurostat
 pop_data = get_eurostat("tps00001", time_format = "num")
 # pop_data
@@ -324,7 +342,7 @@ all_countries_se = gisco_countries |>
   left_join(pop_data, join_by(CNTR_ID == geo))
 
 # Create and display the interactive map
-
+library(tmap.mapgl)
 tmap_mode("mapbox")
 tm_shape(all_countries_se) +
   tm_polygons("lightgrey", alpha = 0.5) +
