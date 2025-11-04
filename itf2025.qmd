@@ -42,6 +42,10 @@ My work is all about bridging the gap between data science and transport policy.
 This is especially relevant for the countries of Southeast Europe, which are at a critical juncture in developing their urban mobility systems. The principles I'll discuss today can help build a strong foundation for evidence-based policymaking and support wider European integration.
 :::
 
+## Context: Southeast Europe
+
+![](images/se_europe_map.png)
+
 ## The Challenge: The Data-to-Policy Gap
 
 We have more data than ever before, but are we using it effectively?
@@ -92,8 +96,6 @@ When educational resources like our book, "Geocomputation with R", are open acce
 
 ## Open science for researchers
 
-Source: @braga2023not
-
 ::::: columns
 ::: {.column width="30%"}
 1.  Open access to the publications
@@ -108,6 +110,12 @@ Source: @braga2023not
 :::
 
 ::: {.column width="70%"}
+
+<div style="text-align: right;">
+Source: @braga2023not
+</div>
+
+
 ![](images/paste-12.png)
 :::
 :::::
