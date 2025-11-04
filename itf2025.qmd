@@ -299,7 +299,7 @@ Source: @r-spanishoddata
 
 ## Demo: Mapping Southeast Europe with Open Tools
 
-Results created with the `eurostat` and `giscoR` packages to download and map official geospatial data for the region.
+Results created with the `eurostat` and `giscoR` packages to download and map official geospatial data for the region (see code on [GitHub](https://github.com/Robinlovelace/presentations/blob/f1a2149d8319b13f9baed4beb3ba6ad9556da00a/itf2025.qmd#L307-L357))
 
 ![Southeast Europe Map](images/se_europe_tmap_gl.png)
 
