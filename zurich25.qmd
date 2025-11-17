@@ -218,12 +218,11 @@ Route network summarising the Go Dutch scenario, showing potential for cycling.
 
 ------------------------------------------------------------------------
 
-## Route assignment
+## Application to Zurich, Switzerland
 
--   Assign trips estimated by the SIM to the network.
--   'All or Nothing' (AON) assignment.
+![](images/paste-98.png)
 
-![](leeds-example_files/figure-commonmark/fig-aon-1.png)
+Open access and [interactive](https://github.com/Robinlovelace/zurich25/releases/download/v1/zurich-route-network.html) results of the '3-stage model' applied to Zurich using less than 100 lines of reproducible code hosted at [github.com/robinlovelace/zurich25](https://github.com/robinlovelace/zurich25).
 
 ------------------------------------------------------------------------
 
