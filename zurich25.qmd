@@ -162,6 +162,16 @@ Source: the [citygraph](https://github.com/c2g-dev/city2graph) GitHub repo
 
 Let's build a transport model, simplifying the 4-stage model by collapsing Trip Generation and Distribution into a single stage: **Trip Estimation**.
 
+```{mermaid}
+%%| label: fig-3stage
+%%| fig-cap: A simplified 3-stage transport modelling framework.
+graph TD
+    A[Trip Estimation] --> B[Mode Choice]
+    B --> C[Route Assignment]
+    C --> B
+    C -.-> A
+```
+
 ------------------------------------------------------------------------
 
 ## Case study: Leeds, UK
@@ -181,15 +191,9 @@ Let's build a transport model, simplifying the 4-stage model by collapsing Trip 
 
 ## A simple spatial interaction model
 
-The unconstrained 'gravity model' can then be written in its "multiplicative form" as:
+You can run SIMs with a few lines of code with the {simodels} R package and the `spint` Python package, for example.
 
-$$
-T_{ij} = k m_i^{\mu} n_j^{*} d_{ij} \beta
-$$
-
-where $k$ is a balancing factor, $m_i$ and $n_j$ are origin and destination masses respectively, $d_{ij}$ is the distance between $i$ and $j$
-
-Results with all OD pairs (left) and top 20 trips only (right):
+Results of a simple production-constrained model with all OD pairs (left) and top 20 trips only (right):
 
 ::: {layout-ncol="2"}
 ![](leeds-example_files/figure-commonmark/unconstrained1-1.png)
