@@ -27,7 +27,7 @@ bibliography: references.bib
 
 "Propensity to Cycle Tool helped us to assess the potential future demand for travel on these routes" (Leicestery County Council, [2023](https://www.leicestershire.gov.uk/sites/default/files/2023-11/Loughborough-Area-Local-Cycling-and-Walking-Infrastructure-Plan-Executive-Summary.pdf), one of [90+ local authority network plans using the tool](https://www.google.com/search?q=%22propensity+to+cycle+tool%22+lcwip+site%3Agov.uk)).
 
-## Active Travel England
+## Work in the Civil Service
 
 <!-- {background-image="images/paste-9.jpeg" background-opacity="0.5" background-size="70%"} -->
 
@@ -37,7 +37,7 @@ bibliography: references.bib
 :::
 
 ::: {.column width="35%"}
-2 year contract in the Civil Service from January 2023
+In 2024 I completed a 2 year contract in new agency Active Travel England (ATE), part of the UK Department for Transport (DfT).
 
 My roles:
 
@@ -181,12 +181,15 @@ Let's build a transport model, simplifying the 4-stage model by collapsing Trip 
 
 ## A simple spatial interaction model
 
--   Inverse power distance decay function: `flow = pop * jobs * exp(beta * distance)`
--   Constrained on production (origin population).
+The unconstrained 'gravity model' can then be written in its "multiplicative form" as:
 
-. . .
+$$
+T_{ij} = k m_i^{\mu} n_j^{*} d_{ij} \beta
+$$
 
-Results, with all OD pairs (left) and top 20 trips only (right):
+where $k$ is a balancing factor, $m_i$ and $n_j$ are origin and destination masses respectively, $d_{ij}$ is the distance between $i$ and $j$
+
+Results with all OD pairs (left) and top 20 trips only (right):
 
 ::: {layout-ncol="2"}
 ![](leeds-example_files/figure-commonmark/unconstrained1-1.png)
