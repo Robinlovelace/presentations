@@ -235,7 +235,7 @@ Open access and [interactive](https://github.com/Robinlovelace/zurich25/releases
 
 ## Conclusions and next steps
 
--   Logical next step: try different implementations and inputs to benchmark performance and improve the '3-stage model'.
+-   Logical next step: try different implementations and inputs to benchmark performance and improve the '3-stage model' (credit: Juan Fonseca's commit to the Zurich repo!).
 -   Not all transport planning research questions or applications require the same tools.
 -   A 'horses for courses' approach suggests thinking about what change looks like, and to choose/build tools accordingly.
 -   The 3-stage model presented is an example of what simple, open, efficient tools can look like, but is it future-proof?
