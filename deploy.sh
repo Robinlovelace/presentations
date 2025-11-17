@@ -6,6 +6,7 @@ git push
 cp -v *.html ~/robinlovelace/static/presentations
 cp -Rv libs/* ~/robinlovelace/static/presentations/libs/
 cp -Rv *_files ~/robinlovelace/static/presentations/
+cd ~/robinlovelace
 git pull
 git status
 git add -A
