@@ -4,11 +4,65 @@ author: "Robin Lovelace"
 format:
   clean-revealjs:
     self-contained: true
+    logo: https://www.ciht.org.uk/media/8292/leeds-its-logo.png
 html-math-method:
   method: mathjax
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 bibliography: references.bib
 ---
+
+## Introduction
+
+"The role of [data analysis](https://sites.google.com/site/doingbayesiandataanalysis/) is to make people change their mind, based on the data." @kruschke_doing_2010
+
+**The role of transport modelling is to make people change their mind, and investment decisions, based on evidence.**
+
+"Those among us who are unwilling to expose their ideas to the hazard of refutation do not take part in the scientific game." @popper1934
+
+**The more people who can run, modify, and see the outputs of transport models, the larger the impact**.
+
+## What does change look like?
+
+![](images/pct-leicestershire.png)
+
+"Propensity to Cycle Tool helped us to assess the potential future demand for travel on these routes" (Leicestery County Council, [2023](https://www.leicestershire.gov.uk/sites/default/files/2023-11/Loughborough-Area-Local-Cycling-and-Walking-Infrastructure-Plan-Executive-Summary.pdf), one of [90+ local authority network plans using the tool](https://www.google.com/search?q=%22propensity+to+cycle+tool%22+lcwip+site%3Agov.uk)).
+
+## Active Travel England
+
+<!-- {background-image="images/paste-9.jpeg" background-opacity="0.5" background-size="70%"} -->
+
+::::: columns
+::: {.column width="65%"}
+<img src="images/paste-9.jpeg" alt="Department for Transport&apos;s Data Science for Transport conference" style="width: 80%; opacity: 0.8;"/>
+:::
+
+::: {.column width="35%"}
+2 year contract in the Civil Service from January 2023
+
+My roles:
+
+-   Recruit the team
+-   Lead Data Scientist
+-   Projects: plan.activetravelengland.gov.uk (formerly ATIP), SchoolRoutes
+:::
+:::::
+
+Source: photo taken May 2023 at the Department for Transport's Data Science for Transport conference
+
+------------------------------------------------------------------------
+
+## Premises
+
+1.  There are often trade-offs between level of detail and simplicity in transport models.
+2.  Simplicity has advantages: transparency, reproducibility, flexibility, number of scenarios that can be run, and **explainability**.
+3.  Results at the route segment level are the most useful output of transport models for many applications, including active travel planning.
+4.  For models to be future-proof, they need to be easy for others to understand, reproduce, and extend.
+
+::: notes
+I'm going to start with some general observations about the role of transport planning and what we're trying to achieve, before going into a case study of building a transport model from first principles using open tools.
+
+1.  There is no one-size-fits-all transport model. Different contexts require different models.
+:::
 
 ## The 4-stage model
 
@@ -19,7 +73,7 @@ A transport models from first principles can be expressed in 4 stages, according
 3.  Mode choice
 4.  Route assignment
 
----
+------------------------------------------------------------------------
 
 ## The 4-stage model as a DAG
 
@@ -32,7 +86,7 @@ graph TD
     C --> D[Route Assignment]
 ```
 
----
+------------------------------------------------------------------------
 
 ## A more realistic model?
 
@@ -53,7 +107,7 @@ graph TD
     B --> A[Trip Generation: s1]
 ```
 
----
+------------------------------------------------------------------------
 
 ## Why the 4-stage model?
 
@@ -64,19 +118,57 @@ graph TD
 
 We should not throw the baby out with the bathwater, but reform, rebuild or *retrofit* transport modelling for the 21st Century.
 
----
+So let's see what we can do with the 4-stage model before moving on to more complex models.
+
+------------------------------------------------------------------------
+
+<!-- ## The four-stage model in context -->
+
+::::: columns
+::: {.column width="70%"}
+![](images/4-stage-model-context.png)
+:::
+
+::: {.column width="30%"}
+Schematic diagram illustrating the modelling process, geographic analysis and the four-stage model in the context of the wider transport planning process @lovelace2021, building on @ortuzars._modelling_2011.
+:::
+:::::
+
+## Aggregate models for DRT
+
+![](https://ars.els-cdn.com/content/image/1-s2.0-S2667091725000378-gr3.jpg)
+
+Aggregate analysis used to inform DRT zone selection [@mahfouz2025]
+
+## Activity-based models
+
+![](images/matsim-activity-based-model.png)
+
+A schematic of a research project involving MATSim @rai2007
+
+## Efficient mesoscopic transport model (uxSIM)
+
+![](https://github.com/toruseo/UXsim/raw/images/gridnetwork_macro.gif)
+
+\~60k vehicles passing through a 10km x 10km grid network in 2 hours (30 s on consumer-grade computer) [@seo2025]
+
+## Deep learning approaches
+
+![](images/city2graph-logo.png)
+
+Source: the [citygraph](https://github.com/c2g-dev/city2graph) GitHub repo
 
 ## A model from first principles
 
 Let's build a transport model, simplifying the 4-stage model by collapsing Trip Generation and Distribution into a single stage: **Trip Estimation**.
 
----
+------------------------------------------------------------------------
 
 ## Case study: Leeds, UK
 
 ![](leeds-example_files/figure-commonmark/fig-road-network-1.png)
 
----
+------------------------------------------------------------------------
 
 ## Inputs for a spatial interaction model
 
@@ -85,7 +177,7 @@ Let's build a transport model, simplifying the 4-stage model by collapsing Trip 
 
 ![](leeds-example_files/figure-commonmark/fig-sim-inputs-1.png)
 
----
+------------------------------------------------------------------------
 
 ## A simple spatial interaction model
 
@@ -94,21 +186,21 @@ Let's build a transport model, simplifying the 4-stage model by collapsing Trip 
 
 . . .
 
-Results:
+Results, with all OD pairs (left) and top 20 trips only (right):
 
-::: {layout-ncol=2}
+::: {layout-ncol="2"}
 ![](leeds-example_files/figure-commonmark/unconstrained1-1.png)
 
 ![](leeds-example_files/figure-commonmark/unconstrained1-2.png)
 :::
 
----
+------------------------------------------------------------------------
 
 ## Distance decay
 
 ![](leeds-example_files/figure-commonmark/unconstrained1-3.png)
 
----
+------------------------------------------------------------------------
 
 ## Scenario analysis: "Go Dutch"
 
@@ -116,7 +208,7 @@ Results:
 -   Uses the `pct` package.
 -   `pcycle = pct::uptake_pct_godutch_2020(distance, gradient)`
 
----
+------------------------------------------------------------------------
 
 ## "Go Dutch" scenario results
 
@@ -124,7 +216,7 @@ Route network summarising the Go Dutch scenario, showing potential for cycling.
 
 ![](leeds-example_files/figure-commonmark/fig-rnet-go-dutch-1.png)
 
----
+------------------------------------------------------------------------
 
 ## Route assignment
 
@@ -133,18 +225,18 @@ Route network summarising the Go Dutch scenario, showing potential for cycling.
 
 ![](leeds-example_files/figure-commonmark/fig-aon-1.png)
 
----
+------------------------------------------------------------------------
 
 ## Conclusions
 
--   It's possible to build transport models from scratch with open tools.
--   This approach is flexible, transparent, and reproducible.
+-   Not all transport planning research questions or applications require the same tools.
+-   A 'horses for courses' approach suggests thinking about what change looks like, and to choose/build tools accordingly.
+-   The 3-stage model presented is an example of what simple, open, efficient tools can look like, but is it future-proof?
 -   Enables rapid scenario analysis (e.g., Go Dutch).
--   Future work: more sophisticated models, better data, integration with other tools like `dodgr`.
+-   Future work: validation, optimisation, and applying the approach to other contexts and modes.
 
----
+------------------------------------------------------------------------
 
-## Thanks!
+## Thanks + references
 
--   Slides created with Quarto
--   Find out more: [robinlovelace.net](https://robinlovelace.net)
+-   Find out more: [www.robinlovelace.net](https://www.robinlovelace.net)
