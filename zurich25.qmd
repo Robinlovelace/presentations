@@ -185,6 +185,8 @@ graph TD
 -   **Population**: Estimated from residential buildings in OSM.
 -   **Jobs**: Estimated from commercial/retail/office buildings in OSM.
 
++Areal aggregation [@lovelace2022] 
+
 ![](leeds-example_files/figure-commonmark/fig-sim-inputs-1.png)
 
 ------------------------------------------------------------------------
