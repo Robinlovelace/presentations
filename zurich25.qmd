@@ -21,7 +21,7 @@ bibliography: references.bib
 
 **The more people who can run, modify, and see the outputs of transport models, the larger the impact**.
 
-## What does change look like?
+## What do we mean by impact?
 
 ![](images/pct-leicestershire.png)
 
